@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+		
+		a:link {
+			color:white;
+		}
+		
+		img {
+			width:100%;
+		}
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Videos</h1>
+		<h2>Watch videos here</h2>
+        <div class="video">
+            <iframe src="https://youtu.be/g3kj-kJwQk0?si=J1RtP85lbj8ejbVz" frameborder="0" allowfullscreen></iframe>
+        </div>
+		MegaStructures - Petronas Towers (National Geographic Documentary)
+		<br>
+		<br>
+		<br>
+        <div class="video">
+            <iframe src="https://youtu.be/zVnapgO8kOg?si=9kR3LKme1Y0zkNj3" frameborder="0" allowfullscreen></iframe>
+        </div>
+		Megastructures - Petronas Towers Malaysia (NEW SEASON) National Geographic Documentary
+		<br>
+		<br>
+		<br>
+        <div class="video">
+            <iframe src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+		<br>
+		<br>
+		<br>
+        <!-- Add more video divs for additional videos -->
+    </div>
+</body>
+</html>
