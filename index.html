@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Building</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Source Sans Pro, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+			text-align:center;
+        }
+
+		.logo {
+		  font-size: 1.5em;
+		  font-weight: bold;
+		  min-width:120px;
+		}
+		
+		#logo {
+			height:200px;
+			align:center;
+		}
+		
+		h1, h2, h3 {
+			color:#fff;
+		}
+		
+		h1 {
+			font-family:lato;
+			font-size:40px;
+		}
+		
+		h2 {
+			font-family:roboto;
+			font-size:30px;
+			opacity:0.7;
+		}
+		
+		h3 {
+			font-family:abel;
+			font-size:30px;
+		}
+
+        .jumbotron {
+            background-image: url('./imgs/design/building1.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+			background-repeat: no-repeat;
+            height: 450px;
+			text-align: center; /* Center-align text */
+			padding-top:250px;
+        }
+		
+		.jumbotron h1 {
+			opacity:0.7;
+		}
+		
+		.jumbotron h2 {
+			opacity:0.7;
+			text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;
+		}
+
+        header {
+            background-color: #000;
+            text-align: center;
+			height:40px;
+        }
+		
+        header h2{
+            font-family:Urbanist;
+			font-weight:400;
+			color:#aaa;
+        }
+
+
+        .main-content {
+            padding: 0px;
+			width:100%;
+            margin: 0 auto;
+			color:#ddd;
+        }
+		
+		section {
+			width:100%;
+		}
+		
+		.container {
+			padding: 20px;
+		    max-width: 1200px;
+			margin: 0 auto;
+		}
+
+        .image-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 20px 0;
+			padding-top:50px;
+        }
+		
+        .single-column-section {
+            width: 100%;
+			text-align:justify;
+			line-height:30px;
+        }
+		
+		.single-column-section h3 {
+			text-align:center;
+		}
+		
+        .two-column-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+			margin-left:100px;
+			margin-right:100px;
+			line-height:30px;
+        }
+
+        .two-column-section div {
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+		
+		.justify_left {
+			text-align:left;
+		}
+		
+		.justify_right {
+			text-align:right;
+		}
+		
+		.float-left {
+			float:left;
+		}
+		
+		.float-right {
+			float:right;
+		}
+		
+        .three-column-section {
+            padding: 50px 20px;
+            text-align: left;
+			line-height:30px;
+        }
+		
+		.three-column-section h3 {
+			text-align: center;
+		}
+
+        .column {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .column img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .column h3 {
+            margin-bottom: 10px;
+        }
+
+        .column p {
+            font-size: 16px;
+        }
+		
+		#section-main-concourse img {
+			width:100%;
+		}
+		
+		#section-side-concourse .column {
+			max-width:800px;
+		}
+		
+		#section-cafeteria .column {
+			max-width:800px;
+		}
+		
+        .footer-image {
+            background-image: url('./imgs/design/building2.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+			background-repeat: no-repeat;
+            height: 100px;
+			text-align: center; /* Center-align text */
+			margin-top:100px;
+        }
+
+        @media (min-width: 768px) {
+            .three-column-section {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .column {
+                width: calc(33.33% - 20px);
+                margin-bottom: 20px;
+            }
+        }
+		
+		footer {
+			background-color: #000;
+			padding: 20px;
+			color: #fff;
+			text-align: center;
+		}
+		
+		.footer-logos {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			border-bottom:2px dotted #333;
+			margin-top:20px;
+			margin-bottom:40px;
+			align-items: center;
+		}
+		
+		.footer-logos a img {
+			filter: grayscale(100%);
+		}
+		
+		.footer-links {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.footer-column {
+			flex: 1;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		footer a {
+			color: #fff;
+			text-decoration: none;
+			display: block;
+			margin-bottom: 8px;
+		}
+
+		.social-icons {
+			margin-top: 0px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+		.small-logo {
+			height:30px;
+			margin-top:0px;
+		}
+
+		@media (max-width: 768px) {
+			.footer-links {
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.footer-column {
+				flex: 1;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+		}
+    </style>
+</head>
+<body>
+	<img id="logo" src="./architect/imgs/logos/logo1.jpg" alt="logo">
+	
+	<h1>Menu</h1>
+	
+	<footer>
+		<div class="footer-links">
+			<div class="footer-column">
+				<a href="./architect/architect.html">Home</a>
+				<a href="./architect/about.html">About</a>
+				<a href="./architect/team.html">Team</a>
+				<a href="./architect/requirements.html">Competition</a>
+				<a href="./architect/brief.pdf">Brief & Specs</a>
+				<a href="./architect/analysis.html">Questions</a>
+			</div>
+			<div class="footer-column">
+				<a href="./architect/todo.html">Todo List</a>
+				<a href="https://github.com/psyblade/htmltutorial">HTML Tutorial</a>
+				<a href="https://www.humanmetrics.com/personality">MBTI Test</a>
+				<a href="https://psyblade.github.io/MBTI/chart.html">MBTI Chart</a>
+				<a href="https://psyblade.github.io/MBTI/">MBTI Personalities</a>
+				<a href="https://www.youtube.com/@FrankJames">MBTI YouTube</a>
+			</div>
+			<div class="footer-column">
+				<a href="https://github.com/psyblade/architect">Github</a>
+				<a href="https://chat.openai.com">ChatGPT</a>
+				<a href="https://leonardo.ai/">Leonardo.ai</a>
+				<a href="https://ideogram.ai">Ideogram.ai</a>
+			</div>
+			<div class="footer-column">
+				<a href="https://runwayml.com">RunwayML</a>
+				<a href="https://www.remove.bg">Remove Background</a>
+				<a href="https://renderforest.com">RenderForest</a>
+				<a href="https://elevenlabs.io/">ElevenLabs</a>
+				<a href="https://capcut.com">CapCut</a>
+			</div>
+			<div class="footer-column">
+				<a href="https://www.youtube.com/watch?v=auDX4SkZu1s">Best Architect Tools</a>
+				<a href="https://www.promeai.com" title="Turn Images to Video">Prome AI</a>
+				<a href="https://rerenderai.com" title="Turn Design into Different Architectures">ReRender.ai</a>
+				<a href="https://www.fotor.com/features/ai-architecture/" title="Turn Image Into Sketch">Fotor.com</a>
+				<a href="https://planner5d.com/ai" title="Floor Plan to 3D">planner5d</a>
+				<a href="https://app.cedreo.com" title="Floor Plan to 3D">Cedreo</a>
+			</div>
+			<div class="footer-column">
+				<a href="videos.html">Architecture Videos</a>
+				<a href="https://bentley.sharefile.com/share/view/s335d4d9d313647bda54486f2e8e794f3">Bentley Microstation</a>
+				<a href="./architect/EdTemplate.dgn">Template</a>
+				<a href="https://bentley.sharefile.com/d-sf4a453851bb044cbbf57014f46b25d17">Training Video</a>
+				<a href="https://www.youtube.com/watch?v=I_bJPNnO3HQ">SketchUp Tutorial</a>
+				<a href="https://communities.bentley.com/products/3d_imaging_and_point_cloud_software/w/wiki/33097/from-sketchup-to-lumenrt-and-then-re-export-the-updated-sketchup-model-into-lumenrt">Sketch Up to LumenRT</a>
+			</div>
+		</div>
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<div class="footer-column social-icons">
+				<a href="#">+6 (014) 2400 182</a>
+			</div>
+		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
+	</footer>
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+</body>
+</html>
