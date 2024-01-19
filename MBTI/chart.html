@@ -88,6 +88,7 @@
 		
 		section {
 			width:100%;
+			margin-bottom:50px;
 		}
 		
 		.container {
@@ -98,7 +99,7 @@
 
         .image-section {
             text-align: center;
-            padding: 50px 0;
+            padding: 10px 0;
         }
 
         .image-section img {
@@ -113,9 +114,14 @@
             margin: 20px 0;
 			padding-top:50px;
         }
-
+		
+        .two-column-section {
+			background-color:grey;
+            text-align: left;
+        }
+	
         .three-column-section {
-            padding: 50px 20px;
+            padding: 20px 20px;
 			background-color:white;
             text-align: left;
         }
@@ -126,7 +132,7 @@
 
         .column {
             width: 100%;
-            max-width: 300px;
+            max-width: 200px;
             margin: 0 auto;
             box-sizing: border-box;
         }
@@ -144,8 +150,24 @@
             font-size: 16px;
         }
 		
+		.column div {
+			color:#aaa;
+			text-align:center;
+			height:60px;
+		}
+		
+		.column .row {
+			border:3px solid grey;
+			height:auto;
+		}
 
         @media (min-width: 768px) {
+            .two-column-section {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+			
             .three-column-section {
                 display: flex;
                 justify-content: space-around;
@@ -217,37 +239,11 @@
 <body>
 
     <h1>MBTI Functions Chart</h1>
-	
+
 	<div class="main-content">
-		<section id="building-places">
-			<div class="container three-column-section">
-				<div class="column">
-					<img src="ESTJ.png">
-					<img src="ISTJ.png">
-					<img src="ESTP.png">
-					<img src="ISTP.png">
-				</div>
-
-				<div class="column">
-					<img src="ESFJ.png">
-					<img src="ISFJ.png">
-					<img src="ESFP.png">
-					<img src="ISFP.png">
-				</div>
-
-				<div class="column">
-					<img src="ENFJ.png">
-					<img src="INFJ.png">
-					<img src="ENFP.png">
-					<img src="INFP.png">
-				</div>
-
-				<div class="column">
-					<img src="ENTJ.png">
-					<img src="INTJ.png">
-					<img src="ENTP.png">
-					<img src="INTP.png">
-				</div>
+		<section id="chart1">
+			<div class="container">
+				<img src="chart.png">
 			</div>
 		</section>
 	</div>
