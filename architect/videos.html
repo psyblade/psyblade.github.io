@@ -3,78 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videos</title>
+    <title>Architecture Videos</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
     <style>
         body {
-            margin: 0;
-            padding: 0;
             background-color: #000;
             color: #fff;
-            font-family: Arial, sans-serif;
+            font-family: Source Sans Pro, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
 			text-align:center;
         }
+
+		.logo {
+		  font-size: 1.5em;
+		  font-weight: bold;
+		  min-width:120px;
+		}
 		
-		a:link {
+		#logo {
+			height:200px;
+			align:center;
+		}
+		
+        a:link {
 			color:white;
 		}
 		
-		img {
-			width:100%;
+		
+		h1, h2, h3 {
+			color:#fff;
 		}
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
+		
+		h1 {
+			font-family:lato;
+			font-size:40px;
+		}
+		
+		h2 {
+			font-family:roboto;
+			font-size:30px;
+		}
+		
+		h3 {
+			font-family:abel;
+			font-size:30px;
+			margin-top:100px;
+		}
+
+        header {
+            background-color: #000;
             text-align: center;
-            margin-bottom: 20px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .video {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .video iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+			height:40px;
         }
 		
-		hr {
-			margin-top:50px;
-			margin-bottom:50px;
-			border:1px dashed #555;
+        header h2{
+            font-family:Urbanist;
+			font-weight:400;
+			color:#aaa;
+        }
+
+
+        .main-content {
+            padding: 20px;
+            max-width: 750px;
+            margin: 0 auto;
+			color:#ddd;
+        }
+
+        .image-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+        .single-column-section {
+            width: 100%;
+			text-align:justify;
+			line-height:30px;
+			font-size:20px;
+        }
+		
+		.single-column-section h3 {
+			text-align:left;
+		}
+
+        .footer_image {
+            background-image: url('building2.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+			background-repeat: no-repeat;
+            height: 100px;
+			text-align: center; /* Center-align text */
+			margin-top:100px;
+        }
+
+        @media (min-width: 768px) {
+            .three-column-section {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .column {
+                width: calc(33.33% - 20px);
+                margin-bottom: 20px;
+            }
+        }
+		
+		footer {
+			background-color: #10121f;
+			padding: 20px;
+			color: #fff;
+			text-align: center;
+		}
+
+		.footer-links {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.footer-column {
+			flex: 1;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		footer a {
+			color: #fff;
+			text-decoration: none;
+			display: block;
+			margin-bottom: 8px;
+		}
+
+		.social-icons {
+			margin-top: 0px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+		.small-logo {
+			height:30px;
+			margin-top:0px;
+		}
+
+		@media (max-width: 768px) {
+			.footer-links {
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.footer-column {
+				flex: 1;
+				text-align: center;
+				margin-bottom: 20px;
+			}
 		}
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Videos</h1>
-		<h2>Watch videos here</h2>
-        <a href="https://www.youtube.com/watch?v=g3kj-kJwQk0"><img src="./imgs/videos/1.jpg"><br>MegaStructures - Petronas Towers (National Geographic Documentary)</a>
-        <a href="https://www.youtube.com/watch?v=zVnapgO8kOg"><img src="./imgs/videos/2.jpg"><br>Megastructures - Petronas Towers Malaysia (NEW SEASON) National Geographic Documentary</a>
-        <a href="https://www.youtube.com/watch?v=AjuOLFc-GBk&t=401s"><img src="./imgs/videos/3.jpg"><br>Top 10 AMAZING Sci fi Cities Currently Being Built</a>
-        <a href="https://www.youtube.com/watch?v=T9dJ_cE5Asw"><img src="./imgs/videos/4.jpg"><br>Inside Apple Park</a>
-		<a href="https://www.youtube.com/watch?v=XZXvBSwGLyk"><img src="./imgs/videos/5.jpg"><br>Aerial Exploration of architecture heritage Georgetown, Penang</a>	
-		<a href="https://www.youtube.com/watch?v=ZIjvFM3KFPs"><img src="./imgs/videos/6.jpg"><br>An Example of an Office Building Presentation</a>	
-		<hr>
-		<a href="https://www.youtube.com/watch?v=3R3k4k9m47k"><img src="./imgs/videos/7.jpg"><br>E&O Property, The Tamarind</a>	
-		<a href="https://www.youtube.com/watch?v=1RO-hmFcz8E"><img src="./imgs/videos/8.jpg"><br>E&O Hotel</a>	
-		
-		<a href="https://www.youtube.com/@eobhd"><img src="./imgs/videos/e&o1.jpg"><br>E&O Property Youtube</a>
-		<a href="https://www.easternandoriental.com/"><img src="./imgs/videos/e&o2.jpg"><br>E&O website</a>
-		<a href="https://www.eohotels.com/"><img src="./imgs/videos/e&o3.jpg"><br>E&O hotels</a>	
-		
-        <!-- Add more video divs for additional videos -->
+	<img id="logo" src="./imgs/logos/logo1.png" alt="logo">
+
+    <header>
+        <h2>Architecture Videos</h2>
+    </header>
+
+    <div class="main-content">
+	    <section class="single-column-section image-section">
+			
+			<h3>MegaStructures - Petronas Towers (National Geographic Documentary)</h3>
+			<a href="https://www.youtube.com/watch?v=g3kj-kJwQk0"><img src="./imgs/videos/1.jpg"></a>
+			<p></p>
+			
+			<h3>Megastructures - Petronas Towers Malaysia (NEW SEASON) National Geographic Documentary</h3>
+			<a href="https://youtu.be/zVnapgO8kOg?si=2i3igCv4c179nGUM&t=301"><img src="./imgs/videos/2.jpg"></a>
+			<p></p>
+			
+			<h3>Top 10 AMAZING Sci fi Cities Currently Being Built</h3>
+			<a href="https://www.youtube.com/watch?v=AjuOLFc-GBk&t=401s"><img src="./imgs/videos/3.jpg"></a>
+			<p></p>
+			
+			<h3>Inside Apple Park</h3>
+			<a href="https://www.youtube.com/watch?v=T9dJ_cE5Asw"><img src="./imgs/videos/4.jpg"></a>
+			<p></p>
+			
+			<h3>Aerial Exploration of architecture heritage Georgetown, Penang</h3>
+			<a href="https://www.youtube.com/watch?v=XZXvBSwGLyk"><img src="./imgs/videos/5.jpg"></a>
+			<p></p>
+			
+			<h3>An Example of an Office Building Presentation</h3>
+			<a href="https://www.youtube.com/watch?v=ZIjvFM3KFPs"><img src="./imgs/videos/6.jpg"></a>	
+			<p></p>
+			
+			<hr>
+			
+			<h1>Architecture 101</h1>
+			<h3>Architecture School</h3>
+			<a href="https://youtu.be/A3ErvVzh8EY?si=Q1QkV-7CBxysLpYR&t=175"><img src="./imgs/videos/a.jpg"></a>
+			<p>Some basic of Architecture</p>
+			<p>Important take aways: Form and Function, as well as Context</p>
+			
+			<h3>Architectural Space</h3>
+			<a href="https://www.youtube.com/watch?v=IBOChA1LJMc"><img src="./imgs/videos/b.jpg"></a>
+			<p>Some basic of Architectural Space</p>
+			<p>Important take aways: What is the user experience and how they interact with the architetural spaces</p>
+			
+			<hr>
+			
+			<h2>More Videos On Buildings and Developers in Penang</h2>
+			<h3>E&O Property, The Tamarind</h3>
+			<a href="https://www.youtube.com/watch?v=3R3k4k9m47k"><img src="./imgs/videos/7.jpg"></a>	
+			<p></p>
+			
+			<h3>E&O Hotel</h3>
+			<a href="https://www.youtube.com/watch?v=1RO-hmFcz8E"><img src="./imgs/videos/8.jpg"></a>
+			<p></p>
+			
+			<h3>E&O Property Youtube</h3>
+			<a href="https://www.youtube.com/@eobhd"><img src="./imgs/videos/e&o1.jpg"></a>
+			<p></p>
+			
+			<h3>E&O website</h3>
+			<a href="https://www.easternandoriental.com/"><img src="./imgs/videos/e&o2.jpg"></a>
+			<p></p>
+			
+			<h3>E&O hotels</h3>
+			<a href="https://www.eohotels.com/"><img src="./imgs/videos/e&o3.jpg"></a>
+			<p></p>
+
+        </section>
     </div>
+	
+	<footer>
+		<div class="footer-links">
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<div class="footer-column">
+				<a href="../index.html">Menu</a>
+			</div>
+			<div class="footer-column">
+				<img src="./imgs/logos/firm.jpg" alt="Small Logo" class="small-logo">
+			</div>
+		</div>
+		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
+		
+	</footer>
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
 </body>
 </html>
