@@ -219,7 +219,7 @@
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
-			<h3>Add these to your bio page</h3>
+			<h3>Responsive</h3>
 			 <p>Add these to your bio page to make it responsive for mobile devices</p>
 			<img src="./imgs/responsive/container.png">
 <pre><code>
@@ -246,6 +246,19 @@
 				flex: 1;
 				text-align: center;
 			}
+		}
+</code></pre>
+
+			<h3>Squares</h3>
+			<p>Add this to turn any images into squares.</p>
+			<img src="./imgs/responsive/squares.png">
+<pre><code>
+		.main-content img {
+			width:250px;
+			height:250px;
+			object-fit: cover;
+			border:10px solid white;
+			box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
 		}
 </code></pre>
         </section>
