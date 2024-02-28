@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="./css/menu-accordion.css">
+	<link rel="stylesheet" href="./css/menu-content.css">
+	<style>
+
+</style>
+</head>
+<body>
+	<h1>Digitech Year 2</h2>
+	<div class="accordion">
+		<div class="accordion-item" data-url="lessonplan1.html">
+			<div class="accordion-title level3">Lesson 1</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+		<div class="accordion-item" data-url="lessonplan2.html">
+			<div class="accordion-title level3">Lesson 2</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+		<div class="accordion-item" data-url="lessonplan3.html">
+			<div class="accordion-title level3">Lesson 3</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+		<div class="accordion-item" data-url="lessonplan4.html">
+			<div class="accordion-title level3">Lesson 4</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+		<div class="accordion-item" data-url="lessonplan5.html">
+			<div class="accordion-title level3">Lesson 5</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+		<div class="accordion-item" data-url="lessonplan6.html">
+			<div class="accordion-title level3">Lesson 6</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+		<div class="accordion-item" data-url="lessonplan7.html">
+			<div class="accordion-title level3">Lesson 7</div>
+			<div class="accordion-content">
+			</div>
+		</div>
+	</div>
+
+<script>
+/*
+  // Get all accordion items
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  // Loop through each accordion item and add a click event listener
+  accordionItems.forEach(item => {
+    const title = item.querySelector('.accordion-title');
+
+    title.addEventListener('click', function() {
+      // Toggle the display of accordion content
+      const content = item.querySelector('.accordion-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+ */
+document.addEventListener("DOMContentLoaded", function() {
+  const accordionItems = document.querySelectorAll(".accordion-item");
+  
+  accordionItems.forEach(item => {
+    item.querySelector(".accordion-title").addEventListener("click", function() {
+	
+      const content = item.querySelector(".accordion-content");
+      const url = item.dataset.url;
+	  
+      if (url !== undefined) {
+        fetch(url)
+          .then(response => response.text())
+          .then(html => {
+            content.innerHTML = html;
+          })
+          .catch(error => {
+            console.error('Error fetching content:', error);
+          });
+      }
+      
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+  });
+});
+</script>
+
+</body>
+</html>
