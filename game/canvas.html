@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Canvas</title>
+	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
+
+    <!-- Script to include Prism.js -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    
+	<!-- Include CSS language support -->
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-css.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+	
+	<!-- Google Fonts For Webpage -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+	
+	<!-- CSS For Webpage -->
+	<link rel="stylesheet" href="./css/reset.css">
+	
+	<!-- Google Fonts For the Game -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap">
+	<style>	
+		.crisp {
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+	</style>
+</head>
+<body>
+	<img id="logo" src="./imgs/logo.png" alt="logo">
+	
+    <header>
+        <h2>Canvas</h2>
+    </header>
+
+    <div class="main-content">
+	    <section class="single-column-section image-section">
+			<h3>Step 1:</h3>
+            <p>Add this CSS to your 'STYLE' section.</p>
+			
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-css">
+body {
+	margin: 0;
+	position: relative;
+	background-color: black;
+}
+
+.crisp {
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+}
+
+#gameCanvas {
+	border:25px solid #555;
+	border-radius:10px;
+}
+canvas {
+	display: block;
+	margin: 0 auto;
+}
+
+#canvasContainer {
+	position: relative;
+	width: 850px; /* Adjust width as needed */
+	height: 650px; /* Adjust height as needed */
+	margin: auto; /* Center the container */
+	/* border:1px solid red; */
+}
+</code></pre>
+
+			<h3>Step 2:</h3>
+            <p>We are going to make a canvas. Open up notepad and paste in this code below. Save and name the file index.html. </p>
+			
+			
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+    body {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    #gameCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+		}
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+	.canvas {
+		background-color:black;
+	}
+	
+	#canvasContainer {
+		position: relative;
+		width: 800px; /* Adjust width as needed */
+		height: 600px; /* Adjust height as needed */
+		margin: auto; /* Center the container */
+	}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="canvasContainer"&gt;
+	&lt;canvas id="gameCanvas" width="800" height="600"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+			</code></pre>
+			
+			<h3>Step 3:</h3>
+			<img src="./imgs/canvas1.png">
+			<p>Open up a browser and drag the index.html file into the browser and you will see a black canvas as shown above.</p>
+			
+			<h3>Step 4:</h3>
+			<img src="./imgs/canvas2.png">
+			<p>
+			We will no plot some square blocks on it with different colors. Blue will signify the player and red will signify the enemy.</p>
+			<br><br>
+			
+			<pre><code class="language-javascript">
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const player = {
+	x: 300,
+	y: 300,
+	width: 16,
+	height: 32,
+	speed: 3,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+
+const enemy = {
+	x: canvas.width - 300,
+	y: canvas.height - 300,
+	width: 16,
+	height: 32,
+	speed: 1,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+	
+function drawPlayer() {
+	ctx.fillStyle = "blue"; // Adjust the alpha value (last parameter) for transparency // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+function drawEnemy() {
+	ctx.fillStyle =   "red"; // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+}
+
+function gameLoop() {
+	drawPlayer();
+	drawEnemy();
+	requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+			</code></pre>
+        </section>
+    </div>
+	
+    <div class="jumbotron2">
+    </div>
+	
+    <div class="footer_image">
+    </div>
+	
+	<footer>
+		<div class="footer-links">
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<div class="footer-column">
+				<a href="../index.html">Menu</a>
+			</div>
+			<div class="footer-column">
+				<img src="./imgs/logos/firm.jpg" alt="Small Logo" class="small-logo">
+			</div>
+		</div>
+		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
+		
+	</footer>
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+</body>
+</html>
