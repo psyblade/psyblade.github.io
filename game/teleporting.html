@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dungeon Chase</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    #gameCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+		}
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+	.canvas {
+		background-color:black;
+	}
+	
+	#canvasContainer {
+		border:20px solid grey;
+		border-radius:10px;
+		position: relative;
+		width: 800px; /* Adjust width as needed */
+		height: 600px; /* Adjust height as needed */
+		margin: auto; /* Center the container */
+	}
+</style>
+</head>
+<body>
+
+<div id="canvasContainer">
+	<canvas id="gameCanvas" class="canvas" width="800" height="600"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const player = {
+	x: 300,
+	y: 300,
+	width: 16,
+	height: 32,
+	speed: 3,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+
+const enemy = {
+	x: canvas.width - 300,
+	y: canvas.height - 300,
+	width: 16,
+	height: 32,
+	speed: 1,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+	
+function drawPlayer() {
+	ctx.fillStyle = "blue"; // Adjust the alpha value (last parameter) for transparency // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+function drawEnemy() {
+	ctx.fillStyle =   "red"; // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+}
+
+function clearCanvas() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function movePlayer() {
+	player.x += player.dx;
+	player.y += player.dy;
+	
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+}
+
+function gameLoop() {
+	clearCanvas();
+	drawPlayer();
+	drawEnemy();
+	movePlayer();
+	requestAnimationFrame(gameLoop);
+}
+
+document.addEventListener("keydown", function (event) {
+	switch (event.key) {
+		case "w":
+			player.dy = -player.speed;
+			break;
+		case "a":
+			player.dx = -player.speed;
+			break;
+		case "s":
+			player.dy = player.speed;
+			break;
+		case "d":
+			player.dx = player.speed;
+			break;
+	}
+});
+
+document.addEventListener("keyup", function (event) {
+	switch (event.key) {
+		case "w":
+		case "s":
+			player.dy = 0;
+			break;
+		case "a":
+		case "d":
+			player.dx = 0;
+			break;
+	}
+});
+
+gameLoop();
+</script>
+</body>
+</html>
