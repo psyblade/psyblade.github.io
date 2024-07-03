@@ -37,12 +37,17 @@
 			overflow: hidden;
 		}
 		#gameCanvas {
-			border:25px solid #555;
+			position:absolute;
+			left:2px;
+			top:2px;
+			border:25px solid #333;
 			border-radius:10px;
 		}
 		#mapCanvas {
 			position:absolute;
-			border:25px solid #555;
+			left:2px;
+			top:2px;
+			border:25px solid #333;
 			border-radius:10px;
 			z-index:1;
 			/* display:none; */
@@ -54,8 +59,8 @@
 		
         #canvasContainer {
             position: relative;
-            width: 850px; /* Adjust width as needed */
-            height: 650px; /* Adjust height as needed */
+            width: 1280px; /* Adjust width as needed */
+            height: 768px; /* Adjust height as needed */
             margin: auto; /* Center the container */
 			/* border:1px solid red; */
         }
@@ -82,9 +87,9 @@
 		
         #splashScreen {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
+            width: 1280px;
+            height: 768px;
+			margin: 0 auto;
             justify-content: center;
             align-items: center;
             z-index: 10;
@@ -93,34 +98,162 @@
 			background-color:#000;
 			border:25px solid #555;
 			border-radius:10px;
+			left:50%;
+			transform: translate(-50%);
         }
 
         #playButton {
 			position:absolute;
 			bottom:0px;
-			left:50%;
-            width: 260px;
-            height: 20%;
-			transform: translate(-35%);
+			right:0px;
+            width: 340px;
+            height: 25%;
             border: none;
             cursor: pointer;
             background-size: contain;
 			z-index:1001;
         }
 
+	/*--------------------------*/
+	/* COLUMN CSS             */
+	/*--------------------------*/
+    .container {
+		position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        left:50%;
+		transform: translate(-50%);
+		width:1280px;
+		height:768px;
+		border:25px solid #555;
+		border-radius:10px;
+    }
+	
+    .column {
+        box-sizing: border-box;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+	
+	/*--------------------------*/
+	/* COLUMN 1 CSS             */
+	/*--------------------------*/
+		#column1 {
+			width:980px;
+			background-color: #171920;
+		}
 		
+	/*--------------------------*/
+	/* COLUMN 2 CSS             */
+	/*--------------------------*/
+		#column2 {
+			width:300px;
+			background-color: #171920
+		}
+
+		#logo {
+			width:300px;
+			height:auto;
+			z-index:10;
+		}
+		
+		#status {
+			text-align: center;
+		}
+		
+		#avatar {
+			margin-top:200px;
+			width:150px;
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+		
+		#name {
+			font-family: 'Press Start 2P', system-ui;
+			font-size:20px;
+			color:#974818;
+			color:green;
+		}
+		
+		#hp {
+			font-family:abel;
+			font-size:20px;
+			color:white;
+		}
+		
+		#healthbar {
+			width:100px;
+			height:20px;
+			background-color:#3e2011;
+			display:inline-block;
+			border:4px solid #603535;
+			border-radius:10px;
+		}
+		
+		.fa-heart {
+			color:#773419;
+			margin-right:10px;
+		}
+		
+		#hplabel {
+			width:100px;
+			height:20px;
+			display:inline-block;
+			vertical-align:top;
+		}
+		
+		#health {
+			width:50px;
+			height:20px;
+			background-color:#7b420e;
+			border-radius:5px;
+		}
+		
+		#gold {
+			padding:20px;
+		}
+		
+		#goldvalue {
+			color:red;
+			font-family: 'Press Start 2P', system-ui;
+			font-size:20px;
+			display:inline-block;
+		}
+		
+		#goldlabel {
+			color:yellow;
+			font-family: 'Press Start 2P', system-ui;
+			font-size:20px;
+			display:inline-block;
+		}
 
 	</style>
 </head>
 <body>
-	<div id="canvasContainer">
-		<div class="splash-screen" id="splashScreen">
-			<div class="play-button" id="playButton"></div>
+	<div class="splash-screen" id="splashScreen">
+		<div class="play-button" id="playButton"></div>
+	</div>
+	<div class="container">
+		<div id="column1" class="column">
+			<div id="canvasContainer">
+				<canvas id="mapCanvas" width="918" height="714"></canvas>
+				<canvas id="gameCanvas" width="918" height="714"></canvas>
+				<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
+				<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
+			</div>
 		</div>
-		<canvas id="mapCanvas" width="800" height="640"></canvas>
-		<canvas id="gameCanvas" width="800" height="640"></canvas>
-		<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
-		<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
+		<div id="column2" class="column">
+			<img id="logo" src="./imgs/logo.png" alt="logo">
+			<div id="status">
+				<img id="avatar" src="./imgs/player-south.png" alt="Player Avatar">
+				<div id="name">Joe Cur-Sed</div>
+				<div id="hp"><div id="hplabel"><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i></div><div id="healthbar"><div id="health"></div></div></div>
+				<div id="gold"><div id="goldlabel"><i class="fas fa-gold"></i>Gold:</div><div id="goldvalue">0</div></div>
+			</div>
+		</div>
 	</div>
 
     <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
@@ -144,6 +277,7 @@ var ctx = canvas.getContext("2d");
 
 const playerGif = document.getElementById("playerGif");
 const enemyGif = document.getElementById("enemyGif");
+const goldDiv = document.getElementById("goldvalue");
 
 const player = {
 	x: 35,
@@ -154,12 +288,13 @@ const player = {
 	dx: 0,
 	dy: 0,
 	prevDx: 0,
-	prevDy: 0
+	prevDy: 0,
+	gold: 0
 };
 
 const enemy = {
 	x: 105,
-	y: canvas.height - 68,
+	y: canvas.height - 100,
 	width: 16,
 	height: 30,
 	speed: 1,
@@ -173,8 +308,8 @@ var yellowSquares = []; // Keeps track of gold piles
 
 // Define tile size and map dimensions
 var tileSize = 34;
-var mapWidth = 24;
-var mapHeight = 19;
+var mapWidth = 27;
+var mapHeight = 21;
 var tilesetWidth = 16;
 var tilesetHeight = 16;
 
@@ -185,25 +320,27 @@ window.onload = function() {
 
 	// Define map data (for simplicity, represented as numbers)
 	var mapData = [
-		[13,13,13,13,13,13,13,13,13,13,13,13,16,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
-		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,16,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 	];
 
 	// Draw the map
@@ -449,10 +586,34 @@ function checkYellowCollision() {
             yellowSquares[i].gifDiv.remove();
             // Remove yellow square from the map
             yellowSquares.splice(i, 1);
+			
+			// Increment the player's gold by a random number between 100 and 200
+            var randomGoldIncrement = Math.floor(Math.random() * 101) + 100;
+            
+			// Animate the score increment
+            // animateGoldIncrement(randomGoldIncrement);
+			animateGoldIncrement(100);
+			
             break; // Exit the loop after removing the square and its GIF
         }
     }
 }
+
+function animateGoldIncrement(increment) {
+	console.log ("increment:", increment);
+    var currentGold = player.gold;
+	player.gold += increment;
+    var targetGold = currentGold + increment;
+    var animationInterval = setInterval(function() {
+        if (currentGold < targetGold) {
+            currentGold += 1;
+            goldDiv.textContent = currentGold;
+        } else {
+            clearInterval(animationInterval);
+        }
+    }, 10); // Adjust the interval time for smoother or faster animation
+}
+
 
 function checkPlayerEnemyCollision() {
 	if (
@@ -488,10 +649,10 @@ function showGameOverPopup() {
     gameOverDiv.textContent = "Game Over";
     
 	// Get the existing canvas container element
-	var canvasContainer = document.getElementById("canvasContainer");
+	var canvasContainer = document.getElementById("column1");
 	
 	// Append gameOverDiv to canvasContainer
-	canvasContainer.appendChild(gameOverDiv);
+	column1.appendChild(gameOverDiv);
 }
 
 function gameLoop() {
