@@ -40,7 +40,10 @@
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
-			<h3>1: The Header and Body</h3>
+			<h3>Step 1:</h3>
+            <p>Open up notepad and paste in Code 1 below. Save and name the file index.html. </p>
+		
+			<h3>Code 1: The Header and Body</h3>
             <p>This is the bare bones of a blank HTML page</p>
 			
 			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
@@ -61,8 +64,42 @@
 &lt;/body&gt;
 &lt;/html&gt;
 			</code></pre>
+			
+			<h3>Step 2:</h3>
+			<img src="./imgs/blank-page.png">
+			<p>Open up a browser and drag the index.html file into the browser and you will see a blank white page.</p>
+			
+			<h3>Code 2: Contents within the HTML Body</h3>
+			<p>We insert the canvas element between the 'body' tags of the HTML document.</p>
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
 
-			<h3>2: CSS</h3>
+&lt;div id="canvasContainer"&gt;
+	&lt;canvas id="gameCanvas" class="canvas" width="800" height="600"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+			</code></pre>
+			
+			<h3>Step 3:</h3>
+			<img src="./imgs/black-canvas.png">
+			<p>In your notepad and paste in Code 3 below and save. Refresh your browser and you will see a black canvas in your browser as shown in the above image.</p>
+
+			<h3>Code 3: CSS</h3>
             <p>Here we insert the CSS in between the 'style' tags. CSS allows us to define how each element will look like. </p>
 			
 			
@@ -93,54 +130,6 @@
 	.canvas {
 		background-color:black;
 	}
-	
-	#canvasContainer {
-		position: relative;
-		width: 800px; /* Adjust width as needed */
-		height: 600px; /* Adjust height as needed */
-		margin: auto; /* Center the container */
-	}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-
-&lt;script&gt;
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-			</code></pre>
-			
-			<h3>3: Contents within the HTML Body</h3>
-			<p>We insert the contents / elements between the 'body' tags of the HTML document.</p>
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-html">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;Dungeon Chase&lt;/title&gt;
-&lt;style&gt;
-    body {
-        margin: 0;
-        overflow: hidden;
-        position: relative;
-    }
-    #gameCanvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0;
-		}
-    canvas {
-        display: block;
-        margin: 0 auto;
-    }
-	.canvas {
-		background-color:black;
-	}
-	
 	#canvasContainer {
 		position: relative;
 		width: 800px; /* Adjust width as needed */
@@ -152,19 +141,22 @@
 &lt;body&gt;
 
 &lt;div id="canvasContainer"&gt;
-	&lt;canvas id="gameCanvas" width="800" height="600"&gt;&lt;/canvas&gt;
+	&lt;canvas id="gameCanvas" class="canvas" width="800" height="600"&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 
 &lt;script&gt;
-
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 			</code></pre>
 			
+			<h3>Step 4:</h3>
+			<img src="./imgs/plot-canvas.png">
+			<p>Insert the javascript in Code 4 between the 'script' tags Code 4 below and save.</p>
+			<p>Refresh your browser and you will see a red rectangle and a blue rectangle on your canvas.</p>
 			
-			<h3>4: Inserting Javascript</h3>
-			<p>We insert the javascript between the 'script' tags</p>
+			<h3>Code 4: Javascript</h3>
+			<p></p>
 			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
 			<pre><code class="language-html">
 &lt;!DOCTYPE html&gt;
@@ -204,7 +196,7 @@
 &lt;body&gt;
 
 &lt;div id="canvasContainer"&gt;
-	&lt;canvas id="gameCanvas" width="800" height="600"&gt;&lt;/canvas&gt;
+	&lt;canvas id="gameCanvas" class="canvas" width="800" height="600"&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 
 &lt;script&gt;
@@ -215,24 +207,14 @@ const player = {
 	x: 300,
 	y: 300,
 	width: 16,
-	height: 32,
-	speed: 3,
-	dx: 0,
-	dy: 0,
-	prevDx: 0,
-	prevDy: 0
+	height: 32
 };
 
 const enemy = {
 	x: canvas.width - 300,
 	y: canvas.height - 300,
 	width: 16,
-	height: 32,
-	speed: 1,
-	dx: 0,
-	dy: 0,
-	prevDx: 0,
-	prevDy: 0
+	height: 32
 };
 	
 function drawPlayer() {
@@ -245,13 +227,9 @@ function drawEnemy() {
 	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
 }
 
-function gameLoop() {
-	drawPlayer();
-	drawEnemy();
-	requestAnimationFrame(gameLoop);
-}
+drawPlayer();
+drawEnemy();
 
-gameLoop();
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;

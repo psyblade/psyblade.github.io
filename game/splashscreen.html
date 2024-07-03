@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Panel</title>
+    <title>Pick Up Gold</title>
 	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
 
@@ -30,15 +30,16 @@
 		}
 		
 		body {
-			margin: 0;
 			position: relative;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
 		}
-		
 		#gameCanvas {
 			border:25px solid #555;
 			border-radius:10px;
 		}
-		
 		#mapCanvas {
 			position:absolute;
 			border:25px solid #555;
@@ -46,7 +47,6 @@
 			z-index:1;
 			/* display:none; */
 		}
-		
 		canvas {
 			display: block;
 			margin: 0 auto;
@@ -57,6 +57,7 @@
             width: 850px; /* Adjust width as needed */
             height: 650px; /* Adjust height as needed */
             margin: auto; /* Center the container */
+			/* border:1px solid red; */
         }
 
 		#playerGif {
@@ -79,325 +80,56 @@
 			image-rendering: crisp-edges;
 		}
 		
-	/*--------------------------*/
-	/* COLUMN CSS             */
-	/*--------------------------*/
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        width:100%;
-        margin: 0 auto;
-		width:1150px;
-		height:690px;
-    }
-	
-    .column {
-        box-sizing: border-box;
-        margin: 0;
-        overflow: hidden;
-        position: relative;
-    }
-	
-	/*--------------------------*/
-	/* COLUMN 1 CSS             */
-	/*--------------------------*/
-		#column1 {
-			width:850px;
-		}
-		
-	/*--------------------------*/
-	/* COLUMN 2 CSS             */
-	/*--------------------------*/
-		#column2 {
-			width:300px;
+        #splashScreen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            background: url('./imgs/splash.png') no-repeat center center;
+            background-size: cover;
 			background-color:#000;
-		}
-
-		#logo {
-			width:300px;
-			height:auto;
-			z-index:10;
-		}
-		
-		#status {
-			text-align: center;
-		}
-		
-		#avatar {
-			margin-top:200px;
-			width:150px;
-			image-rendering: pixelated;
-			image-rendering: -moz-crisp-edges;
-			image-rendering: crisp-edges;
-		}
-		
-		#name {
-			font-family: 'Press Start 2P', system-ui;
-			font-size:20px;
-			color:#974818;
-			color:green;
-		}
-		
-		#hp {
-			font-family:abel;
-			font-size:20px;
-			color:white;
-		}
-		
-		#healthbar {
-			width:100px;
-			height:20px;
-			background-color:#3e2011;
-			display:inline-block;
-			border:4px solid #603535;
+			border:25px solid #555;
 			border-radius:10px;
-		}
+        }
+
+        #playButton {
+			position:absolute;
+			bottom:0px;
+			left:50%;
+            width: 260px;
+            height: 20%;
+			transform: translate(-35%);
+            border: none;
+            cursor: pointer;
+            background-size: contain;
+			z-index:1001;
+        }
+
 		
-		.fa-heart {
-			color:#773419;
-			margin-right:10px;
-		}
-		
-		#hplabel {
-			width:100px;
-			height:20px;
-			display:inline-block;
-			vertical-align:top;
-		}
-		
-		#health {
-			width:50px;
-			height:20px;
-			background-color:#7b420e;
-			border-radius:5px;
-		}
-		
-		#gold {
-			padding:20px;
-		}
-		
-		#goldvalue {
-			color:red;
-			font-family: 'Press Start 2P', system-ui;
-			font-size:20px;
-			display:inline-block;
-		}
-		
-		#goldlabel {
-			color:yellow;
-			font-family: 'Press Start 2P', system-ui;
-			font-size:20px;
-			display:inline-block;
-		}
+
 	</style>
 </head>
 <body>
-	<img id="logo" src="./imgs/logo.png" alt="logo">
-	
-    <header>
-        <h2>Info Panel</h2>
-    </header>
-
-    <div class="main-content">
-	    <section class="single-column-section image-section">		
-			<h3>Step 1:</h3>
-            <p>Add this CSS to your 'STYLE' section.</p>
-			
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-css">
-/*--------------------------*/
-/* COLUMN CSS             	*/
-/*--------------------------*/
-.container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width:100%;
-	margin: 0 auto;
-	width:1150px;
-	height:690px;
-}
-
-.column {
-	box-sizing: border-box;
-	margin: 0;
-	overflow: hidden;
-	position: relative;
-}
-
-/*--------------------------*/
-/* COLUMN 1 CSS             */
-/*--------------------------*/
-#column1 {
-	width:850px;
-}
-	
-/*--------------------------*/
-/* COLUMN 2 CSS             */
-/*--------------------------*/
-#column2 {
-	width:300px;
-	background-color:#000;
-}
-
-#logo {
-	width:300px;
-	height:auto;
-	z-index:10;
-}
-
-#status {
-	text-align: center;
-}
-
-#avatar {
-	margin-top:200px;
-	width:150px;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: crisp-edges;
-}
-
-#name {
-	font-family: 'Press Start 2P', system-ui;
-	font-size:20px;
-	color:#974818;
-	color:green;
-}
-
-#hp {
-	font-family:abel;
-	font-size:20px;
-	color:white;
-}
-
-#healthbar {
-	width:100px;
-	height:20px;
-	background-color:#3e2011;
-	display:inline-block;
-	border:4px solid #603535;
-	border-radius:10px;
-}
-
-.fa-heart {
-	color:#773419;
-	margin-right:10px;
-}
-
-#hplabel {
-	width:100px;
-	height:20px;
-	display:inline-block;
-	vertical-align:top;
-}
-
-#health {
-	width:50px;
-	height:20px;
-	background-color:#7b420e;
-	border-radius:5px;
-}
-
-#gold {
-	padding:20px;
-}
-
-#goldvalue {
-	color:red;
-	font-family: 'Press Start 2P', system-ui;
-	font-size:20px;
-	display:inline-block;
-}
-
-#goldlabel {
-	color:yellow;
-	font-family: 'Press Start 2P', system-ui;
-	font-size:20px;
-	display:inline-block;
-}
-</code></pre>
-		
-			<h3>Step 2:</h3>
-            <p>Add a div for the player gif and a div for the enemy gif in the canvas container div.</p>
-			
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-html">
-&lt;div class="container"&gt;
-	&lt;div id="column1" class="column"&gt;
-		&lt;div id="canvasContainer"&gt;
-			&lt;canvas id="mapCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
-			&lt;canvas id="gameCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
-			&lt;img id="playerGif" src="./imgs/player-south.png" alt="Player GIF"&gt;
-			&lt;img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF"&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div id="column2" class="column"&gt;
-		&lt;img id="logo" src="./imgs/logo.png" alt="logo"&gt;
-		&lt;div id="status"&gt;
-			&lt;img id="avatar" src="./imgs/player-south.png" alt="Player Avatar"&gt;
-			&lt;div id="name"&gt;Joe Cur-Sed&lt;/div&gt;
-			&lt;div id="hp"&gt;&lt;div id="hplabel"&gt;&lt;i class="fas fa-heart"&gt;&lt;/i&gt;&lt;i class="fas fa-heart"&gt;&lt;/i&gt;&lt;i class="fas fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;&lt;div id="healthbar"&gt;&lt;div id="health"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-			&lt;div id="gold"&gt;&lt;div id="goldlabel"&gt;Gold:&lt;/div&gt;&lt;div id="goldvalue"&gt;0&lt;/div&gt;&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-			</code></pre>
-
-        </section>
-    </div>
-	<div class="container">
-		<div id="column1" class="column">
-			<div id="canvasContainer">
-				<canvas id="mapCanvas" width="800" height="640"></canvas>
-				<canvas id="gameCanvas" width="800" height="640"></canvas>
-				<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
-				<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
-			</div>
+	<div id="canvasContainer">
+		<div class="splash-screen" id="splashScreen">
+			<div class="play-button" id="playButton"></div>
 		</div>
-		<div id="column2" class="column">
-			<img id="logo" src="./imgs/logo.png" alt="logo">
-			<div id="status">
-				<img id="avatar" src="./imgs/player-south.png" alt="Player Avatar">
-				<div id="name">Joe Cur-Sed</div>
-				<div id="hp"><div id="hplabel"><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i></div><div id="healthbar"><div id="health"></div></div></div>
-				<div id="gold"><div id="goldlabel">Gold:</div><div id="goldvalue">0</div></div>
-			</div>
-		</div>
+		<canvas id="mapCanvas" width="800" height="640"></canvas>
+		<canvas id="gameCanvas" width="800" height="640"></canvas>
+		<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
+		<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
 	</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<footer>
-		<div class="footer-links">
-			<div class="footer-column social-icons">
-				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
-			</div>
-			<div class="footer-column">
-				<a href="../index.html">Menu</a>
-			</div>
-			<div class="footer-column">
-				<img src="./imgs/psyblade.png" alt="Small Logo" class="small-logo">
-			</div>
-		</div>
-		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
-		
-	</footer>
 
     <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <script>
 var game_over = false;
+var game_win = false;
+var game_start = false;
 
 // Get the canvasContainer and its context
 var canvasContainer = document.getElementById("canvasContainer");
@@ -453,17 +185,17 @@ window.onload = function() {
 
 	// Define map data (for simplicity, represented as numbers)
 	var mapData = [
-		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,16,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
@@ -483,7 +215,11 @@ window.onload = function() {
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				
 				// If the tile is not 18, draw a red square on the highlight canvas
-				if (mapData[y][x] !== 18) {
+				// If the tile is not 18, draw a red square on the highlight canvas
+				if (mapData[y][x] == 16) { // IF NOT 18 MEANS IT IS ROAD
+					ctx.fillStyle = "rgb(255, 255, 255)";
+					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+				} else if (mapData[y][x] !== 18) { // IF NOT 18 MEANS IT IS ROAD
 					ctx.fillStyle = "rgb(165, 42, 42)";
 					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
 				} else {
@@ -536,16 +272,43 @@ function movePlayer() {
 	player.x += player.dx;
 	player.y += player.dy;
 	
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+	
 	// Check collision with canvas boundries 
-	if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//	player.x -= player.dx;
+	//	player.y -= player.dy;
+	//	player.dx = 0;
+	//	player.dy = 0;
+	//}
+	
+	// Check collision with Brown pixels
+	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
 		player.x -= player.dx;
 		player.y -= player.dy;
 		player.dx = 0;
 		player.dy = 0;
 	}
 	
-	// Check collision with Brown pixels
-	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
+	// Check collision with White pixels (DOOR)
+	if (checkWhiteCollision(player.x, player.y, player.width, player.height)) {
+		if (yellowSquares.length == 0) {
+			game_win = true;
+		} else {
+			console.log ("You still have " + yellowSquares.length + " treasures to go.");
+		}
 		player.x -= player.dx;
 		player.y -= player.dy;
 		player.dx = 0;
@@ -635,6 +398,13 @@ function checkBoundriesCollision(x, y, width, height) {
 	return false;
 }
 
+function checkWhiteCollision(x, y, width, height) {
+	if (checkIsDotWhite(x, y) || checkIsDotWhite(x + width, y) || checkIsDotWhite(x, y + height) || checkIsDotWhite(x + width, y + height)) {
+		return true;
+	}
+	return false;
+}
+
 function checkBrownCollision(x, y, width, height) {
 	if (checkIsDotBrown(x, y) || checkIsDotBrown(x + width, y) || checkIsDotBrown(x, y + height) || checkIsDotBrown(x + width, y + height)) {
 		return true;
@@ -649,6 +419,18 @@ function checkIsDotBrown(x, y) {
 	const green = data[1];
 	const blue = data[2];
 	if (red === 165 && green === 42 && blue === 42) {
+		return true;
+	}
+	return false;
+}
+
+function checkIsDotWhite(x, y) {
+	const imageData = ctx.getImageData(x, y, 1, 1);
+	const data = imageData.data;
+	const red = data[0];
+	const green = data[1];
+	const blue = data[2];
+	if (red === 255 && green === 255 && blue === 255) {
 		return true;
 	}
 	return false;
@@ -713,19 +495,26 @@ function showGameOverPopup() {
 }
 
 function gameLoop() {
-    if (!game_over) {
-        // clearCanvas();
-        drawPlayer();
-        drawEnemy();
-        movePlayer();
-		moveEnemy();
-        checkPlayerEnemyCollision();
-        requestAnimationFrame(gameLoop);
-    } else {
-        // Show game over popup
-        showGameOverPopup();		
-		// You can add game over logic here
-    }
+	if (game_start) {
+		if (game_win) {
+			alert("You Won!");
+		} else if (!game_over) {
+			// clearCanvas();
+			drawPlayer();
+			drawEnemy();
+			movePlayer();
+			moveEnemy();
+			checkPlayerEnemyCollision();
+			requestAnimationFrame(gameLoop);
+		} else {
+			// Show game over popup
+			showGameOverPopup();		
+			// You can add game over logic here
+		}
+	}
+	else {
+		requestAnimationFrame(gameLoop);
+	}
 }
 
 document.addEventListener("keydown", function (event) {
@@ -757,6 +546,24 @@ document.addEventListener("keyup", function (event) {
 			break;
 	}
 });
+
+const splashScreen = document.getElementById('splashScreen');
+const playButton = document.getElementById('playButton');
+
+playButton.addEventListener('mouseover', function() {
+	splashScreen.style.backgroundImage = "url('./imgs/splash-hover.png')";
+});
+
+playButton.addEventListener('mouseout', function() {
+	splashScreen.style.backgroundImage = "url('./imgs/splash.png')";
+});
+
+playButton.addEventListener('click', function() {
+	splashScreen.style.display = 'none';
+	//document.getElementById('mainContent').style.display = 'block';
+	game_start = true;
+});
+
 
 </script>
 

@@ -86,6 +86,8 @@
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
+			<img src="./imgs/tileset.png" class="crisp">
+		
 			<h3>Step 1:</h3>
             <p>In the CSS Style section we remove #mapart and insert #mapCanvas. The z-index:1 is to put it on top of the gameCanvas</p>
 			
@@ -142,8 +144,8 @@ window.onload = function() {
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
@@ -198,8 +200,8 @@ const playerGif = document.getElementById("playerGif");
 const enemyGif = document.getElementById("enemyGif");
 
 const player = {
-	x: 33,
-	y: 33,
+	x: 35,
+	y: 35,
 	width: 16,
 	height: 30,
 	speed: 3,
@@ -210,8 +212,8 @@ const player = {
 };
 
 const enemy = {
-	x: 100,
-	y: canvas.height - 65,
+	x: 105,
+	y: canvas.height - 68,
 	width: 16,
 	height: 30,
 	speed: 1,
@@ -223,9 +225,9 @@ const enemy = {
 
 window.onload = function() {
 	// Define tile size and map dimensions
-	var tileSize = 32;
-	var mapWidth = 25;
-	var mapHeight = 20;
+	var tileSize = 34;
+	var mapWidth = 24;
+	var mapHeight = 19;
 	var tilesetWidth = 16;
 	var tilesetHeight = 16;
 
@@ -244,9 +246,8 @@ window.onload = function() {
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
@@ -300,13 +301,27 @@ function movePlayer() {
 	player.x += player.dx;
 	player.y += player.dy;
 	
-	// Check collision with canvas boundries 
-	if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
-		player.x -= player.dx;
-		player.y -= player.dy;
-		player.dx = 0;
-		player.dy = 0;
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
 	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+	
+	// Check collision with canvas boundries 
+	//if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//	player.x -= player.dx;
+	//	player.y -= player.dy;
+	//	player.dx = 0;
+	//	player.dy = 0;
+	//}
 	
 	// Check collision with Brown pixels
 	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
@@ -553,8 +568,8 @@ const playerGif = document.getElementById("playerGif");
 const enemyGif = document.getElementById("enemyGif");
 
 const player = {
-	x: 33,
-	y: 33,
+	x: 35,
+	y: 35,
 	width: 16,
 	height: 30,
 	speed: 3,
@@ -565,8 +580,8 @@ const player = {
 };
 
 const enemy = {
-	x: 100,
-	y: canvas.height - 65,
+	x: 105,
+	y: canvas.height - 68,
 	width: 16,
 	height: 30,
 	speed: 1,
@@ -578,9 +593,9 @@ const enemy = {
 
 window.onload = function() {
 	// Define tile size and map dimensions
-	var tileSize = 32;
-	var mapWidth = 25;
-	var mapHeight = 20;
+	var tileSize = 34;
+	var mapWidth = 24;
+	var mapHeight = 19;
 	var tilesetWidth = 16;
 	var tilesetHeight = 16;
 
@@ -599,9 +614,8 @@ window.onload = function() {
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
@@ -655,13 +669,27 @@ function movePlayer() {
 	player.x += player.dx;
 	player.y += player.dy;
 	
-	// Check collision with canvas boundries 
-	if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
-		player.x -= player.dx;
-		player.y -= player.dy;
-		player.dx = 0;
-		player.dy = 0;
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
 	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+	
+	// Check collision with canvas boundries 
+	//if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//	player.x -= player.dx;
+	//	player.y -= player.dy;
+	//	player.dx = 0;
+	//	player.dy = 0;
+	//}
 	
 	// Check collision with Brown pixels
 	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {

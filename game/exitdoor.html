@@ -88,9 +88,10 @@
     <div class="main-content">
 	    <section class="single-column-section image-section">		
 			<h3>Step 1:</h3>
-            <p>In the javascript section we are going to add in this code which will draw yellow squares on whereever the mapData is '18' which is the walkable path. Then it will create a div an put an animated gif/png on top of the yellow square. These yellow squares are stored in a dictionary. When the player collides with the yellow square, it will remove the yellow square data from the dictionary and delete the animated gif div.</p>
+            <p>In the javascript section we are going to add in this code which will draw yellow squares on whereever the mapData is '18' which is the walkable path. Then it will create a div an put an animated gif/png on top of the yellow square. These yellow squares are stored in a dictionary. When the player collides with the yellow square, it will remove the yellow square data from the dictionary and delete the animated gif div. The exit door is 16 and it draws a white square. If player collides with white, then it will check if players has finished getting all the treasures. If yes, then it will show player has won the game.</p>
 			<pre><code class="language-javascript">
 var game_over = false;
+var game_win = false;
 
 // Get the canvasContainer and its context
 var canvasContainer = document.getElementById("canvasContainer");
@@ -134,7 +135,7 @@ var yellowSquares = []; // Keeps track of gold piles
 
 // Define tile size and map dimensions
 var tileSize = 34;
-var mapWidth = 24;
+var mapWidth = 25;
 var mapHeight = 19;
 var tilesetWidth = 16;
 var tilesetHeight = 16;
@@ -146,17 +147,17 @@ window.onload = function() {
 
 	// Define map data (for simplicity, represented as numbers)
 	var mapData = [
-		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,16,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
@@ -176,7 +177,11 @@ window.onload = function() {
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				
 				// If the tile is not 18, draw a red square on the highlight canvas
-				if (mapData[y][x] !== 18) {
+				// If the tile is not 18, draw a red square on the highlight canvas
+				if (mapData[y][x] == 16) { // IF NOT 18 MEANS IT IS ROAD
+					ctx.fillStyle = "rgb(255, 255, 255)";
+					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+				} else if (mapData[y][x] !== 18) { // IF NOT 18 MEANS IT IS ROAD
 					ctx.fillStyle = "rgb(165, 42, 42)";
 					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
 				} else {
@@ -229,16 +234,43 @@ function movePlayer() {
 	player.x += player.dx;
 	player.y += player.dy;
 	
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+	
 	// Check collision with canvas boundries 
-	if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//	player.x -= player.dx;
+	//	player.y -= player.dy;
+	//	player.dx = 0;
+	//	player.dy = 0;
+	//}
+	
+	// Check collision with Brown pixels
+	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
 		player.x -= player.dx;
 		player.y -= player.dy;
 		player.dx = 0;
 		player.dy = 0;
 	}
 	
-	// Check collision with Brown pixels
-	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
+	// Check collision with White pixels (DOOR)
+	if (checkWhiteCollision(player.x, player.y, player.width, player.height)) {
+		if (yellowSquares.length == 0) {
+			game_win = true;
+		} else {
+			console.log ("You still have " + yellowSquares.length + " treasures to go.");
+		}
 		player.x -= player.dx;
 		player.y -= player.dy;
 		player.dx = 0;
@@ -328,6 +360,13 @@ function checkBoundriesCollision(x, y, width, height) {
 	return false;
 }
 
+function checkWhiteCollision(x, y, width, height) {
+	if (checkIsDotWhite(x, y) || checkIsDotWhite(x + width, y) || checkIsDotWhite(x, y + height) || checkIsDotWhite(x + width, y + height)) {
+		return true;
+	}
+	return false;
+}
+
 function checkBrownCollision(x, y, width, height) {
 	if (checkIsDotBrown(x, y) || checkIsDotBrown(x + width, y) || checkIsDotBrown(x, y + height) || checkIsDotBrown(x + width, y + height)) {
 		return true;
@@ -342,6 +381,18 @@ function checkIsDotBrown(x, y) {
 	const green = data[1];
 	const blue = data[2];
 	if (red === 165 && green === 42 && blue === 42) {
+		return true;
+	}
+	return false;
+}
+
+function checkIsDotWhite(x, y) {
+	const imageData = ctx.getImageData(x, y, 1, 1);
+	const data = imageData.data;
+	const red = data[0];
+	const green = data[1];
+	const blue = data[2];
+	if (red === 255 && green === 255 && blue === 255) {
 		return true;
 	}
 	return false;
@@ -406,7 +457,9 @@ function showGameOverPopup() {
 }
 
 function gameLoop() {
-    if (!game_over) {
+	if (game_win) {
+		alert("You Won!");
+	} else if (!game_over) {
         // clearCanvas();
         drawPlayer();
         drawEnemy();
@@ -450,6 +503,7 @@ document.addEventListener("keyup", function (event) {
 			break;
 	}
 });
+
 			</code></pre>
         </section>
     </div>
@@ -489,6 +543,7 @@ document.addEventListener("keyup", function (event) {
 
 <script>
 var game_over = false;
+var game_win = false;
 
 // Get the canvasContainer and its context
 var canvasContainer = document.getElementById("canvasContainer");
@@ -544,17 +599,17 @@ window.onload = function() {
 
 	// Define map data (for simplicity, represented as numbers)
 	var mapData = [
-		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
-		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,16,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
+		[18,18,13,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
 		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
@@ -574,7 +629,11 @@ window.onload = function() {
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				
 				// If the tile is not 18, draw a red square on the highlight canvas
-				if (mapData[y][x] !== 18) {
+				// If the tile is not 18, draw a red square on the highlight canvas
+				if (mapData[y][x] == 16) { // IF NOT 18 MEANS IT IS ROAD
+					ctx.fillStyle = "rgb(255, 255, 255)";
+					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+				} else if (mapData[y][x] !== 18) { // IF NOT 18 MEANS IT IS ROAD
 					ctx.fillStyle = "rgb(165, 42, 42)";
 					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
 				} else {
@@ -627,16 +686,43 @@ function movePlayer() {
 	player.x += player.dx;
 	player.y += player.dy;
 	
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+	
 	// Check collision with canvas boundries 
-	if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+	//	player.x -= player.dx;
+	//	player.y -= player.dy;
+	//	player.dx = 0;
+	//	player.dy = 0;
+	//}
+	
+	// Check collision with Brown pixels
+	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
 		player.x -= player.dx;
 		player.y -= player.dy;
 		player.dx = 0;
 		player.dy = 0;
 	}
 	
-	// Check collision with Brown pixels
-	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
+	// Check collision with White pixels (DOOR)
+	if (checkWhiteCollision(player.x, player.y, player.width, player.height)) {
+		if (yellowSquares.length == 0) {
+			game_win = true;
+		} else {
+			console.log ("You still have " + yellowSquares.length + " treasures to go.");
+		}
 		player.x -= player.dx;
 		player.y -= player.dy;
 		player.dx = 0;
@@ -726,6 +812,13 @@ function checkBoundriesCollision(x, y, width, height) {
 	return false;
 }
 
+function checkWhiteCollision(x, y, width, height) {
+	if (checkIsDotWhite(x, y) || checkIsDotWhite(x + width, y) || checkIsDotWhite(x, y + height) || checkIsDotWhite(x + width, y + height)) {
+		return true;
+	}
+	return false;
+}
+
 function checkBrownCollision(x, y, width, height) {
 	if (checkIsDotBrown(x, y) || checkIsDotBrown(x + width, y) || checkIsDotBrown(x, y + height) || checkIsDotBrown(x + width, y + height)) {
 		return true;
@@ -740,6 +833,18 @@ function checkIsDotBrown(x, y) {
 	const green = data[1];
 	const blue = data[2];
 	if (red === 165 && green === 42 && blue === 42) {
+		return true;
+	}
+	return false;
+}
+
+function checkIsDotWhite(x, y) {
+	const imageData = ctx.getImageData(x, y, 1, 1);
+	const data = imageData.data;
+	const red = data[0];
+	const green = data[1];
+	const blue = data[2];
+	if (red === 255 && green === 255 && blue === 255) {
 		return true;
 	}
 	return false;
@@ -804,7 +909,9 @@ function showGameOverPopup() {
 }
 
 function gameLoop() {
-    if (!game_over) {
+	if (game_win) {
+		alert("You Won!");
+	} else if (!game_over) {
         // clearCanvas();
         drawPlayer();
         drawEnemy();

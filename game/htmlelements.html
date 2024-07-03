@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elements</title>
+	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
+
+
+    <!-- Script to include Prism.js -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="./css/reset.css">
+	<style>	
+		.crisp {
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+		
+		body {
+			margin: 0;
+			position: relative;
+		}
+		#container1 {
+			background-color:purple;
+		}
+		
+		.box {
+			width:200px;
+			height:100px;
+			display:inline-block;
+		}
+		
+		#box1 {
+			background-color:blue;
+		}
+		
+		#box2 {
+			background-color:red;
+		}
+		
+		#box3 {
+			background-color:green;
+		}
+		
+		#image1 {
+			width:200px;
+			height:100px;
+		}
+		
+		#container2 {
+			background-color:purple;
+		}
+		
+		#box4 {
+			width:200px;
+			height:100px;
+			background-color:blue;
+		}
+		
+		#box5 {
+			width:200px;
+			height:100px;
+			background-color:red;
+		}
+		
+		#box6 {
+			width:400px;
+			height:300px;
+			background-color:green;
+			padding:10px;
+		}
+
+		#container3 {
+			position:relative;
+			background-color:purple;
+		}
+		
+		#image2 {
+			position:absolute;
+			top:100px;
+			left:100px;
+			width:200px;
+			height:100px;
+			z-index:2;
+			opacity:0.5;
+		}
+		
+		#box7 {
+			position:absolute;
+			top:50px;
+			left:50px;
+			width:200px;
+			height:100px;
+			background-color:blue;
+			z-index:3;
+		}
+		
+		#box8 {
+			position:absolute;
+			top:150px;
+			left:150px;
+			width:200px;
+			height:100px;
+			background-color:red;
+			z-index:1;
+		}
+		
+		#box9 {
+			position:relative;
+			width:400px;
+			height:300px;
+			background-color:green;
+			padding:10px;
+		}
+	</style>
+</head>
+<body>
+	<img id="logo" src="./imgs/logo.png" alt="logo">
+	
+    <header>
+        <h2>HTML Elements (The DIV element and the IMG element)</h2>
+    </header>
+
+    <div class="main-content">
+	    <section class="single-column-section image-section">
+		
+			<div id="container1">
+				<div id="box1" class="box"></div>
+				<div id="box2" class="box"></div>
+				<div id="box3" class="box"></div>
+				<img id="image1" class="image" src="./imgs/scenery.jpg">
+			</div>
+		
+			<h3>1: Create the DIV elements</h3>
+			<p>We insert 3 DIV elements and an IMG element between the 'body' tags of the HTML document.</p>
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+body {
+	background-color:purple;
+}
+
+.box {
+	width:200px;
+	height:100px;
+	display:inline-block;
+}
+
+#box1 {
+	background-color:blue;
+}
+
+#box2 {
+	background-color:red;
+}
+
+#box3 {
+	background-color:green;
+}
+
+#image1 {
+	width:200px;
+	height:100px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="box1" class="box" &gt;&lt;/div&gt;
+&lt;div id="box2" class="box" &gt;&lt;/div&gt;
+&lt;div id="box3" class="box" &gt;&lt;/div&gt;
+&lt;img id="image1" class="image"&gt;
+
+&lt;script&gt;
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+			</code></pre>
+			
+			
+			
+			<div id="container1">
+				<div id="box6" class="box">
+					<div id="box4" class="box">Hello World</div>
+					<img id="image1" class="image" src="./imgs/scenery.jpg">
+					<div id="box5" class="box"></div>
+				</div>
+			</div>
+		
+			<h3>2: Stack DIV elements</h3>
+			<p>We stack the blue and red DIV elements and the IMG element in between and put them all into the green box.</p>
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+body {
+	background-color:purple;
+}
+
+.box {
+	width:200px;
+	height:100px;
+	display:inline-block;
+}
+
+#box1 {
+	width:200px;
+	height:100px;
+	background-color:blue;
+}
+
+#box2 {
+	width:200px;
+	height:100px;
+	background-color:red;
+}
+
+#box3 {
+	width:300px;
+	height:400px;
+	background-color:green;
+}
+
+#image1 {
+	width:200px;
+	height:100px;
+	opacity:0.5;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="box3" class="box" &gt;
+	&lt;div id="box1" class="box" &gt;Hello World&lt;/div&gt;
+	&lt;img id="image1" class="image"&gt;
+	&lt;div id="box2" class="box" &gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+			</code></pre>
+			
+			<div id="container1">
+				<div id="box9" class="box">
+					<div id="box7" class="box">Hello World</div>
+					<img id="image2" class="image" src="./imgs/scenery.jpg">
+					<div id="box8" class="box"></div>
+				</div>
+			</div>
+		
+			<h3>3: Layer DIV elements with z-index</h3>
+			<p>We arrange the blue DIV on top of the IMG element and the IMG element on top of the red DIV</p>
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+body {
+	background-color:purple;
+}
+
+.box {
+	width:200px;
+	height:100px;
+	display:inline-block;
+}
+
+#box1 {
+	position:absolute;
+	top:50px;
+	left:50px;
+	z-index:3;
+	width:200px;
+	height:100px;
+	background-color:blue;
+}
+
+#image1 {
+	position:absolute;
+	top:100px;
+	left:100px;
+	z-index:2;
+	width:200px;
+	height:100px;
+	opacity:0.5;
+}
+
+#box2 {
+	position:absolute;
+	top:150px;
+	left:150px;
+	z-index:1;
+	width:200px;
+	height:100px;
+	background-color:red;
+}
+
+#box3 {
+	position:relative;
+	width:300px;
+	height:400px;
+	background-color:green;
+}
+
+
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="box3" class="box" &gt;
+	&lt;div id="box1" class="box" &gt;Hello World&lt;/div&gt;
+	&lt;img id="image1" class="image"&gt;
+	&lt;div id="box2" class="box" &gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+			</code></pre>
+        </section>
+    </div>
+	
+    
+	
+	<footer>
+		<div class="footer-links">
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<div class="footer-column">
+				<a href="../index.html">Menu</a>
+			</div>
+			<div class="footer-column">
+				<img src="./imgs/psyblade.png" alt="Small Logo" class="small-logo">
+			</div>
+		</div>
+		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
+		
+	</footer>
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<script>
+</script>
+
+</body>
+</html>

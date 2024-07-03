@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelda-style Map</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mapCanvas" width="800" height="640"></canvas>
+	<canvas id="highlightCanvas" width="800" height="640"></canvas>
+
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById("mapCanvas");
+            var ctx = canvas.getContext("2d");
+			
+			// Get the highlight canvas and its context
+			var highlightCanvas = document.getElementById("highlightCanvas");
+			var highlightCtx = highlightCanvas.getContext("2d");
+
+            // Define tile size and map dimensions
+            var tileSize = 32;
+            var mapWidth = 25;
+            var mapHeight = 20;
+			var tilesetWidth = 16;
+			var tilesetHeight = 16;
+
+            // Define tileset images
+            var tilesetImage = new Image();
+            tilesetImage.src = "./imgs/tileset.png"; // You need to replace "tileset.png" with the path to your tileset image
+
+            // Define map data (for simplicity, represented as numbers)
+            var mapData = [
+                [13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,18,18,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,18,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,18,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+                [13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+            ];
+
+            // Draw the map
+            function drawMap() {
+                for (var y = 0; y < mapHeight; y++) {
+                    for (var x = 0; x < mapWidth; x++) {
+						// console.log("***", mapData[y][x], (mapData[y][x] % tilesetWidth), Math.floor(mapData[y][x] / tilesetWidth));
+						// console.log(mapData[y][x], (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+                        ctx.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+						
+						// If the tile is not 18, draw a red square on the highlight canvas
+						if (mapData[y][x] !== 18) {
+							highlightCtx.fillStyle = "rgb(165, 42, 42)";
+							highlightCtx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+						}
+                    }
+                }
+            }
+
+            // Load the tileset image and draw the map when it's loaded
+            tilesetImage.onload = function() {
+                drawMap();
+            };
+        };
+    </script>
+</body>
+</html>
