@@ -38,7 +38,6 @@
 			border-radius:10px;
 		}
 		#mapCanvas {
-			position:absolute;
 			border:25px solid #555;
 			border-radius:10px;
 			z-index:1;
@@ -54,7 +53,7 @@
             width: 850px; /* Adjust width as needed */
             height: 650px; /* Adjust height as needed */
             margin: auto; /* Center the container */
-			/* border:1px solid red; */
+			margin-bottom:800px;
         }
 
 		#playerGif {
@@ -456,15 +455,11 @@ document.addEventListener("keyup", function (event) {
 	
 	<div id="canvasContainer">
 		<canvas id="mapCanvas" width="800" height="640"></canvas>
+		<br>
 		<canvas id="gameCanvas" width="800" height="640"></canvas>
 		<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
 		<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<footer>
 		<div class="footer-links">
 			<div class="footer-column social-icons">
