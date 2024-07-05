@@ -43,9 +43,26 @@
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
+			<img src="./imgs/enemycollision.png" style="max-width:800px;">
+		
 			<h3>Step 1:</h3>
-            <p>We are now going to make the blue square move with our keyboard. </p>
+            <p>To check for enemy collision we have to detech if the player pixel touches the enemy pixel. If the enemy.x == 316, then we have to check if the position of player.x together with it's body which is the width of the pixel touches the start of the enemy's body.</p>
 			
+			<h3>The General Concept would be:</h3>
+			<pre><code class="language-javascript">
+if (player.x + PLAYER_BODY_WIDTH >= enemy.x) {
+
+}
+			</code></pre>
+			
+			<h3>Exercise:</h3>
+            <p>Try it without looking at the solution.</p>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<h3>The Full Code and Soultion:</h3>
 			<pre><code class="language-javascript">
 var game_over = false;
 

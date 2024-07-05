@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boundries Collision</title>
+    <title>Teleporting</title>
 	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
 
@@ -38,36 +38,31 @@
 	<img id="logo" src="./imgs/logo.png" alt="logo">
 	
     <header>
-        <h2>Boundries Collision</h2>
+        <h2>Teleporting</h2>
     </header>
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
-			<img src="./imgs/bordercollision.png" style="max-width:800px;">
+			<img src="./imgs/teleporting.png" style="max-width:800px;">
 			
 			<h3>Step 1:</h3>
-            <p>Essentially to make the blue pixel stop at the borders (detect boundries collision), we simply detect the x and y coordinates of the blue pixel and set the value of x or y to a fix value.</p>
-			
-            <p>The blue pixel at the center of the canvas which has the width of 800px and the height of 600px would be pixel.x= 400, and pixel.y = 300 as shown in the image above.</p>
-			
-            <p>Therefore, to make the pixel stop at the right most border, we detect if pixel.x > 800, then pixel.x = 800.</p>
-			<p>Similarly, to make the pixel stop at the top most border, we detect if pixel.y < 0, then pixel.y = 0.</p>
+            <p>Essentially to make the blue pixel teleport to the opposite borders upong detecting boundries collision, we simply detect when the pixel reaches, say the right most border which is x = 800, then we simple move (teleport) the location of the pixel to x = 0.</p>
 			
 			<p>So an rough example of the code would be:</p>
 			<pre><code class="language-javascript">
 if (pixel.x > 800) {
-	pixel.x = 800;
+	pixel.x = 0;
 }
 
 if (pixel.y < 0) {
-	pixel.y = 0;
+	pixel.y = 600;
 }
 			</code></pre>
 			
 			<h3>Exercise</h3>
-            <p>Do the border collision for all sides of the map.</p>
+            <p>Do teleportation for all sides of the map.</p>
 		
-			<h3>Solution</h3>
+			<!--h3>Solution</h3>
             <p>Here's the full javascript code below. </p>
 			
 			<pre><code class="language-javascript">
@@ -173,11 +168,11 @@ document.addEventListener("keyup", function (event) {
 });
 
 gameLoop();
-			</code></pre>
+			</code></pre-->
         </section>
     </div>
 	
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <!--canvas id="gameCanvas" width="800" height="600"></canvas-->
 	
 	<footer>
 		<div class="footer-links">

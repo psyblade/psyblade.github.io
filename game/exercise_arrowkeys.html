@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boundries Collision</title>
+    <title>Arrow Keys</title>
 	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
 
@@ -38,142 +38,28 @@
 	<img id="logo" src="./imgs/logo.png" alt="logo">
 	
     <header>
-        <h2>Boundries Collision</h2>
+        <h2>Exercise: Arrow Keys</h2>
     </header>
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
-			<img src="./imgs/bordercollision.png" style="max-width:800px;">
+			<img src="./imgs/arrowkeys.jpg" style="max-width:800px;">
 			
-			<h3>Step 1:</h3>
-            <p>Essentially to make the blue pixel stop at the borders (detect boundries collision), we simply detect the x and y coordinates of the blue pixel and set the value of x or y to a fix value.</p>
+			<h3>Exercise:</h3>
+            <p>Let the user control the blue pixel with the Arrow Keys instead of W, A, S, D.</p>
 			
-            <p>The blue pixel at the center of the canvas which has the width of 800px and the height of 600px would be pixel.x= 400, and pixel.y = 300 as shown in the image above.</p>
-			
-            <p>Therefore, to make the pixel stop at the right most border, we detect if pixel.x > 800, then pixel.x = 800.</p>
-			<p>Similarly, to make the pixel stop at the top most border, we detect if pixel.y < 0, then pixel.y = 0.</p>
-			
-			<p>So an rough example of the code would be:</p>
+			<p>The name of the arrow keys are:</p>
 			<pre><code class="language-javascript">
-if (pixel.x > 800) {
-	pixel.x = 800;
-}
+ArrowUp
 
-if (pixel.y < 0) {
-	pixel.y = 0;
-}
+ArrowDown
+
+ArrowLeft
+
+ArrowRight
 			</code></pre>
 			
-			<h3>Exercise</h3>
-            <p>Do the border collision for all sides of the map.</p>
-		
-			<h3>Solution</h3>
-            <p>Here's the full javascript code below. </p>
 			
-			<pre><code class="language-javascript">
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
-
-const player = {
-	x: 300,
-	y: 300,
-	width: 16,
-	height: 32,
-	speed: 3,
-	dx: 0,
-	dy: 0,
-	prevDx: 0,
-	prevDy: 0
-};
-
-const enemy = {
-	x: canvas.width - 300,
-	y: canvas.height - 300,
-	width: 16,
-	height: 32,
-	speed: 1,
-	dx: 0,
-	dy: 0,
-	prevDx: 0,
-	prevDy: 0
-};
-	
-function drawPlayer() {
-	ctx.fillStyle = "blue"; // Adjust the alpha value (last parameter) for transparency // "rgba(0, 0, 0, 0)"
-	ctx.fillRect(player.x, player.y, player.width, player.height);
-}
-
-function drawEnemy() {
-	ctx.fillStyle =   "red"; // "rgba(0, 0, 0, 0)"
-	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
-}
-
-function clearCanvas() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function movePlayer() {
-	player.x += player.dx;
-	player.y += player.dy;
-	
-	// Check collision with canvas boundries 
-	if (checkBoundriesCollision()) {
-		player.x -= player.dx;
-		player.y -= player.dy;
-		player.dx = 0;
-		player.dy = 0;
-	}
-}
-
-function checkBoundriesCollision() {
-	// Check collision with canvas boundaries
-	if (player.x < 0 || player.x + player.width > canvas.width || player.y < 0 || player.y + player.height > canvas.height) {
-		return true;
-	}
-
-	return false;
-}
-
-function gameLoop() {
-	clearCanvas();
-	drawPlayer();
-	drawEnemy();
-	movePlayer();
-	requestAnimationFrame(gameLoop);
-}
-
-document.addEventListener("keydown", function (event) {
-	switch (event.key) {
-		case "w":
-			player.dy = -player.speed;
-			break;
-		case "a":
-			player.dx = -player.speed;
-			break;
-		case "s":
-			player.dy = player.speed;
-			break;
-		case "d":
-			player.dx = player.speed;
-			break;
-	}
-});
-
-document.addEventListener("keyup", function (event) {
-	switch (event.key) {
-		case "w":
-		case "s":
-			player.dy = 0;
-			break;
-		case "a":
-		case "d":
-			player.dx = 0;
-			break;
-	}
-});
-
-gameLoop();
-			</code></pre>
         </section>
     </div>
 	
@@ -275,29 +161,33 @@ function gameLoop() {
 
 document.addEventListener("keydown", function (event) {
 	switch (event.key) {
-		case "w":
+		case "ArrowUp":
 			player.dy = -player.speed;
+			event.preventDefault();
 			break;
-		case "a":
+		case "ArrowLeft":
 			player.dx = -player.speed;
+			event.preventDefault();
 			break;
-		case "s":
+		case "ArrowDown":
 			player.dy = player.speed;
+			event.preventDefault();
 			break;
-		case "d":
+		case "ArrowRight":
 			player.dx = player.speed;
+			event.preventDefault();
 			break;
 	}
 });
 
 document.addEventListener("keyup", function (event) {
 	switch (event.key) {
-		case "w":
-		case "s":
+		case "ArrowUp":
+		case "ArrowDown":
 			player.dy = 0;
 			break;
-		case "a":
-		case "d":
+		case "ArrowLeft":
+		case "ArrowRight":
 			player.dx = 0;
 			break;
 	}

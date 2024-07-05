@@ -236,8 +236,6 @@
 	<div class="splash-screen" id="splashScreen">
 		<div class="play-button" id="playButton"></div>
 	</div>
-	<audio id="hoverSound" src="./sounds/thud.mp3"></audio>
-	<audio id="clickSound" src="./sounds/click.mp3"></audio>
 	<audio id="coinAudio" src="./sounds/coin.wav"></audio>
 	<audio id="successAudio" src="./sounds/coin-success.wav"></audio>
 	<audio id="walkingAudio" src="./sounds/footsteps.mp3"></audio>
@@ -284,7 +282,6 @@ var mapCTX = mapCanvas.getContext("2d");
 var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
 
-const avatarGif = document.getElementById("avatar");
 const playerGif = document.getElementById("playerGif");
 const enemyGif = document.getElementById("enemyGif");
 const goldDiv = document.getElementById("goldvalue");
@@ -471,22 +468,18 @@ function movePlayer() {
 	
 	// Update player GIF based on movement direction
 	if (player.dx > 0 && player.dx !== player.prevDx) {
-		avatarGif.src = "./imgs/player-east.png";
 		playerGif.src = "./imgs/player-east.png";
 		player.prevDx = player.dx;
 		player.prevDy = 0;
 	} else if (player.dx < 0 && player.dx !== player.prevDx) {
-		avatarGif.src = "./imgs/player-west.png";
 		playerGif.src = "./imgs/player-west.png";
 		player.prevDx = player.dx;
 		player.prevDy = 0;
 	} else if (player.dy > 0 && player.dy !== player.prevDy) {
-		avatarGif.src = "./imgs/player-south.png";
 		playerGif.src = "./imgs/player-south.png";
 		player.prevDy = player.dy;
 		player.prevDx = 0;
 	} else if (player.dy < 0 && player.dy !== player.prevDy) {
-		avatarGif.src = "./imgs/player-north.png";
 		playerGif.src = "./imgs/player-north.png";
 		player.prevDy = player.dy;
 		player.prevDx = 0;
@@ -494,47 +487,64 @@ function movePlayer() {
 }
 
 function moveEnemy() {
-
     // Simple chase algorithm
-	if (enemy.x == player.x) {
-		// do nothing
-	}
-    else if (enemy.x < player.x) {
-        if (!checkBrownCollision(enemy.x + enemy.speed, enemy.y, enemy.width, enemy.height)) {
-            enemy.dx += enemy.speed
-			enemy.x += enemy.dx;
+	
+	const ENEMY_FLEE_SPEED = enemy.speed * 3;
+	if (enemy.x < player.x + player.width) {
+        if (!checkBrownCollision(enemy.x - ENEMY_FLEE_SPEED, enemy.y, enemy.width, enemy.height)) {
+            enemy.x -= ENEMY_FLEE_SPEED;
         }
-    } else {
-        if (!checkBrownCollision(enemy.x - enemy.speed, enemy.y, enemy.width, enemy.height)) {
-            enemy.dx -= enemy.speed;
-			enemy.x += enemy.dx;
+    } else if (enemy.x > player.x) {
+        if (!checkBrownCollision(enemy.x + ENEMY_FLEE_SPEED, enemy.y, enemy.width, enemy.height)) {
+            enemy.x += ENEMY_FLEE_SPEED;
         }
     }
-
-	if (enemy.y == player.y) {
-		// do nothing
-	}
-    else if (enemy.y + enemy.speed < player.y) {
-        if (!checkBrownCollision(enemy.x, enemy.y + enemy.speed, enemy.width, enemy.height)) {
-            enemy.dy += enemy.speed;
-			enemy.y += enemy.dy;
+	else if (enemy.x == player.x) {
+        if (!checkBrownCollision(enemy.y - ENEMY_FLEE_SPEED, enemy.y, enemy.width, enemy.height)) {
+            enemy.y -= ENEMY_FLEE_SPEED;
         }
-    } else {
-        if (!checkBrownCollision(enemy.x, enemy.y - enemy.speed, enemy.width, enemy.height)) {
-            enemy.dy -= enemy.speed;
-			enemy.y += enemy.dy;
+		else if (!checkBrownCollision(enemy.y + ENEMY_FLEE_SPEED, enemy.y, enemy.width, enemy.height)) {
+			enemy.y += ENEMY_FLEE_SPEED;
 		}
-    }
+	}
 
-    console.log(enemy.x, enemy.prevX, enemy.y, enemy.prevY, player.x, player.y)
+
+    if (enemy.y < player.y + player.height) {
+		console.log ("1");
+        if (!checkBrownCollision(enemy.x, enemy.y - ENEMY_FLEE_SPEED, enemy.width, enemy.height)) {
+            enemy.y -= ENEMY_FLEE_SPEED;
+        }
+		else {
+			enemy.y += ENEMY_FLEE_SPEED;
+		}
+    } else if (enemy.y + enemy.height > player.y) {
+		console.log ("2");
+        if (!checkBrownCollision(enemy.x, enemy.y + ENEMY_FLEE_SPEED, enemy.width, enemy.height)) {
+            enemy.y += ENEMY_FLEE_SPEED;
+		}
+    } else  {
+		console.log ("3");
+        if (!checkBrownCollision(enemy.x, enemy.y + ENEMY_FLEE_SPEED, enemy.width, enemy.height)) {
+            enemy.x += ENEMY_FLEE_SPEED;
+        }
+		else if (!checkBrownCollision(enemy.x, enemy.y - ENEMY_FLEE_SPEED, enemy.width, enemy.height)) {
+			enemy.x -= ENEMY_FLEE_SPEED;
+		}
+	}
+	
+	// TELEPORTING LOGIC
+	if (enemy.x + enemy.width >= canvas.width) {
+		enemy.x = canvas.width - enemy.width;
+	}else if (enemy.x <= 0) {
+		enemy.x = 0;
+	}
+
+    console.log(enemy.x, enemy.y, player.x, player.y)
     if ((enemy.x == enemy.prevX) && (enemy.y == enemy.prevY)) {
         pauseSkeletonAudio();
 	} else {
 		playSkeletonAudio();
 	}
-
-	enemy.prevX = enemy.x;
-	enemy.prevY = enemy.y;
 	
 	// Update position of the enemy GIF
 	enemyGif.style.left = (enemy.x + 16) + "px";
@@ -832,23 +842,6 @@ function playGameOverAudio() {
     var audio = document.getElementById('gameoverAudio');
     audio.play();
 }
-
-const hoverPlayButton = document.getElementById('playButton');
-const hoverSound = document.getElementById('hoverSound');
-const clickSound = document.getElementById('clickSound');
-
-hoverPlayButton.addEventListener('mouseenter', () => {
-	hoverSound.play();
-});
-
-hoverPlayButton.addEventListener('mouseleave', () => {
-	hoverSound.pause();
-	hoverSound.currentTime = 0; // Reset the audio to start
-});
-
-hoverPlayButton.addEventListener('click', () => {
-	clickSound.play();
-});
 
 </script>
 
