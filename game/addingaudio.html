@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Sound</title>
+	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
+
+    <!-- Script to include Prism.js -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    
+	<!-- Include CSS language support -->
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-css.min.js"></script>
+	
+	<!-- Google Fonts For Webpage -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+	
+	<!-- CSS For Webpage -->
+	<link rel="stylesheet" href="./css/reset.css">
+	
+	<!-- Google Fonts For the Game -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap">
+	<style>	
+		.crisp {
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+		
+		body {
+			margin: 0;
+			position: relative;
+		}
+		#gameCanvas {
+			border:25px solid #555;
+			border-radius:10px;
+		}
+		#mapCanvas {
+			border:25px solid #555;
+			border-radius:10px;
+		}
+		canvas {
+			display: block;
+			margin: 0 auto;
+		}
+		
+        #canvasContainer {
+            position: relative;
+            width: 850px; /* Adjust width as needed */
+            height: 650px; /* Adjust height as needed */
+            margin: auto; /* Center the container */
+			/* border:1px solid red; */
+        }
+
+		#playerGif {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			z-index: 2;
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+		
+		#enemyGif {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 2;
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+	</style>
+</head>
+<body>
+	<img id="logo" src="./imgs/logo.png" alt="logo">
+	
+    <header>
+        <h2>Adding Sound Effects and Music</h2>
+    </header>
+
+    <div class="main-content">
+	    <section class="single-column-section image-section">
+		
+
+			<a href="music/beep-quest.mp3"><i class="fas fa-play" id="play-icon"></i> music</a>
+			<a href="sounds/thud.mp3"><i class="fas fa-play" id="play-icon"></i> thud</a>
+			<a href="sounds/click.mp3"><i class="fas fa-play" id="play-icon"></i> click</a>
+			<a href="sounds/countdown.mp3"><i class="fas fa-play" id="play-icon"></i> countdown</a>
+			<a href="sounds/begin.mp3"><i class="fas fa-play" id="play-icon"></i> begin</a>
+			<a href="sounds/coin.mp3"><i class="fas fa-play" id="play-icon"></i> coin</a>
+			<a href="sounds/score.mp3"><i class="fas fa-play" id="play-icon"></i> score</a>
+			<a href="sounds/footsteps.mp3"><i class="fas fa-play" id="play-icon"></i> footsteps</a>
+			<a href="sounds/skeleton.mp3"><i class="fas fa-play" id="play-icon"></i> skeleton</a>
+			<a href="sounds/dying.mp3"><i class="fas fa-play" id="play-icon"></i> dying</a>
+			<a href="sounds/gameover.mp3"><i class="fas fa-play" id="play-icon"></i> gameover</a>
+			<a href="sounds/success.mp3"><i class="fas fa-play" id="play-icon"></i> success</a>
+			
+
+			<h3>Step:1</h3>
+			<p>To add a sound to your game, start by adding this code below into your HTML section.</p>
+			
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-html">
+&lt;audio id="coinAudio" src="./sounds/coin.mp3"&gt;&lt;/audio&gt;
+			</code></pre>
+			
+			
+			<h3>Step:2</h3>
+			<p>To javascript section add this two functions to play and stop the coin sound.</p>
+			
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-javascript">
+function playCoinAudio() {
+    var audio = document.getElementById('coinAudio');
+    audio.play();
+}
+
+function pauseCoinAudio() {
+    var audio = document.getElementById('coinAudio');
+    audio.pause();
+}
+			</code></pre>
+			
+			<h3>Step:3</h3>
+			<p>And finally just add the play function to where ever in your javascript program you want to trigger the coin sound.</p>
+			
+			<p>In my code, I added into the 'checkYellowCollision()' function.</p>
+			
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-javascript">
+function checkYellowCollision() {
+    // Check collision with yellow squares
+    for (var i = 0; i < yellowSquares.length; i++) {
+        if (
+            player.x < yellowSquares[i].x * tileSize + tileSize &&
+            player.x + player.width > yellowSquares[i].x * tileSize &&
+            player.y < yellowSquares[i].y * tileSize + tileSize &&
+            player.y + player.height > yellowSquares[i].y * tileSize
+        ) {
+			playCoinAudio(); // Play Coin Audio
+		}
+	}
+}
+			</code></pre>
+			
+			<h3>Adding Music</h3>
+			<p>To add music to the game is the same as adding sound. Simple add the code below into your HTML section. Notice we add the word 'loop' at the end of the tag to indicate we want the music to play in a loop continously.</p>
+
+			<pre><code class="language-html">
+&lt;audio id="musicAudio" src="./music/beeper-quest.mp3" loop&gt;&lt;/audio&gt;
+			</code></pre>
+
+        </section>
+	</div>
+	
+	<footer>
+		<div class="footer-links">
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<div class="footer-column">
+				<a href="../index.html">Menu</a>
+			</div>
+			<div class="footer-column">
+				<img src="./imgs/psyblade.png" alt="Small Logo" class="small-logo">
+			</div>
+		</div>
+		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
+		
+	</footer>
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+		
+
+</body>
+</html>

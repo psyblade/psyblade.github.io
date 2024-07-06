@@ -95,8 +95,6 @@
             z-index: 10;
             background: url('./imgs/splash.png') no-repeat center center;
             background-size: cover;
-			background-color:#000;
-			border:25px solid #555;
 			border-radius:10px;
 			left:50%;
 			transform: translate(-50%);
@@ -112,10 +110,11 @@
             z-index: 11;
             background: url('./imgs/splash-hover.png') no-repeat center center;
             background-size: cover;
-			background-color:#000;
-			left:50%;
-			transform: translate(-50%);
-			display:none;
+			border:25px solid #555;
+			border-radius:10px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, 5%);
         }
 
         #playButton {
@@ -138,8 +137,9 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+		top:50%;
         left:50%;
-		transform: translate(-50%);
+		transform: translate(-50%, 5%);
 		width:1280px;
 		height:768px;
 		border:25px solid #555;
@@ -266,17 +266,17 @@
 	</style>
 </head>
 <body>
-	<div class="splash-screen" id="splashScreen">
+	<div class="splash-screen" id="splashScreenHover">
 		<div class="play-button" id="playButton"></div>
-		<div class="splash-screen" id="splashScreenHover"></div>
+		<div class="splash-screen" id="splashScreen"></div>
 	</div>
-	<audio id="musicAudio" src="./music/beep-quest.mp3"></audio>
+	<audio id="musicAudio" src="./music/beep-quest.mp3" loop></audio>
 	<audio id="hoverSound" src="./sounds/thud.mp3"></audio>
 	<audio id="clickSound" src="./sounds/click.mp3"></audio>
 	<audio id="beginAudio" src="./sounds/begin.wav"></audio>
 	<audio id="countdownAudio" src="./sounds/countdown.wav"></audio>
 	<audio id="coinAudio" src="./sounds/coin.wav"></audio>
-	<audio id="successAudio" src="./sounds/coin-success.wav"></audio>
+	<audio id="successAudio" src="./sounds/success.wav"></audio>
 	<audio id="walkingAudio" src="./sounds/footsteps.mp3"></audio>
 	<audio id="skeletonAudio" src="./sounds/skeleton.wav"></audio>
 	<audio id="scoreAudio" src="./sounds/score.mp3"></audio>
@@ -837,20 +837,19 @@ const clickSound = document.getElementById('clickSound');
 
 playButton.addEventListener('mouseover', function() {
 	hoverSound.play();
-	splashScreenHover.style.display = "block";
+	splashScreen.style.display = "none";
 });
 
 playButton.addEventListener('mouseout', function() {
 	hoverSound.pause();
 	hoverSound.currentTime = 0; // Reset the audio to start
-	splashScreenHover.style.display = "none";
+	splashScreen.style.display = "block";
 });
 
 playButton.addEventListener('click', function() {
 	clickSound.play();
-	splashScreen.style.display = 'none';
+	splashScreenHover.style.display = 'none';
 	gameStart();
-	//document.getElementById('mainContent').style.display = 'block';
 });
 
 function playMusicAudio() {
