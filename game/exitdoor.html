@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pick Up Gold</title>
+    <title>Exit Door</title>
 	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
 
@@ -82,13 +82,15 @@
 	<img id="logo" src="./imgs/logo.png" alt="logo">
 	
     <header>
-        <h2>Pick Up Gold</h2>
+        <h2>Make an Exit Door</h2>
     </header>
 
     <div class="main-content">
-	    <section class="single-column-section image-section">		
+	    <section class="single-column-section image-section">	
+			<img src="./imgs/exitdoor.png">
+		
 			<h3>Step 1:</h3>
-            <p>In the javascript section we are going to add in this code which will draw yellow squares on whereever the mapData is '18' which is the walkable path. Then it will create a div an put an animated gif/png on top of the yellow square. These yellow squares are stored in a dictionary. When the player collides with the yellow square, it will remove the yellow square data from the dictionary and delete the animated gif div. The exit door is 16 and it draws a white square. If player collides with white, then it will check if players has finished getting all the treasures. If yes, then it will show player has won the game.</p>
+            <p>To put an exit door on the map, we use the tileset number 16. When drawing on the game canvas, we will draw a white square when we detect tileset 16 to indicate it is a door. When the player collides with the white square, then we know the player has reached the door.</p>
 			<pre><code class="language-javascript">
 var game_over = false;
 var game_win = false;
