@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleporting</title>
+	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
+
+
+    <!-- Script to include Prism.js -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="./css/reset.css">
+	<style>	
+		.crisp {
+			image-rendering: pixelated;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: crisp-edges;
+		}
+		
+		body {
+			margin: 0;
+			position: relative;
+		}
+		#gameCanvas {
+			border:25px solid #555;
+			border-radius:10px;
+		}
+		canvas {
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<img id="logo" src="./imgs/logo.png" alt="logo">
+	
+    <header>
+        <h2>Solution: Teleporting</h2>
+    </header>
+
+    <div class="main-content">
+	    <section class="single-column-section image-section">			
+			<h3>Step 1:</h3>
+            <p>The important part of the teleporting code/logic is this:</p>
+			<p>Just put this code into the movePlayer() function</p>
+			<pre><code class="language-javascript">
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+			</code></pre>
+			
+		
+			<h3>Solution</h3>
+            <p>Here's the full javascript code below. </p>
+			
+			<pre><code class="language-javascript">
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const player = {
+	x: 300,
+	y: 300,
+	width: 16,
+	height: 32,
+	speed: 3,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+
+const enemy = {
+	x: canvas.width - 300,
+	y: canvas.height - 300,
+	width: 16,
+	height: 32,
+	speed: 1,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+	
+function drawPlayer() {
+	ctx.fillStyle = "blue"; // Adjust the alpha value (last parameter) for transparency // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+function drawEnemy() {
+	ctx.fillStyle =   "red"; // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+}
+
+function clearCanvas() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function movePlayer() {
+	player.x += player.dx;
+	player.y += player.dy;
+	
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+}
+
+function gameLoop() {
+	clearCanvas();
+	drawPlayer();
+	drawEnemy();
+	movePlayer();
+	requestAnimationFrame(gameLoop);
+}
+
+document.addEventListener("keydown", function (event) {
+	switch (event.key) {
+		case "w":
+			player.dy = -player.speed;
+			break;
+		case "a":
+			player.dx = -player.speed;
+			break;
+		case "s":
+			player.dy = player.speed;
+			break;
+		case "d":
+			player.dx = player.speed;
+			break;
+	}
+});
+
+document.addEventListener("keyup", function (event) {
+	switch (event.key) {
+		case "w":
+		case "s":
+			player.dy = 0;
+			break;
+		case "a":
+		case "d":
+			player.dx = 0;
+			break;
+	}
+});
+
+gameLoop();
+			</code></pre>
+        </section>
+		
+<div id="canvasContainer">
+	<canvas id="gameCanvas" class="canvas" width="800" height="600"></canvas>
+</div>
+    </div>
+	
+    <!--canvas id="gameCanvas" width="800" height="600"></canvas-->
+	
+	<footer>
+		<div class="footer-links">
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<div class="footer-column">
+				<a href="../index.html">Menu</a>
+			</div>
+			<div class="footer-column">
+				<img src="./imgs/psyblade.png" alt="Small Logo" class="small-logo">
+			</div>
+		</div>
+		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
+		
+	</footer>
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const player = {
+	x: 300,
+	y: 300,
+	width: 16,
+	height: 32,
+	speed: 3,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+
+const enemy = {
+	x: canvas.width - 300,
+	y: canvas.height - 300,
+	width: 16,
+	height: 32,
+	speed: 1,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+	
+function drawPlayer() {
+	ctx.fillStyle = "blue"; // Adjust the alpha value (last parameter) for transparency // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+function drawEnemy() {
+	ctx.fillStyle =   "red"; // "rgba(0, 0, 0, 0)"
+	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+}
+
+function clearCanvas() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function movePlayer() {
+	player.x += player.dx;
+	player.y += player.dy;
+	
+	// TELEPORTING LOGIC
+	if (player.x > canvas.width) {
+		player.x = 0;
+	}
+	if (player.x < 0) {
+		player.x = canvas.width;
+	}
+	if (player.y > canvas.height) {
+		player.y = 0;
+	}
+	if (player.y < 0) {
+		player.y = canvas.height;
+	}
+}
+
+function gameLoop() {
+	clearCanvas();
+	drawPlayer();
+	drawEnemy();
+	movePlayer();
+	requestAnimationFrame(gameLoop);
+}
+
+document.addEventListener("keydown", function (event) {
+	switch (event.key) {
+		case "w":
+			player.dy = -player.speed;
+			break;
+		case "a":
+			player.dx = -player.speed;
+			break;
+		case "s":
+			player.dy = player.speed;
+			break;
+		case "d":
+			player.dx = player.speed;
+			break;
+	}
+});
+
+document.addEventListener("keyup", function (event) {
+	switch (event.key) {
+		case "w":
+		case "s":
+			player.dy = 0;
+			break;
+		case "a":
+		case "d":
+			player.dx = 0;
+			break;
+	}
+});
+
+gameLoop();
+</script>
+
+</body>
+</html>

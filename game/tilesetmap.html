@@ -87,20 +87,15 @@
 			<img src="./imgs/tileset.png" class="crisp">
 			<h3>Step:1</h3>
 			<p>The above is a tileset which we are going to use individual square tiles in the tileset to build ourselves a map.</p>
-			<p>We are going to create another canvas above our current canvas and name it #mapCanvas.
-			<p>In the CSS Style section the we will set the #mapCanvas z-index to 1 is to put it on top of the gameCanvas</p>
+			<img src="./imgs/folderstructure-tileset.png" style="max-width:416px">
+			<p>Right click on the above image and select "Save Image" and save it into your "imgs" folder as shown in the picture above.</p>
 			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-css">
-#mapCanvas {
-	position:absolute;
-	border:25px solid #555;
-	border-radius:10px;
-	z-index:1;
-}
-			</code></pre>
-
-			<h3>Step 2:</h3>
+			<h3>Step:2</h3>
+			<p>We are going to create another canvas above our current "game canvas" and call it "map canvas" (#mapCanvas).
+			
+			<img src="./imgs/mapcanvas.png">
+			
+			<h3>Step:3</h3>
             <p>In the HTML section we are going to add in a canvas called "mapCanvas"</p>
 			
 			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
@@ -113,8 +108,20 @@
 &lt;/div&gt;
 			</code></pre>
 			
-			<h3>Step 3:</h3>
-            <p>In the javascript section we are going to add in this code which will read from the mapData list and draw the tilesets onto the mapCanvas according to "./imgs/tilset.png". Then it will also draw the brown squares onto the gameCanvas which will indicate the collision areas.</p>
+			<p>In the CSS Style section the we will set the #mapCanvas z-index to 1 is to put it on top of the #gameCanvas</p>
+			
+			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
+			<pre><code class="language-css">
+#mapCanvas {
+	position:absolute;
+	border:25px solid #555;
+	border-radius:10px;
+	z-index:1;
+}
+			</code></pre>
+
+			<h3>Step 4:</h3>
+            <p>In the javascript section we are going to add in this code which will read from the mapData list and draw the tilesets onto the mapCanvas according to "./imgs/tileset.png". Then it will also draw the brown squares onto the gameCanvas which will indicate the collision areas.</p>
 			<pre><code class="language-javascript">
 // Get the map canvas and its context
 var mapCanvas = document.getElementById("mapCanvas");
@@ -160,11 +167,10 @@ window.onload = function() {
 	function drawMap() {
 		for (var y = 0; y < mapHeight; y++) {
 			for (var x = 0; x < mapWidth; x++) {
-				// console.log("***", mapData[y][x], (mapData[y][x] % tilesetWidth), Math.floor(mapData[y][x] / tilesetWidth));
-				// console.log(mapData[y][x], (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+				// Draws the tileset onto the map canvas
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				
-				// If the tile is not 18, draw a red square on the highlight canvas
+				// If the tile is not 18 (18 is the path), draw a brown square on the game canvas
 				if (mapData[y][x] !== 18) {
 					ctx.fillStyle = "rgb(165, 42, 42)";
 					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
@@ -261,11 +267,10 @@ window.onload = function() {
 	function drawMap() {
 		for (var y = 0; y < mapHeight; y++) {
 			for (var x = 0; x < mapWidth; x++) {
-				// console.log("***", mapData[y][x], (mapData[y][x] % tilesetWidth), Math.floor(mapData[y][x] / tilesetWidth));
-				// console.log(mapData[y][x], (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+				// Draws the tileset onto the map canvas
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				
-				// If the tile is not 18, draw a red square on the highlight canvas
+				// If the tile is not 18 (18 is the path), draw a brown square on the game canvas
 				if (mapData[y][x] !== 18) {
 					ctx.fillStyle = "rgb(165, 42, 42)";
 					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);

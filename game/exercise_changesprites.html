@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adding Sprites</title>
+    <title>Change Sprites</title>
 	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
 
@@ -82,299 +82,33 @@
 	<img id="logo" src="./imgs/logo.png" alt="logo">
 	
     <header>
-        <h2>Adding Sprites</h2>
+        <h2>Exercise: Change Sprites</h2>
     </header>
 
     <div class="main-content">
 
 	    <section class="single-column-section image-section">
 			<h3>Step 1:</h3>
-			<img src="./imgs/folderstructure.png" style="max-width:416px">
+			<img src="./imgs/frog_spritesheet.png" class="crisp">
 			
-            <p>It is recommended you create a folder structure as shown above. Put your index.html file into a folder named "game" in your Documents folder. Then create a folder name "imgs" in your "game" folder. </p>
+            <p>Here's a frog sprite sheet you can use to make your animated png.</p>
 			<br>
 			<br>
-			<div id="sprites">
-				<img src="./imgs/player-north.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<img src="./imgs/player-south.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<img src="./imgs/player-east.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<img src="./imgs/player-west.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<br>
-				<img src="./imgs/enemy-north.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<img src="./imgs/enemy-south.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<img src="./imgs/enemy-east.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-				<img src="./imgs/enemy-west.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
-			</div>
+			<img src="./imgs/afrog.png" class="sprites crisp" style="max-width:128px; display:inline-block;">
+			
+            <p>If not, just use this animated frog sprite already made for you.</p>
+
 			<br>
 			<br>
-			<h3>Step 2:</h3>
-			<p>You will need to right-click and select "Save Image" and save all the sprite animations above into the "imgs" folder you have just created.</p>
-		
-		
-			<h3>Step 3:</h3>
-            <p>Add this CSS to your 'STYLE' section.</p>
 			
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-css">
-#playerGif {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	z-index: 2;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: crisp-edges;
-}
 
-#enemyGif {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 2;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: crisp-edges;
-}
-</code></pre>
-		
-			<h3>Step 4:</h3>
-            <p>Add a div for the player gif and a div for the enemy gif in the canvas container div.</p>
-			
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-html">
-&lt;div id="canvasContainer"&gt;
-	&lt;canvas id="gameCanvas" width="800" height="600"&gt;&lt;/canvas&gt;
-	&lt;img id="playerGif" src="./imgs/player-south.png" alt="Player GIF"&gt;
-	&lt;img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF"&gt;
-&lt;/div&gt;
-			</code></pre>
-			
-			<h3>Step 5:</h3>
-            <p>In the javascript section we will add the code for updating the gif position for the player and enemy blocks.</p>
-			
-			<pre><code class="language-javascript">
-var game_over = false;
-
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
-
-const player = {
-	x: 300,
-	y: 300,
-	width: 16,
-	height: 32,
-	speed: 3,
-	dx: 0,
-	dy: 0,
-	prevDx: 0,
-	prevDy: 0
-};
-
-const enemy = {
-	x: canvas.width - 300,
-	y: canvas.height - 300,
-	width: 16,
-	height: 32,
-	speed: 1,
-	dx: 0,
-	dy: 0,
-	prevDx: 0,
-	prevDy: 0
-};
-	
-function drawPlayer() {
-	ctx.fillStyle = "blue"; // Adjust the alpha value (last parameter) for transparency // "rgba(0, 0, 0, 0)"
-	ctx.fillRect(player.x, player.y, player.width, player.height);
-}
-
-function drawEnemy() {
-	ctx.fillStyle =   "red"; // "rgba(0, 0, 0, 0)"
-	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
-}
-
-function clearCanvas() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function movePlayer() {
-	player.x += player.dx;
-	player.y += player.dy;
-	
-	// Check collision with canvas boundries 
-	if (checkBoundriesCollision()) {
-		player.x -= player.dx;
-		player.y -= player.dy;
-		player.dx = 0;
-		player.dy = 0;
-	}
-	
-		// Update position of the player GIF
-        playerGif.style.left = (player.x -8) + "px";
-        playerGif.style.top = (player.y)  + "px";
-		
-        // Update player GIF based on movement direction
-        if (player.dx > 0 && player.dx !== player.prevDx) {
-            playerGif.src = "./imgs/player-east.png";
-            player.prevDx = player.dx;
-            player.prevDy = 0;
-        } else if (player.dx < 0 && player.dx !== player.prevDx) {
-            playerGif.src = "./imgs/player-west.png";
-            player.prevDx = player.dx;
-            player.prevDy = 0;
-        } else if (player.dy > 0 && player.dy !== player.prevDy) {
-            playerGif.src = "./imgs/player-south.png";
-            player.prevDy = player.dy;
-            player.prevDx = 0;
-        } else if (player.dy < 0 && player.dy !== player.prevDy) {
-            playerGif.src = "./imgs/player-north.png";
-            player.prevDy = player.dy;
-            player.prevDx = 0;
-        }
-}
-
-function moveEnemy() {
-	// Simple chase algorithm
-	if (enemy.x <= player.x) {
-		enemy.x += enemy.speed;
-	} else {
-		enemy.x -= enemy.speed;
-	}
-
-	if (enemy.y <= player.y) {
-		enemy.y += enemy.speed;
-	} else {
-		enemy.y -= enemy.speed;
-	}
-	
-	// Update position of the enemy GIF
-	enemyGif.style.left = (enemy.x - 8) + "px";
-	enemyGif.style.top = (enemy.y) + "px";
-	
-	if (enemy.dx > 0 && enemy.dx !== enemy.prevDx) {
-		enemyGif.src = "enemy-east.png";
-		enemy.prevDx = enemy.dx;
-		enemy.prevDy = 0;
-	} else if (enemy.dx < 0 && enemy.dx !== enemy.prevDx) {
-		enemyGif.src = "enemy-west.png";
-		enemy.prevDx = enemy.dx;
-		enemy.prevDy = 0;
-	} else if (enemy.dy > 0 && enemy.dy !== enemy.prevDy) {
-		enemyGif.src = "enemy-south.png";
-		enemy.prevDy = enemy.dy;
-		enemy.prevDx = 0;
-	} else if (enemy.dy < 0 && enemy.dy !== enemy.prevDy) {
-		enemyGif.src = "enemy-north.png";
-		enemy.prevDy = enemy.dy;
-		enemy.prevDx = 0;
-	}
-}
-
-function checkBoundriesCollision() {
-	// Check collision with canvas boundaries
-	if (player.x < 0 || player.x + player.width > canvas.width || player.y < 0 || player.y + player.height > canvas.height) {
-		return true;
-	}
-
-	return false;
-}
-
-function checkPlayerEnemyCollision() {
-	if (
-		player.x < enemy.x + enemy.width &&
-		player.x + player.width > enemy.x &&
-		player.y < enemy.y + enemy.height &&
-		player.y + player.height > enemy.y
-	) {
-		game_over = true;
-	}
-}
-
-function showGameOverPopup() {
-    // Create a new div element
-    const gameOverDiv = document.createElement("div");
-    
-    // Set styles for the div
-	gameOverDiv.style.position = "absolute";
-	gameOverDiv.style.width = "100%";
-    gameOverDiv.style.top = "50%";
-    gameOverDiv.style.left = "50%";
-    gameOverDiv.style.transform = "translate(-50%, -50%)";
-    gameOverDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
-    gameOverDiv.style.color = "red";
-    gameOverDiv.style.fontSize = "64px";
-    gameOverDiv.style.padding = "20px";
-    gameOverDiv.style.textAlign = "center";
-    gameOverDiv.style.borderRadius = "10px";
-    gameOverDiv.style.zIndex = "9999";
-	gameOverDiv.style.fontFamily = "'Press Start 2P', system-ui"; // Use Press Start 2P font
-    
-    // Set the text content
-    gameOverDiv.textContent = "Game Over";
-    
-	// Get the existing canvas container element
-	var canvasContainer = document.getElementById("canvasContainer");
-	
-	// Append gameOverDiv to canvasContainer
-	canvasContainer.appendChild(gameOverDiv);
-}
-
-function gameLoop() {
-    if (!game_over) {
-        clearCanvas();
-        drawPlayer();
-        drawEnemy();
-        movePlayer();
-		moveEnemy();
-        checkPlayerEnemyCollision();
-        requestAnimationFrame(gameLoop);
-    } else {
-        // Show game over popup
-        showGameOverPopup();		
-		// You can add game over logic here
-    }
-}
-
-document.addEventListener("keydown", function (event) {
-	switch (event.key) {
-		case "w":
-			player.dy = -player.speed;
-			break;
-		case "a":
-			player.dx = -player.speed;
-			break;
-		case "s":
-			player.dy = player.speed;
-			break;
-		case "d":
-			player.dx = player.speed;
-			break;
-	}
-});
-
-document.addEventListener("keyup", function (event) {
-	switch (event.key) {
-		case "w":
-		case "s":
-			player.dy = 0;
-			break;
-		case "a":
-		case "d":
-			player.dx = 0;
-			break;
-	}
-});
-
-gameLoop();
-			</code></pre>
         </section>
     </div>
 	
 	<div id="canvasContainer">
 		<canvas id="gameCanvas" width="800" height="600"></canvas>
 		<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
-		<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
+		<img id="enemyGif" src="./imgs/afrog.png" alt="Enemy GIF">
 		<!--img id="topdownRoom" src="./imgs/mapart.png" alt="Top Down Room"-->
 	</div>
 	
@@ -499,19 +233,19 @@ function moveEnemy() {
 	enemyGif.style.top = (enemy.y + 24) + "px";
 	
 	if (enemy.dx > 0 && enemy.dx !== enemy.prevDx) {
-		enemyGif.src = "enemy-east.png";
+		enemyGif.src = "afrog.png";
 		enemy.prevDx = enemy.dx;
 		enemy.prevDy = 0;
 	} else if (enemy.dx < 0 && enemy.dx !== enemy.prevDx) {
-		enemyGif.src = "enemy-west.png";
+		enemyGif.src = "afrog.png";
 		enemy.prevDx = enemy.dx;
 		enemy.prevDy = 0;
 	} else if (enemy.dy > 0 && enemy.dy !== enemy.prevDy) {
-		enemyGif.src = "enemy-south.png";
+		enemyGif.src = "afrog.png";
 		enemy.prevDy = enemy.dy;
 		enemy.prevDx = 0;
 	} else if (enemy.dy < 0 && enemy.dy !== enemy.prevDy) {
-		enemyGif.src = "enemy-north.png";
+		enemyGif.src = "afrog.png";
 		enemy.prevDy = enemy.dy;
 		enemy.prevDx = 0;
 	}

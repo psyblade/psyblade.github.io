@@ -85,8 +85,18 @@
     </header>
 
     <div class="main-content">
-	    <section class="single-column-section image-section">		
+	    <section class="single-column-section image-section">	
+			
+			<div id="sprites">
+				<img src="./imgs/chest.png" class="sprites crisp" style="max-width:256px; display:inline-block;">
+				<img src="./imgs/coin.gif" class="sprites crisp" style="max-width:128px; display:inline-block;">
+			</div>
 			<h3>Step 1:</h3>
+			<p>You can start by right clicking on the chest or coin animation above and saving them to your "img" folder.</p>
+			
+
+		
+			<h3>Step 2:</h3>
             <p>In the javascript section we are going to add in this code which will draw yellow squares on whereever the mapData is '18' which is the walkable path. Then it will create a div an put an animated gif/png on top of the yellow square. These yellow squares are stored in a dictionary. When the player collides with the yellow square, it will remove the yellow square data from the dictionary and delete the animated gif div.</p>
 			<pre><code class="language-javascript">
 var game_over = false;
@@ -191,7 +201,7 @@ window.onload = function() {
 						gifDiv.style.zIndex = "1";
 						gifDiv.style.left = (x * tileSize + 28) + "px";
 						gifDiv.style.top = (y * tileSize + 20) + "px"; // Adjust vertical position as needed
-						gifDiv.innerHTML = '<img src="./imgs/chest.png" style="width: 32px; height: 32px;">';
+						gifDiv.innerHTML = '&lt;img src="./imgs/chest.png" style="width: 32px; height: 32px;"&gt;';
 						canvasContainer.appendChild(gifDiv); // Append gifDiv to canvasContainer
 						
 						// Store position of yellow square and associated gifDiv
