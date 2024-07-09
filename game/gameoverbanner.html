@@ -54,9 +54,46 @@
 
     <div class="main-content">
 	    <section class="single-column-section image-section">
+		
+			<img src="./imgs/gameoverbanner.png">
+		
 			<h3>Step 1:</h3>
-            <p>We are now going to make the blue square move with our keyboard. </p>
+            <p>Instead of the ugly Game Over alert box, we are now going to replace it with a Game Over banner.</p>
 			
+			<p>The important code to add is this:</p>
+			<p>When this function is called, it will dynamically insert a HTML DIV element into the webpage, and set its CSS accordingly, thus showing the GAME OVER banner.</p>
+			<pre><code class="language-javascript">
+function showGameOverPopup() {
+    // Create a new div element
+    const gameOverDiv = document.createElement("div");
+    
+    // Set styles for the div
+	gameOverDiv.style.position = "absolute";
+	gameOverDiv.style.width = "100%";
+    gameOverDiv.style.top = "50%";
+    gameOverDiv.style.left = "50%";
+    gameOverDiv.style.transform = "translate(-50%, -50%)";
+    gameOverDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    gameOverDiv.style.color = "red";
+    gameOverDiv.style.fontSize = "64px";
+    gameOverDiv.style.padding = "20px";
+    gameOverDiv.style.textAlign = "center";
+    gameOverDiv.style.borderRadius = "10px";
+    gameOverDiv.style.zIndex = "9999";
+	gameOverDiv.style.fontFamily = "'Press Start 2P', system-ui"; // Use Press Start 2P font
+    
+    // Set the text content
+    gameOverDiv.textContent = "Game Over";
+    
+	// Get the existing canvas container element
+	var canvasContainer = document.getElementById("canvasContainer");
+	
+	// Append gameOverDiv to canvasContainer
+	canvasContainer.appendChild(gameOverDiv);
+}
+			</code></pre>
+			
+			<h3>The Full Javascript Code</h3>
 			<pre><code class="language-javascript">
 var game_over = false;
 
