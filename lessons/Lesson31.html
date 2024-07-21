@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 31: Adding Beeps</h1>
+	
+	<p>We can add beeps to our program by simply using the function 'beep' and passing in the notes which comprises the note value and the duration value.</p>
+	<pre>beep([[400,100], [500,100]])</pre>
+	<p>Now lets put a series of beeps into our quiz when the player wins the quiz and a different series of beeps when the player loses the quiz.</p>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson30.html');">Lesson 30</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson32.html')">Lesson 32</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr()
+beep([[400,100], [500,100]])
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var value1 = random (0,9);
+var value2 = random (0,9);
+var result = value1 + value2;
+var question = "What is " + value1 + "+" + value2 + "?";
+text(question);
+var answer = await input ("Type in your answer:");
+clear();
+drawgrid();
+if (answer == result) {
+	text("That is correct!");
+	beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+} else {
+	text("That is incorrect!");
+	beep ([[440, 100], [300, 100], [360, 100], [300, 100]]);
+	
+}
+
+
+
+</textarea>
+<script>
+parent.LoadYourCode("TextAreaYourCode", "Exercise30");
+parent.HideHelper()
+parent.HideSolution();
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 43: Guess Number Game</h1>
+	<p>Let's use the while loop to make a guessing game which ends only when the user guess the correct number:</p>
+	<p>It will also use comparative operators to give hints to the user. Here's to get you started: </p>
+<pre>
+gr();
+var number = random (0,100);
+var question = "What number am I thinking of?"
+text(question);
+</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson42x2.html');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson44.html')">Lesson 44</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var number = random (0,100);
+var question = "What number am I thinking of?"
+text(question);
+
+while (guess != number) {
+	var guess = await input ("Type in your guess (0-100):");
+	if (guess > number) {
+		clear();
+		drawgrid();
+		text("Guess lower");
+	} else if (guess < number) {
+		clear();
+		drawgrid();
+		text("Guess higher");
+	} else {
+		clear();
+		drawgrid();
+		text("That is correct!");
+		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+	}
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var number = random (0,100);
+var question = "What number am I thinking of?"
+text(question);
+
+while (guess != number) {
+	var guess = await input ("Type in your guess (0-100):");
+	if (guess > number) {
+		clear();
+		drawgrid();
+		text("Guess lower");
+	} else if (guess < number) {
+		clear();
+		drawgrid();
+		text("Guess higher");
+	} else {
+		clear();
+		drawgrid();
+		text("That is correct!");
+		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+	}
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson1");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

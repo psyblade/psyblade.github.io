@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Make Pixel Run Along the Border</h1>
+	
+	<p>Make a Pixel move along the border like showed in the screen. Use await delay() and clear() to help you acheive the animation. Below is the border code for reference:</p>
+<pre>
+for (i=0; i <= 60; i++) {
+	plot(x=i, y=0, color="red");
+}
+for (i=0; i <= 60; i++) {
+	plot(x=i, y=35, color="red");
+}
+for (i=0; i <= 60; i++) {
+	plot(x=0, y=i, color="red");
+}
+for (i=0; i <= 60; i++) {
+	plot(x=59, y=i, color="red");
+}
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x.html');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson42.html')">Lesson 42</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+for (i=0; i <= 60; i++) {
+	gr();
+	plot(x=i, y=0, color="red");
+	await delay();
+	clear();
+}
+for (i=0; i <= 35; i++) {
+	gr();
+	plot(x=59, y=i, color="red");
+	await delay();
+	clear();
+}
+for (i=59; i > 0; i--) {
+	gr();
+	plot(x=i, y=35, color="red");
+	await delay();
+	clear();
+}
+for (i=35; i > 0; i--) {
+	gr();
+	plot(x=0, y=i, color="red");
+	await delay();
+	clear();
+}
+gr();
+plot(x=0, y=0, color="red");
+</textarea>
+<textarea id="LessonExampleCode">
+for (i=0; i <= 60; i++) {
+	gr();
+	plot(x=i, y=0, color="red");
+	await delay();
+	clear();
+}
+for (i=0; i <= 35; i++) {
+	gr();
+	plot(x=59, y=i, color="red");
+	await delay();
+	clear();
+}
+for (i=59; i > 0; i--) {
+	gr();
+	plot(x=i, y=35, color="red");
+	await delay();
+	clear();
+}
+for (i=35; i > 0; i--) {
+	gr();
+	plot(x=0, y=i, color="red");
+	await delay();
+	clear();
+}
+gr();
+plot(x=0, y=0, color="red");
+</textarea>
+<script>
+parent.LoadYourCode("TextAreaYourCode", "Lesson33");
+parent.HideHelper()
+parent.HideSolution();
+</script>
+</body>
+</html>

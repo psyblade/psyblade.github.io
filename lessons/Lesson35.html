@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 35: Paint Whole Screen</h1>
+	
+	<p>We can paint the whole screen with multi colors using the line function and For Loop</p>
+	<pre>
+for (i=0; i <= 60; i++) {
+	line(x1=i, y1=0, x2=i, y2=35, color=random(0,15));
+}
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson34x.html');">Exercise 34</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson35x.html')">Exercise 35</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr()
+for (i=0; i <= 60; i++) {
+	line(x1=i, y1=0, x2=i, y2=35, color=random(0,15));
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr()
+for (i=0; i <= 60; i++) {
+	line(x1=i, y1=0, x2=i, y2=35, color=random(0,15));
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson1");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

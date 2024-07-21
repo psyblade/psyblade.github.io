@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Plotting Multiple Pixels Exercise</h1>
+	
+	<p>Play around with the variables. Plot 100 pixels on the left half of the screen.</p>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson32.html');">Lesson 32</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson33.html')">Lesson 33</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr()
+for (i = 0; i < 100; i++) {
+	plot(random(0,30), random(0,39));
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr()
+for (i = 0; i < 100; i++) {
+	plot(random(0,30), random(0,39));
+}
+</textarea>
+<script>
+parent.LoadYourCode("TextAreaYourCode", "Lesson33");
+parent.HideHelper()
+parent.HideSolution();
+</script>
+</body>
+</html>

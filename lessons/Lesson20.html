@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson1" class="lesson">
+	<h1>Lesson 20: Placing Text on the Graphics Screen</h1>
+	
+	<p>We can also put text on the graphics screen by using the command:</p>
+	<pre>text("Hello");</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson19.html')">Lesson 19</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson20x.html')">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+text("Hello");
+
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson20");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
