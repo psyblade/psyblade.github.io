@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 32: For Loop: Plotting 200 Dots</h1>
+	
+	<p>To plot 200 random dots we can't write the commond plot 200 times. That would be too tedious.</p>
+	<pre>
+plot(random(0,60), random(0,39));
+plot(random(0,60), random(0,39));
+plot(random(0,60), random(0,39));
+.
+.
+.
+</pre>
+	<p>So what we can do instead, is use a "For Loop"</p>
+	<pre>
+for (i = 0; i < 200; i++) {
+	plot(random(0,60), random(0,39));
+}
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson31.html');">Lesson 31</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson32x.html')">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr()
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+for (i = 0; i < 200; i++) {
+	plot(random(0,60), random(0,39));
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson1");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

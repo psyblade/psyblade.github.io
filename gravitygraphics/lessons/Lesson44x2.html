@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Practice: Fireworks 2</h1>
+	<p>Make the fireworks seen on the screen:</p>
+	<p>For references here's the line function with various parameters:</p>
+	<pre>
+line(x1, y1, x2, y2, color);
+</pre>
+	
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson44x.html');">Practice</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson44x3.html')">Practice</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+for (var i = 0; i < 40; i++) {
+line(
+	(x1 = 30),
+	(y1 = 20),
+	(x2 = random(0, 60)),
+	(y2 = random(0, 40)),
+	random(1, 15)
+	);
+}
+
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+for (var i = 0; i < 40; i++) {
+line(
+	(x1 = 30),
+	(y1 = 20),
+	(x2 = random(0, 60)),
+	(y2 = random(0, 40)),
+	random(1, 15)
+	);
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson1");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

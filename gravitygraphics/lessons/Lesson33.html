@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 33: Plotting a Line with For Loop</h1>
+	
+	<p>To make a line we basically have to draw every dot on the line. So, for example if we want to draw a horizontal line at the center of the screen we use the following code:</p>
+	<pre>
+for (i=0; i <= 60; i++) {
+	plot(i, 20, "green");
+}
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson31.html');">Lesson 32</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson33x.html')">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr()
+</textarea>
+<textarea id="LessonExampleCode">
+gr()
+for (i=0; i <= 60; i++) {
+	plot(i, 20, "green");
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson1");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
