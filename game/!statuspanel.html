@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<title>Dungeon Chase</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+		background-color:black;
+    }
+    #gameCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+		}
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+	.canvas {
+		background-color:black;
+		border:20px solid grey;
+		border-radius:10px;
+	}
+	
+	#canvasContainer {
+		position: relative;
+		width: 800px; /* Adjust width as needed */
+		height: 600px; /* Adjust height as needed */
+		margin: auto; /* Center the container */
+	}
+	
+	#playerGif {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		image-rendering: pixelated;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: crisp-edges;
+	}
+
+	#enemyGif {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		image-rendering: pixelated;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: crisp-edges;
+	}
+	
+	#mapCanvas {
+		position:absolute;
+		border:25px solid #555;
+		border-radius:10px;
+		z-index:1;
+	}
+	
+	/*--------------------------*/
+	/* COLUMN CSS             	*/
+	/*--------------------------*/
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		width:100%;
+		margin: 0 auto;
+		width:1200px;
+		height:690px;
+	}
+
+	.column {
+		box-sizing: border-box;
+		margin: 0;
+		overflow: hidden;
+		position: relative;
+	}
+
+	/*--------------------------*/
+	/* COLUMN 1 CSS             */
+	/*--------------------------*/
+	#column1 {
+		width:900px;
+	}
+		
+	/*--------------------------*/
+	/* COLUMN 2 CSS             */
+	/*--------------------------*/
+	#column2 {
+		width:300px;
+		background-color:#000;
+	}
+
+	#logo {
+		width:300px;
+		height:auto;
+		z-index:10;
+	}
+
+	#status {
+		text-align: center;
+	}
+
+	#avatar {
+		margin-top:200px;
+		width:150px;
+		image-rendering: pixelated;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: crisp-edges;
+	}
+
+	#name {
+		font-family: 'Press Start 2P', system-ui;
+		font-size:20px;
+		color:#974818;
+		color:green;
+	}
+
+	#hp {
+		font-family:abel;
+		font-size:20px;
+		color:white;
+	}
+
+	#healthbar {
+		width:100px;
+		height:20px;
+		background-color:#3e2011;
+		display:inline-block;
+		border:4px solid #603535;
+		border-radius:10px;
+	}
+
+	.fa-heart {
+		color:#773419;
+		margin-right:10px;
+	}
+
+	#hplabel {
+		width:100px;
+		height:20px;
+		display:inline-block;
+		vertical-align:top;
+	}
+
+	#health {
+		width:50px;
+		height:20px;
+		background-color:#7b420e;
+		border-radius:5px;
+	}
+
+	#gold {
+		padding:20px;
+	}
+
+	#goldvalue {
+		color:red;
+		font-family: 'Press Start 2P', system-ui;
+		font-size:20px;
+		display:inline-block;
+	}
+
+	#goldlabel {
+		color:yellow;
+		font-family: 'Press Start 2P', system-ui;
+		font-size:20px;
+		display:inline-block;
+	}
+</style>
+</head>
+<body>
+
+<div class="container">
+	<div id="column1" class="column">
+		<div id="canvasContainer">
+			<canvas id="mapCanvas" width="800" height="640"></canvas>
+			<canvas id="gameCanvas" width="800" height="640"></canvas>
+			<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
+			<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
+		</div>
+	</div>
+	<div id="column2" class="column">
+		<img id="logo" src="./imgs/logo.png" alt="logo">
+		<div id="status">
+			<img id="avatar" src="./imgs/player-south.png" alt="Player Avatar">
+			<div id="name">Joe Cur-Sed</div>
+			<div id="hp"><div id="hplabel"><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i></div><div id="healthbar"><div id="health"></div></div></div>
+			<div id="gold"><div id="goldlabel">Gold:</div><div id="goldvalue">0</div></div>
+		</div>
+	</div>
+</div>
+
+<script>
+var game_over = false;
+
+// Get the canvasContainer and its context
+var canvasContainer = document.getElementById("canvasContainer");
+
+// Get the map canvas and its context
+var mapCanvas = document.getElementById("mapCanvas");
+var mapCTX = mapCanvas.getContext("2d");
+
+// Get the game canvas and its context
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+
+const playerGif = document.getElementById("playerGif");
+const enemyGif = document.getElementById("enemyGif");
+
+const player = {
+	x: 35,
+	y: 35,
+	width: 16,
+	height: 30,
+	speed: 3,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+
+const enemy = {
+	x: 105,
+	y: canvas.height - 68,
+	width: 16,
+	height: 30,
+	speed: 1,
+	dx: 0,
+	dy: 0,
+	prevDx: 0,
+	prevDy: 0
+};
+
+var yellowSquares = []; // Keeps track of gold piles
+
+// Define tile size and map dimensions
+var tileSize = 34;
+var mapWidth = 24;
+var mapHeight = 19;
+var tilesetWidth = 16;
+var tilesetHeight = 16;
+
+window.onload = function() {
+	// Define tileset images
+	var tilesetImage = new Image();
+	tilesetImage.src = "./imgs/tileset.png"; // You need to replace "tileset.png" with the path to your tileset image
+
+	// Define map data (for simplicity, represented as numbers)
+	var mapData = [
+		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,13,13,13,13,13,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,18,18,18,18,18,18,18,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+		[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,],
+	];
+
+	// Draw the map
+	function drawMap() {
+		for (var y = 0; y < mapHeight; y++) {
+			for (var x = 0; x < mapWidth; x++) {
+				// console.log("***", mapData[y][x], (mapData[y][x] % tilesetWidth), Math.floor(mapData[y][x] / tilesetWidth));
+				// console.log(mapData[y][x], (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+				
+				// If the tile is not 18, draw a red square on the highlight canvas
+				if (mapData[y][x] !== 18) {
+					ctx.fillStyle = "rgb(165, 42, 42)";
+					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+				} else {
+					// If the tile is 18, check if a random yellow square should be drawn
+					if (Math.random() < 0.1) { // Adjust the probability as needed
+						console.log("putting treasure at", x * tileSize, y * tileSize)
+						ctx.fillStyle = "yellow";
+						ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+						
+						// Create a div for the animated GIF
+						var gifDiv = document.createElement("div");
+						gifDiv.style.position = "absolute";
+						gifDiv.style.zIndex = "1";
+						gifDiv.style.left = (x * tileSize + 28) + "px";
+						gifDiv.style.top = (y * tileSize + 20) + "px"; // Adjust vertical position as needed
+						gifDiv.innerHTML = '<img src="./imgs/chest.png" style="width: 32px; height: 32px;">';
+						canvasContainer.appendChild(gifDiv); // Append gifDiv to canvasContainer
+						
+						// Store position of yellow square and associated gifDiv
+						yellowSquares.push({x: x, y: y, gifDiv: gifDiv});
+					}
+				}
+			}
+		}
+	}
+
+	// Load the tileset image and draw the map when it's loaded
+	tilesetImage.onload = function() {
+		drawMap();
+	};
+	
+	gameLoop();
+};
+	
+function drawPlayer() {
+	ctx.fillStyle = "rgba(0, 0, 0, 0)"; // Adjust the alpha value (last parameter) for transparency // "blue"
+	ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+function drawEnemy() {
+	ctx.fillStyle = "rgba(0, 0, 0, 0)"; // "red"
+	ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+}
+
+function clearCanvas() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function movePlayer() {
+	player.x += player.dx;
+	player.y += player.dy;
+	
+	// Check collision with canvas boundries 
+	if (checkBoundriesCollision(player.x, player.y, player.width, player.height)) {
+		player.x -= player.dx;
+		player.y -= player.dy;
+		player.dx = 0;
+		player.dy = 0;
+	}
+	
+	// Check collision with Brown pixels
+	if (checkBrownCollision(player.x, player.y, player.width, player.height)) {
+		player.x -= player.dx;
+		player.y -= player.dy;
+		player.dx = 0;
+		player.dy = 0;
+	}
+	
+	// Check collision with Yellow pixels
+	checkYellowCollision();
+
+	// Update position of the player GIF
+	playerGif.style.left = (player.x + 16) + "px";
+	playerGif.style.top = (player.y + 24)  + "px";
+	
+	// Update player GIF based on movement direction
+	if (player.dx > 0 && player.dx !== player.prevDx) {
+		playerGif.src = "./imgs/player-east.png";
+		player.prevDx = player.dx;
+		player.prevDy = 0;
+	} else if (player.dx < 0 && player.dx !== player.prevDx) {
+		playerGif.src = "./imgs/player-west.png";
+		player.prevDx = player.dx;
+		player.prevDy = 0;
+	} else if (player.dy > 0 && player.dy !== player.prevDy) {
+		playerGif.src = "./imgs/player-south.png";
+		player.prevDy = player.dy;
+		player.prevDx = 0;
+	} else if (player.dy < 0 && player.dy !== player.prevDy) {
+		playerGif.src = "./imgs/player-north.png";
+		player.prevDy = player.dy;
+		player.prevDx = 0;
+	}
+}
+
+function moveEnemy() {
+	// Simple chase algorithm
+	if (enemy.x <= player.x) { // If Enemy's X position has not collided with Player's X position.
+		if (!checkBrownCollision(enemy.x + enemy.speed, enemy.y, enemy.width, enemy.height)) {
+			enemy.x += enemy.speed;
+		}
+	} else {
+		if (!checkBrownCollision(enemy.x - enemy.speed, enemy.y, enemy.width, enemy.height)) {
+			enemy.x -= enemy.speed;
+		}
+	}
+
+	if (enemy.y <= player.y) { // If Enemy's Y position has not collided with Player's Y position.
+		if (!checkBrownCollision(enemy.x, enemy.y + enemy.speed, enemy.width, enemy.height)) {
+			enemy.y += enemy.speed;
+		}
+	} else {
+		if (!checkBrownCollision(enemy.x, enemy.y - enemy.speed, enemy.width, enemy.height)) {
+			enemy.y -= enemy.speed;
+		}
+	}
+	
+	// Update position of the enemy GIF
+	enemyGif.style.left = (enemy.x + 16) + "px";
+	enemyGif.style.top = (enemy.y + 24) + "px";
+	
+	if (enemy.dx > 0 && enemy.dx !== enemy.prevDx) {
+		enemyGif.src = "./imgs/enemy-east.png";
+		enemy.prevDx = enemy.dx;
+		enemy.prevDy = 0;
+	} else if (enemy.dx < 0 && enemy.dx !== enemy.prevDx) {
+		enemyGif.src = "./imgs/enemy-west.png";
+		enemy.prevDx = enemy.dx;
+		enemy.prevDy = 0;
+	} else if (enemy.dy > 0 && enemy.dy !== enemy.prevDy) {
+		enemyGif.src = "./imgs/enemy-south.png";
+		enemy.prevDy = enemy.dy;
+		enemy.prevDx = 0;
+	} else if (enemy.dy < 0 && enemy.dy !== enemy.prevDy) {
+		enemyGif.src = "./imgs/enemy-north.png";
+		enemy.prevDy = enemy.dy;
+		enemy.prevDx = 0;
+	}
+	
+	enemy.dx = 0;
+	enemy.dy = 0;
+}
+
+function checkBoundriesCollision(x, y, width, height) {
+	// Check collision with canvas boundaries
+	if (x < 0 || x + width > canvas.width || y < 0 || y + height > canvas.height) {
+		return true;
+	}
+	return false;
+}
+
+function checkBrownCollision(x, y, width, height) {
+	if (checkIsDotBrown(x, y) || checkIsDotBrown(x + width, y) || checkIsDotBrown(x, y + height) || checkIsDotBrown(x + width, y + height)) {
+		return true;
+	}
+	return false;
+}
+
+function checkIsDotBrown(x, y) {
+	const imageData = ctx.getImageData(x, y, 1, 1);
+	const data = imageData.data;
+	const red = data[0];
+	const green = data[1];
+	const blue = data[2];
+	if (red === 165 && green === 42 && blue === 42) {
+		return true;
+	}
+	return false;
+}
+
+function checkYellowCollision() {
+    // Check collision with yellow squares
+    for (var i = 0; i < yellowSquares.length; i++) {
+        if (
+            player.x < yellowSquares[i].x * tileSize + tileSize &&
+            player.x + player.width > yellowSquares[i].x * tileSize &&
+            player.y < yellowSquares[i].y * tileSize + tileSize &&
+            player.y + player.height > yellowSquares[i].y * tileSize
+        ) {
+            // Remove the associated GIF div
+            yellowSquares[i].gifDiv.remove();
+            // Remove yellow square from the map
+            yellowSquares.splice(i, 1);
+            break; // Exit the loop after removing the square and its GIF
+        }
+    }
+}
+
+function checkPlayerEnemyCollision() {
+	if (
+		player.x < enemy.x + enemy.width &&
+		player.x + player.width > enemy.x &&
+		player.y < enemy.y + enemy.height &&
+		player.y + player.height > enemy.y
+	) {
+		game_over = true;
+	}
+}
+
+function showGameOverPopup() {
+    // Create a new div element
+    const gameOverDiv = document.createElement("div");
+    
+    // Set styles for the div
+	gameOverDiv.style.position = "absolute";
+	gameOverDiv.style.width = "100%";
+    gameOverDiv.style.top = "50%";
+    gameOverDiv.style.left = "50%";
+    gameOverDiv.style.transform = "translate(-50%, -50%)";
+    gameOverDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    gameOverDiv.style.color = "red";
+    gameOverDiv.style.fontSize = "64px";
+    gameOverDiv.style.padding = "20px";
+    gameOverDiv.style.textAlign = "center";
+    gameOverDiv.style.borderRadius = "10px";
+    gameOverDiv.style.zIndex = "9999";
+	gameOverDiv.style.fontFamily = "'Press Start 2P', system-ui"; // Use Press Start 2P font
+    
+    // Set the text content
+    gameOverDiv.textContent = "Game Over";
+    
+	// Get the existing canvas container element
+	var canvasContainer = document.getElementById("canvasContainer");
+	
+	// Append gameOverDiv to canvasContainer
+	canvasContainer.appendChild(gameOverDiv);
+}
+
+function gameLoop() {
+    if (!game_over) {
+        // clearCanvas();
+        drawPlayer();
+        drawEnemy();
+        movePlayer();
+		moveEnemy();
+        checkPlayerEnemyCollision();
+        requestAnimationFrame(gameLoop);
+    } else {
+        // Show game over popup
+        showGameOverPopup();		
+		// You can add game over logic here
+    }
+}
+
+document.addEventListener("keydown", function (event) {
+	switch (event.key) {
+		case "w":
+			player.dy = -player.speed;
+			break;
+		case "a":
+			player.dx = -player.speed;
+			break;
+		case "s":
+			player.dy = player.speed;
+			break;
+		case "d":
+			player.dx = player.speed;
+			break;
+	}
+});
+
+document.addEventListener("keyup", function (event) {
+	switch (event.key) {
+		case "w":
+		case "s":
+			player.dy = 0;
+			break;
+		case "a":
+		case "d":
+			player.dx = 0;
+			break;
+	}
+});
+</script>
+</body>
+</html>

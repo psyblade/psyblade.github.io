@@ -63,7 +63,51 @@ if (player.x + PLAYER_BODY_WIDTH >= enemy.x) {
 			<br>
 			<br>
 			<h3>The Full Code and Soultion:</h3>
-			<pre><code class="language-javascript">
+			<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+    body {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    #gameCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+		}
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+	.canvas {
+		background-color:black;
+		border:20px solid grey;
+		border-radius:10px;
+	}
+	
+	#canvasContainer {
+		position: relative;
+		width: 800px; /* Adjust width as needed */
+		height: 600px; /* Adjust height as needed */
+		margin: auto; /* Center the container */
+	}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="canvasContainer"&gt;
+	&lt;canvas id="gameCanvas" class="canvas" width="800" height="600"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
 var game_over = false;
 
 const canvas = document.getElementById("gameCanvas");
@@ -122,7 +166,7 @@ function movePlayer() {
 
 function checkBoundriesCollision() {
 	// Check collision with canvas boundaries
-	if (player.x < 0 || player.x + player.width > canvas.width || player.y < 0 || player.y + player.height > canvas.height) {
+	if (player.x &lt; 0 || player.x + player.width &gt; canvas.width || player.y &lt; 0 || player.y + player.height &gt; canvas.height) {
 		return true;
 	}
 
@@ -131,10 +175,10 @@ function checkBoundriesCollision() {
 
 function checkPlayerEnemyCollision() {
 	if (
-		player.x < enemy.x + enemy.width &&
-		player.x + player.width > enemy.x &&
-		player.y < enemy.y + enemy.height &&
-		player.y + player.height > enemy.y
+		player.x &lt; enemy.x + enemy.width &&
+		player.x + player.width &gt; enemy.x &&
+		player.y &lt; enemy.y + enemy.height &&
+		player.y + player.height &gt; enemy.y
 	) {
 		game_over = true;
 		alert("Game Over!");
@@ -184,6 +228,9 @@ document.addEventListener("keyup", function (event) {
 });
 
 gameLoop();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 			</code></pre>
         </section>
     </div>

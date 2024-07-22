@@ -1,176 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Sound</title>
-	<!-- Link to Prism.js Coy theme CSS for syntax highlighting -->
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-coy.min.css" rel="stylesheet">
-
-    <!-- Script to include Prism.js -->
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    
-	<!-- Include CSS language support -->
-	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-css.min.js"></script>
-	
-	<!-- Google Fonts For Webpage -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
-	
-	<!-- CSS For Webpage -->
-	<link rel="stylesheet" href="./css/reset.css">
-	
-	<!-- Google Fonts For the Game -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap">
-	<style>	
-		.crisp {
-			image-rendering: pixelated;
-			image-rendering: -moz-crisp-edges;
-			image-rendering: crisp-edges;
-		}
-		
-		body {
-			margin: 0;
-			position: relative;
-		}
-		#gameCanvas {
-			border:25px solid #555;
-			border-radius:10px;
-		}
-		#mapCanvas {
-			border:25px solid #555;
-			border-radius:10px;
-		}
-		canvas {
-			display: block;
-			margin: 0 auto;
-		}
-		
-        #canvasContainer {
-            position: relative;
-            width: 850px; /* Adjust width as needed */
-            height: 650px; /* Adjust height as needed */
-            margin: auto; /* Center the container */
-			/* border:1px solid red; */
-        }
-
-		#playerGif {
-			position: absolute;
-			top: 20px;
-			left: 20px;
-			z-index: 2;
-			image-rendering: pixelated;
-			image-rendering: -moz-crisp-edges;
-			image-rendering: crisp-edges;
-		}
-		
-		#enemyGif {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 2;
-			image-rendering: pixelated;
-			image-rendering: -moz-crisp-edges;
-			image-rendering: crisp-edges;
-		}
-	</style>
-</head>
-<body>
-	<img id="logo" src="./imgs/logo.png" alt="logo">
-	
-    <header>
-        <h2>Adding Sound Effects and Music</h2>
-    </header>
-
-    <div class="main-content">
-	    <section class="single-column-section image-section">
-		
-
-			<a href="music/beep-quest.mp3"><i class="fas fa-play" id="play-icon"></i> music</a>
-			<a href="sounds/thud.mp3"><i class="fas fa-play" id="play-icon"></i> thud</a>
-			<a href="sounds/click.mp3"><i class="fas fa-play" id="play-icon"></i> click</a>
-			<a href="sounds/countdown.mp3"><i class="fas fa-play" id="play-icon"></i> countdown</a>
-			<a href="sounds/begin.mp3"><i class="fas fa-play" id="play-icon"></i> begin</a>
-			<a href="sounds/coin.mp3"><i class="fas fa-play" id="play-icon"></i> coin</a>
-			<a href="sounds/score.mp3"><i class="fas fa-play" id="play-icon"></i> score</a>
-			<a href="sounds/footsteps.mp3"><i class="fas fa-play" id="play-icon"></i> footsteps</a>
-			<a href="sounds/skeleton.mp3"><i class="fas fa-play" id="play-icon"></i> skeleton</a>
-			<a href="sounds/dying.mp3"><i class="fas fa-play" id="play-icon"></i> dying</a>
-			<a href="sounds/gameover.mp3"><i class="fas fa-play" id="play-icon"></i> gameover</a>
-			<a href="sounds/success.mp3"><i class="fas fa-play" id="play-icon"></i> success</a>
-			
-
-			<h3>Step:1</h3>
-			<p>To add a sound to your game, start by adding this code below into your HTML section.</p>
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-html">
-&lt;audio id="coinAudio" src="./sounds/coin.mp3"&gt;&lt;/audio&gt;
-			</code></pre>
-			
-			
-			<h3>Step:2</h3>
-			<p>To javascript section add this two functions to play and stop the coin sound.</p>
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-javascript">
-function playCoinAudio() {
-    var audio = document.getElementById('coinAudio');
-    audio.play();
-}
-
-function pauseCoinAudio() {
-    var audio = document.getElementById('coinAudio');
-    audio.pause();
-}
-			</code></pre>
-			
-			<h3>Step:3</h3>
-			<p>And finally just add the play function to where ever in your javascript program you want to trigger the coin sound.</p>
-			
-			<p>In my code, I added into the 'checkYellowCollision()' function.</p>
-			
-			<!-- Preformatted text with class 'language-javascript' to highlight the code -->
-			<pre><code class="language-javascript">
-function checkYellowCollision() {
-    // Check collision with yellow squares
-    for (var i = 0; i < yellowSquares.length; i++) {
-        if (
-            player.x < yellowSquares[i].x * tileSize + tileSize &&
-            player.x + player.width > yellowSquares[i].x * tileSize &&
-            player.y < yellowSquares[i].y * tileSize + tileSize &&
-            player.y + player.height > yellowSquares[i].y * tileSize
-        ) {
-			playCoinAudio(); // Play Coin Audio
-            // Remove the associated GIF div
-            yellowSquares[i].gifDiv.remove();
-            // Remove yellow square from the map
-            yellowSquares.splice(i, 1);
-            break; // Exit the loop after removing the square and its GIF
-		}
-	}
-}
-			</code></pre>
-			
-			<h3>Adding Music</h3>
-			<p>To add music to the game is the same as adding sound. Simple add the code below into your HTML section. Notice we add the word 'loop' at the end of the tag to indicate we want the music to play in a loop continously.</p>
-
-			<pre><code class="language-html">
-&lt;audio id="musicAudio" src="./music/beeper-quest.mp3" loop&gt;&lt;/audio&gt;
-			</code></pre>
-
-			<h3>The Full Code</h3>
-			<p></p>
-			<pre><code class="language-html">	
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"&gt;
-&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"&gt;
-&lt;title&gt;Dungeon Chase&lt;/title&gt;
-&lt;style&gt;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<title>Dungeon Chase</title>
+<style>
     body {
         margin: 0;
         overflow: hidden;
@@ -338,34 +174,31 @@ function checkYellowCollision() {
 		font-size:20px;
 		display:inline-block;
 	}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
+</style>
+</head>
+<body>
 
-&lt;div class="container"&gt;
-	&lt;div id="column1" class="column"&gt;
-		&lt;div id="canvasContainer"&gt;
-			&lt;canvas id="mapCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
-			&lt;canvas id="gameCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
-			&lt;img id="playerGif" src="./imgs/player-south.png" alt="Player GIF"&gt;
-			&lt;img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF"&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div id="column2" class="column"&gt;
-		&lt;img id="logo" src="./imgs/logo.png" alt="logo"&gt;
-		&lt;div id="status"&gt;
-			&lt;img id="avatar" src="./imgs/player-south.png" alt="Player Avatar"&gt;
-			&lt;div id="name"&gt;Joe Cur-Sed&lt;/div&gt;
-			&lt;div id="hp"&gt;&lt;div id="hplabel"&gt;&lt;i class="fas fa-heart"&gt;&lt;/i&gt;&lt;i class="fas fa-heart"&gt;&lt;/i&gt;&lt;i class="fas fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;&lt;div id="healthbar"&gt;&lt;div id="health"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-			&lt;div id="gold"&gt;&lt;div id="goldlabel"&gt;Gold:&lt;/div&gt;&lt;div id="goldvalue"&gt;0&lt;/div&gt;&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
+<div class="container">
+	<div id="column1" class="column">
+		<div id="canvasContainer">
+			<canvas id="mapCanvas" width="800" height="640"></canvas>
+			<canvas id="gameCanvas" width="800" height="640"></canvas>
+			<img id="playerGif" src="./imgs/player-south.png" alt="Player GIF">
+			<img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF">
+		</div>
+	</div>
+	<div id="column2" class="column">
+		<img id="logo" src="./imgs/logo.png" alt="logo">
+		<div id="status">
+			<img id="avatar" src="./imgs/player-south.png" alt="Player Avatar">
+			<div id="name">Joe Cur-Sed</div>
+			<div id="hp"><div id="hplabel"><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i></div><div id="healthbar"><div id="health"></div></div></div>
+			<div id="gold"><div id="goldlabel">Gold:</div><div id="goldvalue">0</div></div>
+		</div>
+	</div>
+</div>
 
-&lt;audio id="musicAudio" src="./music/beep-quest.mp3" loop&gt;&lt;/audio&gt;
-&lt;audio id="coinAudio" src="./sounds/coin.mp3"&gt;&lt;/audio&gt;
-
-&lt;script&gt;
+<script>
 var game_over = false;
 var game_win = false;
 
@@ -448,8 +281,8 @@ window.onload = function() {
 
 	// Draw the map
 	function drawMap() {
-		for (var y = 0; y &lt; mapHeight; y++) {
-			for (var x = 0; x &lt; mapWidth; x++) {
+		for (var y = 0; y < mapHeight; y++) {
+			for (var x = 0; x < mapWidth; x++) {
 				// console.log("***", mapData[y][x], (mapData[y][x] % tilesetWidth), Math.floor(mapData[y][x] / tilesetWidth));
 				// console.log(mapData[y][x], (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
@@ -464,7 +297,7 @@ window.onload = function() {
 					ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
 				} else {
 					// If the tile is 18, check if a random yellow square should be drawn
-					if (Math.random() &lt; 0.1) { // Adjust the probability as needed
+					if (Math.random() < 0.1) { // Adjust the probability as needed
 						console.log("putting treasure at", x * tileSize, y * tileSize)
 						ctx.fillStyle = "yellow";
 						ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
@@ -475,7 +308,7 @@ window.onload = function() {
 						gifDiv.style.zIndex = "1";
 						gifDiv.style.left = (x * tileSize + 28) + "px";
 						gifDiv.style.top = (y * tileSize + 20) + "px"; // Adjust vertical position as needed
-						gifDiv.innerHTML = '&lt;img src="./imgs/chest.png" style="width: 32px; height: 32px;"&gt;';
+						gifDiv.innerHTML = '<img src="./imgs/chest.png" style="width: 32px; height: 32px;">';
 						canvasContainer.appendChild(gifDiv); // Append gifDiv to canvasContainer
 						
 						// Store position of yellow square and associated gifDiv
@@ -513,16 +346,16 @@ function movePlayer() {
 	player.y += player.dy;
 	
 	// TELEPORTING LOGIC
-	if (player.x &gt; canvas.width) {
+	if (player.x > canvas.width) {
 		player.x = 0;
 	}
-	if (player.x &lt; 0) {
+	if (player.x < 0) {
 		player.x = canvas.width;
 	}
-	if (player.y &gt; canvas.height) {
+	if (player.y > canvas.height) {
 		player.y = 0;
 	}
-	if (player.y &lt; 0) {
+	if (player.y < 0) {
 		player.y = canvas.height;
 	}
 	
@@ -563,19 +396,19 @@ function movePlayer() {
 	playerGif.style.top = (player.y + 24)  + "px";
 	
 	// Update player GIF based on movement direction
-	if (player.dx &gt; 0 && player.dx !== player.prevDx) {
+	if (player.dx > 0 && player.dx !== player.prevDx) {
 		playerGif.src = "./imgs/player-east.png";
 		player.prevDx = player.dx;
 		player.prevDy = 0;
-	} else if (player.dx &lt; 0 && player.dx !== player.prevDx) {
+	} else if (player.dx < 0 && player.dx !== player.prevDx) {
 		playerGif.src = "./imgs/player-west.png";
 		player.prevDx = player.dx;
 		player.prevDy = 0;
-	} else if (player.dy &gt; 0 && player.dy !== player.prevDy) {
+	} else if (player.dy > 0 && player.dy !== player.prevDy) {
 		playerGif.src = "./imgs/player-south.png";
 		player.prevDy = player.dy;
 		player.prevDx = 0;
-	} else if (player.dy &lt; 0 && player.dy !== player.prevDy) {
+	} else if (player.dy < 0 && player.dy !== player.prevDy) {
 		playerGif.src = "./imgs/player-north.png";
 		player.prevDy = player.dy;
 		player.prevDx = 0;
@@ -584,7 +417,7 @@ function movePlayer() {
 
 function moveEnemy() {
 	// Simple chase algorithm
-	if (enemy.x &lt;= player.x) { // If Enemy's X position has not collided with Player's X position.
+	if (enemy.x <= player.x) { // If Enemy's X position has not collided with Player's X position.
 		if (!checkBrownCollision(enemy.x + enemy.speed, enemy.y, enemy.width, enemy.height)) {
 			enemy.x += enemy.speed;
 		}
@@ -594,7 +427,7 @@ function moveEnemy() {
 		}
 	}
 
-	if (enemy.y &lt;= player.y) { // If Enemy's Y position has not collided with Player's Y position.
+	if (enemy.y <= player.y) { // If Enemy's Y position has not collided with Player's Y position.
 		if (!checkBrownCollision(enemy.x, enemy.y + enemy.speed, enemy.width, enemy.height)) {
 			enemy.y += enemy.speed;
 		}
@@ -608,19 +441,19 @@ function moveEnemy() {
 	enemyGif.style.left = (enemy.x + 16) + "px";
 	enemyGif.style.top = (enemy.y + 24) + "px";
 	
-	if (enemy.dx &gt; 0 && enemy.dx !== enemy.prevDx) {
+	if (enemy.dx > 0 && enemy.dx !== enemy.prevDx) {
 		enemyGif.src = "./imgs/enemy-east.png";
 		enemy.prevDx = enemy.dx;
 		enemy.prevDy = 0;
-	} else if (enemy.dx &lt; 0 && enemy.dx !== enemy.prevDx) {
+	} else if (enemy.dx < 0 && enemy.dx !== enemy.prevDx) {
 		enemyGif.src = "./imgs/enemy-west.png";
 		enemy.prevDx = enemy.dx;
 		enemy.prevDy = 0;
-	} else if (enemy.dy &gt; 0 && enemy.dy !== enemy.prevDy) {
+	} else if (enemy.dy > 0 && enemy.dy !== enemy.prevDy) {
 		enemyGif.src = "./imgs/enemy-south.png";
 		enemy.prevDy = enemy.dy;
 		enemy.prevDx = 0;
-	} else if (enemy.dy &lt; 0 && enemy.dy !== enemy.prevDy) {
+	} else if (enemy.dy < 0 && enemy.dy !== enemy.prevDy) {
 		enemyGif.src = "./imgs/enemy-north.png";
 		enemy.prevDy = enemy.dy;
 		enemy.prevDx = 0;
@@ -632,7 +465,7 @@ function moveEnemy() {
 
 function checkBoundriesCollision(x, y, width, height) {
 	// Check collision with canvas boundaries
-	if (x &lt; 0 || x + width &gt; canvas.width || y &lt; 0 || y + height &gt; canvas.height) {
+	if (x < 0 || x + width > canvas.width || y < 0 || y + height > canvas.height) {
 		return true;
 	}
 	return false;
@@ -678,14 +511,13 @@ function checkIsDotWhite(x, y) {
 
 function checkYellowCollision() {
     // Check collision with yellow squares
-    for (var i = 0; i &lt; yellowSquares.length; i++) {
+    for (var i = 0; i < yellowSquares.length; i++) {
         if (
-            player.x &lt; yellowSquares[i].x * tileSize + tileSize &&
-            player.x + player.width &gt; yellowSquares[i].x * tileSize &&
-            player.y &lt; yellowSquares[i].y * tileSize + tileSize &&
-            player.y + player.height &gt; yellowSquares[i].y * tileSize
+            player.x < yellowSquares[i].x * tileSize + tileSize &&
+            player.x + player.width > yellowSquares[i].x * tileSize &&
+            player.y < yellowSquares[i].y * tileSize + tileSize &&
+            player.y + player.height > yellowSquares[i].y * tileSize
         ) {
-			playCoinAudio(); // Play Coin Audio
             // Remove the associated GIF div
             yellowSquares[i].gifDiv.remove();
             // Remove yellow square from the map
@@ -709,7 +541,7 @@ function animateGoldIncrement(increment) {
 	player.gold += increment;
     var targetGold = currentGold + increment;
     var animationInterval = setInterval(function() {
-        if (currentGold &lt; targetGold) {
+        if (currentGold < targetGold) {
             currentGold += 1;
             goldDiv.textContent = currentGold;
         } else {
@@ -720,10 +552,10 @@ function animateGoldIncrement(increment) {
 
 function checkPlayerEnemyCollision() {
 	if (
-		player.x &lt; enemy.x + enemy.width &&
-		player.x + player.width &gt; enemy.x &&
-		player.y &lt; enemy.y + enemy.height &&
-		player.y + player.height &gt; enemy.y
+		player.x < enemy.x + enemy.width &&
+		player.x + player.width > enemy.x &&
+		player.y < enemy.y + enemy.height &&
+		player.y + player.height > enemy.y
 	) {
 		game_over = true;
 	}
@@ -806,58 +638,7 @@ document.addEventListener("keyup", function (event) {
 	}
 });
 
-playMusicAudio();
 
-function playMusicAudio() {
-    var audio = document.getElementById('musicAudio');
-    audio.play();
-}
-
-function stopMusicAudio() {
-    var audio = document.getElementById('musicAudio');
-    audio.pause();
-}
-
-function playCoinAudio() {
-    var audio = document.getElementById('coinAudio');
-    audio.play();
-}
-
-function pauseCoinAudio() {
-    var audio = document.getElementById('coinAudio');
-    audio.pause();
-}
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-			</code></pre>
-
-
-        </section>
-	</div>
-	
-	<footer>
-		<div class="footer-links">
-			<div class="footer-column social-icons">
-				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
-			</div>
-			<div class="footer-column">
-				<a href="../index.html">Menu</a>
-			</div>
-			<div class="footer-column">
-				<img src="./imgs/psyblade.png" alt="Small Logo" class="small-logo">
-			</div>
-		</div>
-		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
-		
-	</footer>
-
-    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-		
-
+</script>
 </body>
 </html>

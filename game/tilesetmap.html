@@ -102,7 +102,7 @@
 			<pre><code class="language-html">
 &lt;div id="canvasContainer"&gt;
 	&lt;canvas id="mapCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
-	&lt;canvas id="gameCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
+	&lt;canvas id="gameCanvas" class="canvas" width="800" height="640"&gt;&lt;/canvas&gt;
 	&lt;img id="playerGif" src="./imgs/player-south.png" alt="Player GIF"&gt;
 	&lt;img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF"&gt;
 &lt;/div&gt;
@@ -188,9 +188,83 @@ window.onload = function() {
 };
 			</code></pre>
 			
-			<h3>The Entire Javscript Code</h3>
+			<h3>The Entire Code</h3>
             <p></p>
-			<pre><code class="language-javascript">	
+			<pre><code class="language-html">	
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"&gt;
+&lt;title&gt;Dungeon Chase&lt;/title&gt;
+&lt;style&gt;
+    body {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    #gameCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+		}
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+	.canvas {
+		background-color:black;
+		border:20px solid grey;
+		border-radius:10px;
+	}
+	
+	#canvasContainer {
+		position: relative;
+		width: 800px; /* Adjust width as needed */
+		height: 600px; /* Adjust height as needed */
+		margin: auto; /* Center the container */
+	}
+	
+	#playerGif {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		image-rendering: pixelated;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: crisp-edges;
+	}
+
+	#enemyGif {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		image-rendering: pixelated;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: crisp-edges;
+	}
+	
+	#mapCanvas {
+		position:absolute;
+		border:25px solid #555;
+		border-radius:10px;
+		z-index:1;
+	}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="canvasContainer"&gt;
+	&lt;canvas id="mapCanvas" width="800" height="640"&gt;&lt;/canvas&gt;
+	&lt;canvas id="gameCanvas" class="canvas" width="800" height="640"&gt;&lt;/canvas&gt;
+	&lt;img id="playerGif" src="./imgs/player-south.png" alt="Player GIF"&gt;
+	&lt;img id="enemyGif" src="./imgs/enemy-south.png" alt="Enemy GIF"&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
 var game_over = false;
 
 // Get the map canvas and its context
@@ -265,8 +339,8 @@ window.onload = function() {
 
 	// Draw the map
 	function drawMap() {
-		for (var y = 0; y < mapHeight; y++) {
-			for (var x = 0; x < mapWidth; x++) {
+		for (var y = 0; y &lt; mapHeight; y++) {
+			for (var x = 0; x &lt; mapWidth; x++) {
 				// Draws the tileset onto the map canvas
 				mapCTX.drawImage(tilesetImage, (mapData[y][x] % tilesetWidth) * tileSize, Math.floor(mapData[y][x] / tilesetWidth) * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
 				
@@ -306,16 +380,16 @@ function movePlayer() {
 	player.y += player.dy;
 	
 	// TELEPORTING LOGIC
-	if (player.x > canvas.width) {
+	if (player.x &gt; canvas.width) {
 		player.x = 0;
 	}
-	if (player.x < 0) {
+	if (player.x &lt; 0) {
 		player.x = canvas.width;
 	}
-	if (player.y > canvas.height) {
+	if (player.y &gt; canvas.height) {
 		player.y = 0;
 	}
-	if (player.y < 0) {
+	if (player.y &lt; 0) {
 		player.y = canvas.height;
 	}
 	
@@ -340,19 +414,19 @@ function movePlayer() {
 	playerGif.style.top = (player.y + 24)  + "px";
 	
 	// Update player GIF based on movement direction
-	if (player.dx > 0 && player.dx !== player.prevDx) {
+	if (player.dx &gt; 0 && player.dx !== player.prevDx) {
 		playerGif.src = "./imgs/player-east.png";
 		player.prevDx = player.dx;
 		player.prevDy = 0;
-	} else if (player.dx < 0 && player.dx !== player.prevDx) {
+	} else if (player.dx &lt; 0 && player.dx !== player.prevDx) {
 		playerGif.src = "./imgs/player-west.png";
 		player.prevDx = player.dx;
 		player.prevDy = 0;
-	} else if (player.dy > 0 && player.dy !== player.prevDy) {
+	} else if (player.dy &gt; 0 && player.dy !== player.prevDy) {
 		playerGif.src = "./imgs/player-south.png";
 		player.prevDy = player.dy;
 		player.prevDx = 0;
-	} else if (player.dy < 0 && player.dy !== player.prevDy) {
+	} else if (player.dy &lt; 0 && player.dy !== player.prevDy) {
 		playerGif.src = "./imgs/player-north.png";
 		player.prevDy = player.dy;
 		player.prevDx = 0;
@@ -361,7 +435,7 @@ function movePlayer() {
 
 function moveEnemy() {
 	// Simple chase algorithm
-	if (enemy.x <= player.x) { // If Enemy's X position has not collided with Player's X position.
+	if (enemy.x &lt;= player.x) { // If Enemy's X position has not collided with Player's X position.
 		if (!checkBrownCollision(enemy.x + enemy.speed, enemy.y, enemy.width, enemy.height)) {
 			enemy.x += enemy.speed;
 		}
@@ -371,7 +445,7 @@ function moveEnemy() {
 		}
 	}
 
-	if (enemy.y <= player.y) { // If Enemy's Y position has not collided with Player's Y position.
+	if (enemy.y &lt;= player.y) { // If Enemy's Y position has not collided with Player's Y position.
 		if (!checkBrownCollision(enemy.x, enemy.y + enemy.speed, enemy.width, enemy.height)) {
 			enemy.y += enemy.speed;
 		}
@@ -385,19 +459,19 @@ function moveEnemy() {
 	enemyGif.style.left = (enemy.x + 16) + "px";
 	enemyGif.style.top = (enemy.y + 24) + "px";
 	
-	if (enemy.dx > 0 && enemy.dx !== enemy.prevDx) {
+	if (enemy.dx &gt; 0 && enemy.dx !== enemy.prevDx) {
 		enemyGif.src = "./imgs/enemy-east.png";
 		enemy.prevDx = enemy.dx;
 		enemy.prevDy = 0;
-	} else if (enemy.dx < 0 && enemy.dx !== enemy.prevDx) {
+	} else if (enemy.dx &lt; 0 && enemy.dx !== enemy.prevDx) {
 		enemyGif.src = "./imgs/enemy-west.png";
 		enemy.prevDx = enemy.dx;
 		enemy.prevDy = 0;
-	} else if (enemy.dy > 0 && enemy.dy !== enemy.prevDy) {
+	} else if (enemy.dy &gt; 0 && enemy.dy !== enemy.prevDy) {
 		enemyGif.src = "./imgs/enemy-south.png";
 		enemy.prevDy = enemy.dy;
 		enemy.prevDx = 0;
-	} else if (enemy.dy < 0 && enemy.dy !== enemy.prevDy) {
+	} else if (enemy.dy &lt; 0 && enemy.dy !== enemy.prevDy) {
 		enemyGif.src = "./imgs/enemy-north.png";
 		enemy.prevDy = enemy.dy;
 		enemy.prevDx = 0;
@@ -409,7 +483,7 @@ function moveEnemy() {
 
 function checkBoundriesCollision(x, y, width, height) {
 	// Check collision with canvas boundaries
-	if (x < 0 || x + width > canvas.width || y < 0 || y + height > canvas.height) {
+	if (x &lt; 0 || x + width &gt; canvas.width || y &lt; 0 || y + height &gt; canvas.height) {
 		return true;
 	}
 	return false;
@@ -436,10 +510,10 @@ function checkIsDotBrown(x, y) {
 
 function checkPlayerEnemyCollision() {
 	if (
-		player.x < enemy.x + enemy.width &&
-		player.x + player.width > enemy.x &&
-		player.y < enemy.y + enemy.height &&
-		player.y + player.height > enemy.y
+		player.x &lt; enemy.x + enemy.width &&
+		player.x + player.width &gt; enemy.x &&
+		player.y &lt; enemy.y + enemy.height &&
+		player.y + player.height &gt; enemy.y
 	) {
 		game_over = true;
 	}
@@ -519,7 +593,9 @@ document.addEventListener("keyup", function (event) {
 			break;
 	}
 });
-
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 			</code></pre>
         </section>
     </div>
