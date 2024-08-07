@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor and Browser</title>
+  <link href="./css/index.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="./imgs/favicon.ico">
+  <script src="./lib/JQuery/jquery-3.6.0.min.js"></script>
+  <script src="./js/html-editor.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #content {
+      display: flex;
+      flex: 1;
+    }
+    #editor-container {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    #editor-tabs {
+      display: flex;
+      border-bottom: 1px solid #ccc;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .tab:not(:first-child) {
+      border-left: none;
+    }
+    .tab.active {
+      background-color: #fff;
+      border-bottom: 1px solid #fff;
+      font-weight: bold;
+    }
+    .editor-content {
+      flex: 1;
+      padding: 10px;
+      display: none;
+    }
+    .editor-content.active {
+      display: block;
+    }
+    #instructions-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    textarea {
+      width: 100%;
+      height: 100%;
+    }
+    .button-container {
+      display: none;
+      padding: 10px;
+      text-align: center;
+    }
+    .button-container.active {
+      display: block;
+    }
+    button {
+      padding: 10px;
+      margin: 10px;
+	  width:100%;
+    }
+    iframe#browser {
+      width: 50%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<div id="banner">
+	<div id="title">
+		<div id="logo"><img src="./imgs/logo.png"></div><h1>gravity <span>|||</span> graphics</h1>
+	</div>
+</div>
+  <div id="content">
+    <div id="editor-container">
+      <div id="editor-tabs">
+        <div class="tab active" onclick="showTab('instructions')">Instructions</div>
+        <div class="tab" onclick="showTab('your-code')">Your Code</div>
+        <div id="ExampleCodeTitle" class="tab" onclick="showTab('solution-code')">Solution Code</div>
+      </div>
+      <div id="instructions" class="editor-content active">
+        <iframe id="instructions-iframe" src="./lessons-game/anatomyofhtml.html"></iframe>
+      </div>
+      <div id="your-code" class="editor-content">
+        <textarea id="your-code-editor"></textarea>
+      </div>
+      <div id="solution-code" class="editor-content">
+        <textarea id="solution-code-editor">Sample solution code...</textarea>
+      </div>
+      <div id="user-button-container" class="button-container">
+        <button id="buttonYourCode" class="buttonRunCode" onclick="saveAndRefresh('user')">Save</button>
+      </div>
+      <div id="solution-button-container" class="button-container">
+        <button id="buttonExampleCode" class="buttonRunCode" onclick="saveAndRefresh('solution')">Run Solution Code</button>
+      </div>
+    </div>
+    <iframe id="browser" src="about:blank"></iframe>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      // Remove active class from all tabs and content
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.editor-content').forEach(content => content.classList.remove('active'));
+      document.querySelectorAll('.button-container').forEach(button => button.classList.remove('active'));
+
+      // Add active class to selected tab and content
+      document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+
+      // Show or hide iframe based on selected tab
+      if (tabId === 'instructions') {
+        document.getElementById('instructions-iframe').style.display = 'block';
+      } else {
+        document.getElementById('instructions-iframe').style.display = 'none';
+      }
+
+      // Show corresponding button based on selected tab
+      if (tabId === 'your-code') {
+        document.getElementById('user-button-container').classList.add('active');
+      } else if (tabId === 'solution-code') {
+        document.getElementById('solution-button-container').classList.add('active');
+      }
+    }
+
+    function saveAndRefresh(param) {
+		let activeEditorContent = "";
+		if (param == "user") {
+			activeEditorContent = document.getElementById('your-code-editor').value;
+		} else if (param == "solution") {
+			activeEditorContent = document.getElementById('solution-code-editor').value;
+		}
+		const blob = new Blob([activeEditorContent], { type: 'text/html' });
+		const url = URL.createObjectURL(blob);
+		document.getElementById('browser').src = url;
+    }
+  </script>
+</body>
+</html>
