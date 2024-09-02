@@ -194,14 +194,14 @@
             }
         }
 		
-		footer {
+		.menu {
 			background-color: #000;
 			padding: 20px;
 			color: #fff;
 			text-align: center;
 		}
 		
-		.footer-logos {
+		.menu-logos {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-around;
@@ -211,29 +211,29 @@
 			align-items: center;
 		}
 		
-		.footer-logos a img {
+		.menu-logos a img {
 			filter: grayscale(100%);
 		}
 		
-		.footer-links {
+		.menu-links {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-around;
 		}
 
-		.footer-column {
+		.menu-column {
 			flex: 1;
 			text-align: center;
 			margin-bottom: 20px;
 		}
 		
-		.footer-column-div {
+		.menu-column-div {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: center;
 		}
 
-		footer a {
+		.menu a {
 			color: #fff;
 			text-decoration: none;
 			display: block;
@@ -291,6 +291,17 @@
 		.fas {
 			opacity:0.5;
 		}
+		
+		.tabs {
+			position:relative;
+		}
+		.tab {
+			display:inline-block;
+			margin-right:10px;
+			cursor: pointer;
+		}
+		
+		.tab
     </style>
 	<script src="./lib/JQuery/jquery-3.6.0.min.js"></script>
 	<script src="./js/index.js"></script>
@@ -298,11 +309,14 @@
 <body>
 	<img id="logo" src="imgs/menu-logo.png" alt="logo">
 	
-	<h1>Menu</h1>
+	<div class="tabs">
+		<div id="tab1" class="tab" onclick="showMenu('1');"><h1>Menu 1 |</h1></div>
+		<div id="tab2" class="tab" onclick="showMenu('2');"><h1>Menu 2</h1></div>
+	</div>
 	
-	<footer>
-		<div class="footer-links">
-			<div class="footer-column">
+	<div id="menu1" class="menu">
+		<div class="menu-links">
+			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>1</strong>
@@ -321,7 +335,7 @@
 				<a href="app.html?p=Lesson10x">Ex: Draw Corner Pixels</a>
 				<a href="app.html?p=Lesson10x2">Ex: Draw Center Pixels</a>
 			</div>
-			<div class="footer-column">
+			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>2</strong>
@@ -338,7 +352,7 @@
 				<a href="app.html?p=Lesson18">Fixed X Random Y Pixels</a>
 				<a href="app.html?p=Lesson19">Fixed Y Random X Pixels</a>
 			</div>
-			<div class="footer-column">
+			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>3</strong>
@@ -356,7 +370,7 @@
 				<a href="app.html?p=Lesson27">Numbers in Variables</a>
 				<a href="app.html?p=Lesson28">Results in Variables</a>
 			</div>
-			<div class="footer-column">
+			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>4</strong>
@@ -376,7 +390,7 @@
 				<a href="app.html?p=Lesson36">Alternating Lines</a>
 				<a href="app.html?p=Lesson36x">Draw Grid</a>
 			</div>
-			<div class="footer-column">
+			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>5</strong>
@@ -385,52 +399,176 @@
 				<a href="app.html?p=Lesson37">Rectangles</a>
 				<a href="app.html?p=Lesson37x">Make Random Rectangles</a>
 				<a href="app.html?p=Lesson37x2">Guess Number of Squares</a>
-				<a href="app.html?p=Lesson38">Draw a Star</a>
-				<a href="app.html?p=Lesson39">Reusing the Star</a>
-				<a href="app.html?p=Lesson39x">Draw 20 Random Color Stars</a>
-				<a href="app.html?p=Lesson39x2">Draw Repeating RGB Bars</a>
-				<a href="app.html?p=Lesson40">Animations</a>
-				<a href="app.html?p=Lesson41">Moving Animations</a>
-				<a href="app.html?p=Lesson41x">Animate the Border Drawing</a>
-				<a href="app.html?p=Lesson41x2">Make Pixel Run Along the Border</a>
-				<a href="">Make Your Own Patterns</a>
+				<a href="app.html?p=Lesson38">Animations</a>
+				<a href="app.html?p=Lesson39">Moving Animations</a>
+				<a href="app.html?p=Lesson39x">Animate the Border Drawing</a>
+				<a href="app.html?p=Lesson39x2">Make Pixel Run Along the Border</a>
+				<a href="app.html?p=Lesson40">While Loop</a>
+				<a href="app.html?p=Lesson40x">Dynamic Variables</a>
+				<a href="app.html?p=Lesson40x2">Make Red and Blue Fan</a>
+				<a href="app.html?p=Lesson40x3">Make Red and Blue Fan 2</a>
 			</div>
-			<div class="footer-column">
+			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>6</strong>
 					</div>
 				</div>
-				<a href="app.html?p=Lesson42">Dynamic Variables</a>
-				<a href="app.html?p=Lesson42x">Make Red and Blue Fan</a>
-				<a href="app.html?p=Lesson42x2">Make Red and Blue Fan 2</a>
-				<a href="app.html?p=Lesson43">While Loops & Comparative Operators</a>
-				<a href="app.html?p=Lesson44">Using Functions to Organize Code</a>
-				<a href="app.html?p=Lesson44x">Inserting Fireworks into Game</a>
-				<a href="app.html?p=Lesson44x2">Practice: Fireworks 2</a>
-				<a href="app.html?p=Lesson44x3">Practice: Text Position on Screen</a>
-				<a href="app.html?p=Lesson44x4">Practice: Text Font Size</a>
-				<a href="app.html?p=Lesson44x5">Practice: Text Font Family</a>
+
+				<a href="app.html?p=Lesson41">Infinite Loop</a>
+				<a href="app.html?p=Lesson41x">Practice: Fireworks 1</a>
+				<a href="app.html?p=Lesson41x2">Practice: Fireworks 2</a>
+				<a href="app.html?p=Lesson41x3">Practice: Text Position on Screen</a>
+				<a href="app.html?p=Lesson41x4">Practice: Text Font Size</a>
+				<a href="app.html?p=Lesson41x5">Practice: Text Font Family</a>
+				<a href="app.html?p=Lesson42">Comparison Operators</a>
+				<a href="app.html?p=Lesson43">Error Checking</a>
+				<a href="app.html?p=Lesson44">Comments</a>
+				<a href="app.html?p=Lesson45">Template Literals</a>
+				<a href="app.html?p=Lesson45a">Switch Case</a>
+				
 				<!--a href="app.html?p=Lesson34">Mouse Input (Whack a Pixel Mole Game)</a>
 				<a href="app.html?p=Lesson34">Mouse Input (Own Drawing App)</a-->
 			</div>
 		</div>
-			<div class="footer-column social-icons">
+	</div>
+	<div id="menu2" class="menu">
+		<div class="menu-links">
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>1</strong>
+					</div>
+				</div>
+				<a href="app.html?p=Lesson46">Division and Floats</a>
+				<a href="app.html?p=Lesson47">Percentage</a>
+				<a href="app.html?p=Lesson48">Multiplication</a>
+				<a href="app.html?p=Lesson49">Rounding Decimals</a>
+				<a href="app.html?p=Lesson50">Health Bar</a>
+				<a href="app.html?p=Lesson50x">Health Bar and Damage</a>
+				<a href="app.html?p=Lesson51">Functions</a>
+				<a href="app.html?p=Lesson51x">Healthbar & Functions</a>
+				<a href="app.html?p=Lesson52">Functions With Parameters</a>
+				<a href="app.html?p=Lesson52x">Healthbar, Funcs and Params</a>
+			</div>
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>2</strong>
+					</div>
+				</div>
+				<a href="app.html?p=Lesson53">Manual Sprite Plotting</a>
+				<a href="app.html?p=Lesson53x">Reusing the Star</a>
+				<a href="app.html?p=Lesson53x2">Draw 20 Random Color Stars</a>
+				<a href="app.html?p=Lesson53x3">Draw Repeating RGB Bars</a>
+				<a href="app.html?p=Lesson54">Write Your Own Function</a>
+				<a href="app.html?p=Lesson54x">3 Frame Sizes</a>
+				<a href="app.html?p=Lesson55">Default Parameter Values</a>
+				<a href="app.html?p=Lesson55x">Solid Square Boxes</a>
+				<a href="app.html?p=Lesson55x2">Change Size by Percentage</a>
+			</div>
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>3</strong>
+					</div>
+				</div>
+				<a href="app.html?p=Lesson56">Drawing Image</a>
+				<a href="app.html?p=Lesson56x">Picture Frame</a>
+				<a href="app.html?p=Lesson56x2">Simplify Code</a>
+				<a href="app.html?p=Lesson56x3">6 Picture Frames</a>
+				<a href="app.html?p=Lesson56x4">Memory Game</a>
+				<a href="app.html?p=Lesson57">Nested Loops</a>
+				<a href="app.html?p=Lesson57x">Fillscreen Function</a>
+				<a href="app.html?p=Lesson57x2">Toggle State</a>
+				<a href="app.html?p=Lesson58">Modulus Operator</a>
+				<a href="app.html?p=Lesson59">Alternate Lines Using Mod</a>
+				<a href="app.html?p=Lesson59x">Draw a Chess Board</a>
+				<a href="app.html?p=Lesson59x2">Draw a Chess Board2</a>
+			</div>
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>4</strong>
+					</div>
+				</div>
+				<a href="app.html?p=Lesson60">Detect Pixel Color</a>
+				<a href="app.html?p=Lesson60x">Detect & Change Pixels</a>
+				<a href="app.html?p=Lesson60x2">Pixellate Image</a>
+				<a href="app.html?p=Lesson61">Dots and Circles</a>
+				<a href="app.html?p=Lesson61x">Starfield</a>
+				<a href="app.html?p=Lesson63">Keyboard Input: KeyDown</a>
+				<a href="app.html?p=Lesson64">Press Any Key to Continue</a>
+				<a href="app.html?p=Lesson64x">Keyboard Control</a>
+				<a href="app.html?p=Lesson64x2">Snake-o-tron Game</a>
+				<a href="app.html?p=Lesson64x3">Collision Detection</a>
+				<a href="app.html?p=Lesson64x4">Border Collision</a>
+				<a href="">Animation Loop</a>
+			</div>
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>5</strong>
+					</div>
+				</div>
+				<a href="app.html?p=Lesson90">Arrays</a>
+				<a href="app.html?p=Lesson91">Fruits on Shelves</a>
+				<a href="app.html?p=Lesson91x">Random Fruit</a>
+				<a href="app.html?p=Lesson91x2">Fruit Slot Machine</a>
+				<a href="app.html?p=Lesson92">Printing Array</a>
+				<a href="app.html?p=Lesson93">For-each Loop</a>
+				<a href="app.html?p=Lesson94">Two Dimension Arrays</a>
+				<a href="app.html?p=Lesson95">Adding to List</a>
+				<a href="app.html?p=Lesson96">Quiz Game With Arrays</a>
+				<a href="app.html?p=Lesson97">Planetary Quiz</a>
+			</div>
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>6</strong>
+					</div>
+				</div>
+
+				<!--a href="app.html?p=Lesson34">Mouse Input (Whack a Pixel Mole Game)</a>
+				<a href="app.html?p=Lesson34">Mouse Input (Own Drawing App)</a-->
+			</div>
+		</div>
+	</div>
+			<div class="menu-column social-icons">
 				<a href="#" target="_blank" title="Facebook"><i class="fab fa-1"></i></a>
 				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
 				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
 				<a href="#" target="_blank" title="Instagram"><i class="fab fa-whatsapp"></i></a>
 			</div>
-			<div class="footer-column social-icons">
+			<div class="menu-column social-icons">
 				<a href="#">+6 (014) 2400 182</a>
 			</div>
 		<p>&copy; Copyright Psyblade 2024. All Rights Reserved</p>
-	</footer>
+	
 
     <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function showMenu(menuNum) {
+	$("#menu1").hide();
+	$("#menu2").hide();
+	$("#menu"+ menuNum).show();
+    // Remove border-bottom from all menus
+    $("#tab1, #tab2").css("border-bottom", "none");
+    
+    // Apply white border-bottom to the selected menu item
+    $("#tab" + menuNum).css({
+        "border-bottom": "3px solid white"
+    });
+}
+	
+$(document).ready(function() {
+	$("#menu2").hide();
+	showMenu(1);
+});
 
-
+</script>
 </body>
 </html>
