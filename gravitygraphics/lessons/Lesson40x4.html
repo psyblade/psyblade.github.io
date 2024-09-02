@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Diagonal Pattern with While Loop</h1>
+	<p>Let's generate a diagonal pattern everytime the user press enter.</p>
+<pre>
+line(x1=0, y1=0, x2=59, y2=35, color="red");
+</pre>
+	<p>Change the variable step in your code to a number between (1-4) to see what happens.</p>
+<pre>
+var step = 2;
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson40x3');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41');">Lesson 41</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var step = 2;
+var color = random(1,15);
+var x = 0;
+var y = 0;
+print("Step: " + step);
+while (x < 95) {
+	line(x1=x, y1=0, x2=0, y2=y, color);
+	await delay();
+	x = x + step;
+	y = y + step;
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var step = 2;
+var color = random(1,15);
+var x = 0;
+var y = 0;
+print("Step: " + step);
+while (x < 95) {
+	line(x1=x, y1=0, x2=0, y2=y, color);
+	await delay();
+	x = x + step;
+	y = y + step;
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson40x4");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

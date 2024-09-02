@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 45: Template Literals</h1>
+	<p>Another syntax that we can use to enhance readability in our code is Template Literals.</p>
+	<p>For example, Instead of concatenating a string like:</p>
+<pre>
+const day = "Monday";
+var message = "It's the start of the week!";
+print("Today is " + day + ", " + message);
+</pre>
+	<p>We can write this using template literals like this:</p>
+<pre>
+const day = "Monday";
+var message = "It's the start of the week!";
+print(`Today is ${day}, ${message}`);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson44');">Lesson 44</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson45a');">Lesson 45a</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+function printDay(day){
+	var message = "";
+	
+	// Using a switch-case
+	switch(day) {
+	  case "Monday":
+	    message = "it's the start of the week!";
+	    break;
+	  case "Friday":
+	    message = "the weekend is almost here!";
+	    break;
+	  default:
+	    message = "it's just another day.";
+	}
+	
+	print(`Today is ${day}, ${message}`);
+}
+
+printDay("Monday");
+printDay("Tuesday");
+printDay("Wednesday");
+printDay("Thursday");
+printDay("Friday");
+</textarea>
+<textarea id="LessonExampleCode">
+function printDay(day){
+	var message = "";
+	
+	// Using a switch-case
+	switch(day) {
+	  case "Monday":
+	    message = "it's the start of the week!";
+	    break;
+	  case "Friday":
+	    message = "the weekend is almost here!";
+	    break;
+	  default:
+	    message = "it's just another day.";
+	}
+	
+	// Note: For template literals, use backtick (`) 
+	// and not single quote(') or double quotes (")
+	print(`Today is ${day}, ${message}`); 
+}
+
+printDay("Monday");
+printDay("Tuesday");
+printDay("Wednesday");
+printDay("Thursday");
+printDay("Friday");
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson45");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Simplify Code</h1>
+	<p>We can further simplify or reduce the code by putting 'repeating' codes into another function.</p>
+	<p>Alter the pictureFrame function and make it more elegant.</p>
+<pre>
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+
+}
+</pre>
+	<p>Hint: Make another function called squareBox() as shown below:</p>
+<pre>
+squareBox(x1, y1, width, height, color);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson56x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson56x3');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+// Draw a simple square box with a size parameter
+function squareBox(x=30, y=20, size=10, color=random(1,15)) {
+	var x1 = x - size;
+	var y1 = y - size;
+	var x2 = x + size;
+	var y2 = y + size;
+	rect(x1, y1, x2, y2, color=random(1,15));
+}
+
+// MAKING A PHOTO FRAME
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+	squareBox(x, y, size * 1.5); 	// box 2
+	squareBox(x, y, size); 			// box 1
+	squareBox(x, y, size * 0.8);	// box 3
+	drawImageFromURL(url, x - size * 0.8, y - size * 0.8, (size + 0.6) * 0.8 * 2, (size + 0.6) * 0.8 * 2);
+}
+pictureFrame('https://robohash.org/2.png?size=200x200', x=30, y=20, size=10, color=random(1,15));
+await delay(2);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+// Draw a simple square box with a size parameter
+function squareBox(x=30, y=20, size=10, color=random(1,15)) {
+	var x1 = x - size;
+	var y1 = y - size;
+	var x2 = x + size;
+	var y2 = y + size;
+	rect(x1, y1, x2, y2, color=random(1,15));
+}
+
+// MAKING A PHOTO FRAME
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+	squareBox(x, y, size * 1.5); 	// box 2
+	squareBox(x, y, size); 			// box 1
+	squareBox(x, y, size * 0.8);	// box 3
+	drawImageFromURL(url, x - size * 0.8, y - size * 0.8, (size + 0.6) * 0.8 * 2, (size + 0.6) * 0.8 * 2);
+}
+
+// Call the function
+pictureFrame('https://robohash.org/2.png?size=200x200', x=30, y=20, size=10, color=random(1,15));
+
+// Refreshes the loaded image on the screen
+await delay(2);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson56x2");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

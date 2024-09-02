@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Make Red and Blue Fan 2</h1>
+	
+	<p>Make a red and blue fan like show in the screen. The code for making the red fan is this:</p>
+<pre>
+var i = 0;
+var j = 0;
+while (i < 60) {
+	i = i + 3;
+	j = 60-i;
+	line(x1=i, y1=0, x2=j, y2=35, color="red");
+	await delay();
+}
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson40x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson40x4');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var i = -3;
+var j = 0;
+while (i < 60) {
+	i = i + 3;
+	j = 60-i;
+	line(x1=i, y1=0, x2=0, y2=35, color="red");
+	await delay();
+}
+i = 0;
+j = 0;
+while (i < 35) {
+	i = i + 3;
+	j = 38-i;
+	line(x1=0, y1=35, x2=59, y2=j, color="blue");
+	await delay();
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var i = -3;
+var j = 0;
+while (i < 60) {
+	i = i + 3;
+	j = 60-i;
+	line(x1=i, y1=0, x2=0, y2=35, color="red");
+	await delay();
+}
+i = 0;
+j = 0;
+while (i < 35) {
+	i = i + 3;
+	j = 38-i;
+	line(x1=0, y1=35, x2=59, y2=j, color="blue");
+	await delay();
+}
+</textarea>
+<script>
+parent.LoadYourCode("TextAreaYourCode", "Lesson40x3");
+parent.HideHelper()
+parent.HideSolution();
+</script>
+</body>
+</html>

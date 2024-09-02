@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 57: Nested Loops</h1>
+	<p>A nested loop is a loop that exists within another loop.</p>
+	<p>For example, we can use a nested loop to fill the entire screen with a color using only the plot() function. </p>
+<pre>
+for (let j = 0; j < 36; j++) {  // Outer loop
+	for (let i = 0; i < 60; i++) {  // Inner loop
+		plot(i, j, "lightblue");
+  }
+}
+</pre>
+	<p>Outer Loop (for (let j = 0; j < 36; j++)): This loop runs 36 times, with j taking values from 0 to 35.</p>
+	<p>Inner Loop (for (let i = 0; i < 60; i++)): For each iteration of the outer loop, this loop runs 60 times, with i taking values from 0 to 59.</p>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson56x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson57x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+for (let j = 0; j < 36; j++) {  // Outer loop
+	for (let i = 0; i < 60; i++) {  // Inner loop
+		plot(i, j, "lightblue");
+		await delay(0.001);
+  }
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+for (let j = 0; j < 36; j++) {  // Outer loop
+	for (let i = 0; i < 60; i++) {  // Inner loop
+		plot(i, j, "lightblue");
+  }
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson57");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

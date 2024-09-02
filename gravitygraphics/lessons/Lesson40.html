@@ -11,38 +11,38 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 40: Animations</h1>
-	<p>To do animations we simply draw something, delay for a bit, and do it all over again.</p>
+	<h1>Lesson 40: While Loop</h1>
+	<p>A while loop repeatedly executes a block of code as long as a specified condition remains true. For example:</p>
 <pre>
-for (i=0; i<100; i++) {
-	plot(random(0,59), random(0,35), random(1,15));
-	plot(random(0,59), random(0,35), random(1,15));
-	await delay(1);
+gr();
+var i = 0;
+while (i < 5) {
+	plot(random(0,59), random(0,36), random(1,15));
+	i = i + 1;
 }
 </pre>
-
+	<p>A while loop is similar to a for-loop:</p>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson39x.html');">Exercise</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41.html')">Lesson 41</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson39x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson40x');">Exercise</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-gr()
-for (i=0; i<100; i++) {
-	plot(random(0,59), random(0,35), random(1,15));
-	plot(random(0,59), random(0,35), random(1,15));
-	await delay(1);
+gr();
+var i = 0;
+while (i < 5) {
+	plot(random(0,59), random(0,36), random(1,15));
+	i = i + 1;
 }
-
 </textarea>
 <textarea id="LessonExampleCode">
-gr()
-for (i=0; i<100; i++) {
-	plot(random(0,59), random(0,35), random(1,15));
-	plot(random(0,59), random(0,35), random(1,15));
-	await delay(1);
+gr();
+var i = 0;
+while (i < 5) {
+	plot(random(0,59), random(0,36), random(1,15));
+	i = i + 1;
 }
 </textarea>
 <script>

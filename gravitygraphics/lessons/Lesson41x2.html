@@ -11,89 +11,56 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Exercise: Make Pixel Run Along the Border</h1>
-	
-	<p>Make a Pixel move along the border like showed in the screen. Use await delay() and clear() to help you acheive the animation. Below is the border code for reference:</p>
-<pre>
-for (i=0; i <= 60; i++) {
-	plot(x=i, y=0, color="red");
-}
-for (i=0; i <= 60; i++) {
-	plot(x=i, y=35, color="red");
-}
-for (i=0; i <= 60; i++) {
-	plot(x=0, y=i, color="red");
-}
-for (i=0; i <= 60; i++) {
-	plot(x=59, y=i, color="red");
-}
+	<h1>Practice: Fireworks 2</h1>
+	<p>Make the fireworks seen on the screen:</p>
+	<p>For references here's the line function with various parameters:</p>
+	<pre>
+line(x1, y1, x2, y2, color);
 </pre>
+	
+
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x.html');">Exercise</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson42.html')">Lesson 42</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x');">Practice</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41x3');">Practice</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-for (i=0; i <= 60; i++) {
+while(true) {
 	gr();
-	plot(x=i, y=0, color="red");
-	await delay();
-	clear();
+	for (var i = 0; i < 40; i++) {
+		line(
+			(x1 = 30),
+			(y1 = 20),
+			(x2 = random(0, 60)),
+			(y2 = random(0, 40)),
+			random(1, 15)
+			);
+	}
+	await delay(1);
 }
-for (i=0; i <= 35; i++) {
-	gr();
-	plot(x=59, y=i, color="red");
-	await delay();
-	clear();
-}
-for (i=59; i > 0; i--) {
-	gr();
-	plot(x=i, y=35, color="red");
-	await delay();
-	clear();
-}
-for (i=35; i > 0; i--) {
-	gr();
-	plot(x=0, y=i, color="red");
-	await delay();
-	clear();
-}
-gr();
-plot(x=0, y=0, color="red");
 </textarea>
 <textarea id="LessonExampleCode">
-for (i=0; i <= 60; i++) {
+while(true) {
 	gr();
-	plot(x=i, y=0, color="red");
-	await delay();
-	clear();
+	for (var i = 0; i < 40; i++) {
+		line(
+			(x1 = 30),
+			(y1 = 20),
+			(x2 = random(0, 60)),
+			(y2 = random(0, 40)),
+			random(1, 15)
+			);
+	}
+	await delay(1);
 }
-for (i=0; i <= 35; i++) {
-	gr();
-	plot(x=59, y=i, color="red");
-	await delay();
-	clear();
-}
-for (i=59; i > 0; i--) {
-	gr();
-	plot(x=i, y=35, color="red");
-	await delay();
-	clear();
-}
-for (i=35; i > 0; i--) {
-	gr();
-	plot(x=0, y=i, color="red");
-	await delay();
-	clear();
-}
-gr();
-plot(x=0, y=0, color="red");
 </textarea>
 <script>
-parent.LoadYourCode("TextAreaYourCode", "Lesson42x");
-parent.HideHelper()
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson44x2");
+parent.HideHelper();
+parent.HideHelperButton();
 parent.HideSolution();
 </script>
 </body>

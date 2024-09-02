@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 63: Keyboard Input: KeyDown</h1>
+	<p>We can get a single key input from the user by detecting the key pressed. Here's how we do it:</p>
+	
+<pre>
+// Function to handle key press
+function onKeyDown(event) {
+	text('Key pressed: ' + event.key)
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</pre>
+	<p>Run this code and then press any key on the keyboard to test it.</p>
+	
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson61x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson64');">Lesson 64</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+text('Press any key');
+
+// Function to handle key press
+function onKeyDown(event) {
+	gr();
+	text('Key pressed: ' + event.key)
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+text('Press any key');
+
+// Function to handle key press
+function onKeyDown(event) {
+	gr();
+	text('Key pressed: ' + event.key)
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson63");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 64: Press Any Key to Continue</h1>
+	<p>To create the feature "Press any key to continue", we simply use the onKeyDown event like in the previous lesson.</p>
+	
+<pre>
+// Function to handle any key press
+function onKeyDown(event) {
+	// Do something
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</pre>
+	<p>We are going use the square() function to cycle through our color range by incrementing a variable and then resetting it back to 1 when it reaches the color 15</p>
+	
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson63');">Lesson 63</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson64x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+var color = 0;
+changeColor();
+
+function changeColor() {
+	gr();
+	color += 1;
+	if (color > 15) color = 1;
+	square(color*4,18,4,color);
+	text("Moving the box", "white", "center", 4);
+}
+
+// Function to handle any key press
+function onKeyDown(event) {
+	changeColor();
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+
+print("Press any key to continue...");
+</textarea>
+<textarea id="LessonExampleCode">
+var color = 0;
+changeColor();
+
+function changeColor() {
+	gr();
+	color += 1;
+	if (color > 15) color = 1;
+	square(color*4,18,4,color);
+	text("Moving the box", "white", "center", 4);
+}
+
+// Function to handle any key press
+function onKeyDown(event) {
+	changeColor();
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+
+print("Press any key to continue...");
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson64");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

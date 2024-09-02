@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Quiz Game With Arrays</h1>
+	<p>Make a random quiz game asking what is the capital cities of these countries using the two-dimensional array and picture resources below:</p>
+<pre>
+let array_countries = [
+    ["Canada", "Ottawa"],
+    ["New Zealand", "Wellington"],
+    ["Australia", "Canberra"],
+    ["Brazil", "Brasilia"],
+    ["India", "New Delhi"]
+];
+</pre>
+<pre>
+drawImageFromURL("./pics/countries/ui.jpg", x, y, width, height);
+drawImageFromURL("./pics/countries/India.jpg", x, y, width, height);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson95');">Lesson 95</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson97');">Lesson 97</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+let array_countries = [
+    ["Canada", "Ottawa"],
+    ["New Zealand", "Wellington"],
+    ["Australia", "Canberra"],
+    ["Brazil", "Brasilia"],
+    ["India", "New Delhi"]
+];
+
+while(true) {
+	clear();
+	home();
+	var flag_width = 20;
+	var flag_height = 12;
+	var question_index = random(0, array_countries .length);
+	var country_name = array_countries[question_index][0];
+	var country_capital = array_countries[question_index][1];
+	drawImageFromURL('./pics/countries/ui.jpg', 0, 0, 60, 36);
+	await delay(0.5);
+	drawImageFromURL('./pics/countries/' + country_name + '.jpg', 30 - (flag_width/2), 16 - (flag_height/2), 20, 12);
+	await delay(0.5);
+	print(`What is the capital of ${country_name}`);
+	var answer = await input("Type in your answer:");
+	if (answer.toLowerCase() == country_capital.toLowerCase()) {
+		print ("That's correct!");
+		await delay(1);
+	} else {
+		print (`That's incorrect! The correct answer is ${country_capital}.`);
+		await delay(2);
+	}
+}
+
+
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+let array_countries = [
+    ["Canada", "Ottawa"],
+    ["New Zealand", "Wellington"],
+    ["Australia", "Canberra"],
+    ["Brazil", "Brasilia"],
+    ["India", "New Delhi"]
+];
+
+while(true) {
+	clear();
+	home();
+	var flag_width = 20;
+	var flag_height = 12;
+	var question_index = random(0, array_countries .length);
+	var country_name = array_countries[question_index][0];
+	var country_capital = array_countries[question_index][1];
+	drawImageFromURL('./pics/countries/ui.jpg', 0, 0, 60, 36);
+	await delay(0.5);
+	drawImageFromURL('./pics/countries/' + country_name + '.jpg', 30 - (flag_width/2), 16 - (flag_height/2), 20, 12);
+	await delay(0.5);
+	print(`What is the capital of ${country_name}`);
+	var answer = await input("Type in your answer:");
+	if (answer.toLowerCase() == country_capital.toLowerCase()) {
+		print ("That's correct!");
+		await delay(1);
+	} else {
+		print (`That's incorrect! The correct answer is ${country_capital}.`);
+		await delay(2);
+	}
+}
+
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson96");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

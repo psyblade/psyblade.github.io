@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Healthbar & Functions</h1>
+	<p>Organize the healthbar code using functions.</p>
+<pre>
+
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson51');">Lesson 51</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson52');">Lesson 52</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+const bar_length = 53-5;
+const health_max = 100;
+var health_now = 100;
+var health_bar = (bar_length * (health_now/100));
+start();
+
+function start() {
+	resetHealthBar();
+	printOptions();
+}
+	
+function printOptions() {
+	print ("Option 1: Take 50% damage.");
+	print ("Option 2: Take 5pt damage.");
+	print ("Option 3: Reset.");
+}
+
+function updateBar() {
+	gr();
+	rect(5, 14, 54, 24, "lime");
+	rect(6, 15, 53, 23, "green");
+	rect(6, 15, 5 + health_bar, 23, "cyan");
+	home();
+	text ("Health:" + health_now, "black", "center", 18);
+}
+
+function take50percentDamage() {
+	health_now = parseInt(health_now * 0.5);
+	if (health_now < 0) health_now = 0;
+	health_bar = (bar_length * (health_now/health_max));
+	updateBar();
+}
+
+function take5hitpointDamage() {
+	health_now = parseInt(health_now - 5);
+	if (health_now < 0) health_now = 0;
+	health_bar = (bar_length * (health_now/health_max));
+	updateBar();
+}
+
+function resetHealthBar() {
+	health_now = 100;
+	health_bar = (bar_length * (health_now/health_max));
+	updateBar();
+}
+
+while (true) {
+	var choice = await input ("Select 1, 2, or 3:");
+	if (choice == 1) {
+		take50percentDamage();
+	} else if (choice == 2) {
+		take5hitpointDamage();
+	} else {
+		resetHealthBar();
+	}
+}
+
+</textarea>
+<textarea id="LessonExampleCode">
+const bar_length = 53-5;
+const health_max = 100;
+var health_now = 100;
+var health_bar = (bar_length * (health_now/100));
+start();
+
+function start() {
+	resetHealthBar();
+	printOptions();
+}
+	
+function printOptions() {
+	print ("Option 1: Take 50% damage.");
+	print ("Option 2: Take 5pt damage.");
+	print ("Option 3: Reset.");
+}
+
+function updateBar() {
+	gr();
+	rect(5, 14, 54, 24, "lime");
+	rect(6, 15, 53, 23, "green");
+	rect(6, 15, 5 + health_bar, 23, "cyan");
+	home();
+	text ("Health:" + health_now, "black", "center", 18);
+}
+
+function take50percentDamage() {
+	health_now = parseInt(health_now * 0.5);
+	if (health_now < 0) health_now = 0;
+	health_bar = (bar_length * (health_now/health_max));
+	updateBar();
+}
+
+function take5hitpointDamage() {
+	health_now = parseInt(health_now - 5);
+	if (health_now < 0) health_now = 0;
+	health_bar = (bar_length * (health_now/health_max));
+	updateBar();
+}
+
+function resetHealthBar() {
+	health_now = 100;
+	health_bar = (bar_length * (health_now/health_max));
+	updateBar();
+}
+
+while (true) {
+	var choice = await input ("Select 1, 2, or 3:");
+	if (choice == 1) {
+		take50percentDamage();
+	} else if (choice == 2) {
+		take5hitpointDamage();
+	} else {
+		resetHealthBar();
+	}
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson51x");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

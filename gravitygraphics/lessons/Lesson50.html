@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 50: Health Bar</h1>
+	<p>Now let's visualize percentage with a health bar. First, let's draw a health bar.</p>
+<pre>
+gr();
+rect(5, 14, 54, 24, "lime");
+rect(6, 15, 53, 23, "green");
+rect(6, 15, 30, 23, "cyan");
+</pre>
+	<p>You will see the length of the inner cyan bar that represents our current health is 30 - 6 from the x-axis. So if we have 50% of our health, that would be (30-6) * 0.5. </p>
+	<p>Try to alter the current  health in the code accordingly.</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson49');">Lesson 49</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson50x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+health_now = 20;
+health_max = 100;
+
+rect(5, 14, 54, 24, "lime");
+rect(6, 15, 53, 23, "green");
+rect(6, 15, 48, 23, "cyan");
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+health_now = 20;
+health_max = 100;
+
+rect(5, 14, 54, 24, "lime");
+rect(6, 15, 53, 23, "green");
+rect(6, 15, 48, 23, "cyan");
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson50");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

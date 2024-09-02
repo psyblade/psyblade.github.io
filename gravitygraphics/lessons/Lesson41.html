@@ -11,42 +11,65 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 41: Moving Animations</h1>
-	<p>To do moving animations we simply draw something, delay for a bit, clear the canvas and do it all over again.</p>
-	<p>Now let's try to add clear canvas to our code and see what happens</p>
+	<h1>Lesson 41: Infitnite Loop</h1>
+	<p>An infinite loop is a loop that keeps repeating itself. We can achieve this by setting the condition to always true. This for task like continuous animations.</p>
 <pre>
-for (i=0; i<100; i++) {
-	plot(random(0,59), random(0,35), random(1,15));
-	plot(random(0,59), random(0,35), random(1,15));
-	await delay(1);
-	clear();
+while (true) {
+	var i = 0;
+	while (i < 36) {
+		gr();
+		line(0, i, 60, i);
+		i = i + 1;
+		await delay();
+	}
+	while (i > 0) {
+		gr();
+		line(0, i, 60, i);
+		i = i - 1;
+		await delay();
+	}
 }
 </pre>
 
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson40.html');">Lesson 40</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41x.html')">Exercise</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson40x4');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41x');">Exercise</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-for (i=0; i<100; i++) {
-	gr()
-	plot(random(0,59), random(0,35), random(1,15));
-	plot(random(0,59), random(0,35), random(1,15));
-	await delay(1);
-	clear();
+while (true) {
+	var i = 0;
+	while (i < 36) {
+		gr();
+		line(0, i, 60, i);
+		i = i + 1;
+		await delay();
+	}
+	while (i > 0) {
+		gr();
+		line(0, i, 60, i);
+		i = i - 1;
+		await delay();
+	}
 }
-
 </textarea>
 <textarea id="LessonExampleCode">
-for (i=0; i<100; i++) {
-	gr()
-	plot(random(0,59), random(0,35), random(1,15));
-	plot(random(0,59), random(0,35), random(1,15));
-	await delay(1);
-	clear();
+while (true) {
+	var i = 0;
+	while (i < 36) {
+		gr();
+		line(0, i, 60, i);
+		i = i + 1;
+		await delay();
+	}
+	while (i > 0) {
+		gr();
+		line(0, i, 60, i);
+		i = i - 1;
+		await delay();
+	}
 }
 </textarea>
 <script>

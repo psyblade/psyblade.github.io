@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 92: Printing Entire Array Using For-loop</h1>
+	<p>You can print the entire array by using a for-loop like this:</p>
+<pre>
+let array_fruits = ["apple", "orange", "banana"];
+for(i=0; i < array_fruits.length; i++) {
+	print(array_fruits[i]);
+}
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson91');">Lesson 91</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson93');">Lesson 93</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+let array_fruits = ["apple", "orange", "banana"];
+for(i=0; i < array_fruits.length; i++) {
+	print(array_fruits[i])
+}
+</textarea>
+<textarea id="LessonExampleCode">
+// Define your array of items
+let array_fruits = ["apple", "orange", "banana"];
+
+// Print the items in your array
+for(i=0; i < array_fruits.length; i++) {
+	print(array_fruits[i])
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson92");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

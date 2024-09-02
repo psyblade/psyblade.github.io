@@ -11,56 +11,48 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Exercise: Animate the Border Drawing</h1>
-	
-	<p>Previously we tried to draw a border around the screen using the plot() function and For Loops. Now add in the delay() function to animate it.</p>
+	<h1>Exercise: Fireworks 1</h1>
+	<p>Let's make some fireworks with infinite loop.</p>
 <pre>
-for (i=0; i <= 60; i++) {
-	plot(x=i, y=0, color="red");
-}
-for (i=0; i <= 60; i++) {
-	plot(x=i, y=35, color="red");
-}
-for (i=0; i <= 60; i++) {
-	plot(x=0, y=i, color="red");
-}
-for (i=0; i <= 60; i++) {
-	plot(x=59, y=i, color="red");
+while(true) {
+	gr();
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	await delay();
 }
 </pre>
+
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41.html');">Lesson 41</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41x2.html')">Exercise</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41');">Lesson 41</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41x2');">Practice</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-gr()
+while(true) {
+	gr();
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	await delay();
+}
 </textarea>
 <textarea id="LessonExampleCode">
-gr();
-for (i=0; i <= 60; i++) {
-	plot(x=i, y=0, color="red");
-	await delay();
-}
-for (i=0; i <= 60; i++) {
-	plot(x=i, y=35, color="red");
-	await delay();
-}
-for (i=0; i <= 60; i++) {
-	plot(x=0, y=i, color="red");
-	await delay();
-}
-for (i=0; i <= 60; i++) {
-	plot(x=59, y=i, color="red");
+while(true) {
+	gr();
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
 	await delay();
 }
 </textarea>
 <script>
+parent.ShowExample();
 parent.LoadYourCode("TextAreaYourCode", "Lesson41x");
-parent.HideHelper()
-parent.HideSolution();
+parent.HideHelper();
+parent.HideHelperButton();
 </script>
 </body>
 </html>

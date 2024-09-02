@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Keyboard Control</h1>
+	<p>We are now going to draw (like the toy 'Etch A Sketch') by moving a line up, left, down, right, using the keys W, A, S, D.</p>
+<pre>
+// Function to handle any key press
+function onKeyDown(event) {
+	if (event.key == "w") y -= 1;
+	...
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</pre>
+	<p>Give it a try.</p>
+	
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson64');">Lesson 64</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson64x2');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var x = 30;
+var y = 20;
+
+plot(x, y, "lime");
+
+// Function to handle any key press
+function onKeyDown(event) {
+	if (event.key == "w") y -= 1;
+	if (event.key == "a") x -= 1;
+	if (event.key == "s") y += 1;
+	if (event.key == "d") x += 1;
+	plot(x, y, "lime");
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var x = 30;
+var y = 20;
+
+plot(x, y, "lime");
+
+// Function to handle any key press
+function onKeyDown(event) {
+	if (event.key == "w") y -= 1;
+	if (event.key == "a") x -= 1;
+	if (event.key == "s") y += 1;
+	if (event.key == "d") x += 1;
+	plot(x, y, "lime");
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson64x");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

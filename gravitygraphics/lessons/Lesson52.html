@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 52: Functions With Parameters</h1>
+	<p>You can also pass parameters into your functions. Let's say you want to give the computer a length and ask it to calculate the percentage of the length based on a random percentage.</p>
+<pre>
+gr();
+function printRandomPercentage(length) {
+	var number = random(1,100);
+	var percentage_as_a_decimal = number/100;
+	text(number + "% = " + number + "/100 = " + (number / 100));
+	text(number + "% of the length " + length + " = " + percentage_as_a_decimal * length);
+}
+printRandomPercentage(length);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson51x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson52x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+function printRandomPercentage(length) {
+	var percentage = random(1,100);
+	var percentage_as_a_decimal = percentage/100;
+	text(percentage + "% of the length " + length + "cm = ", random (1,15));
+	var result = (percentage_as_a_decimal * length).toFixed(2);
+	text(percentage/100 + " * " + length + "cm = " + result + "cm", random(1,15), "center", 25);
+}
+printRandomPercentage(random(1,20));
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+function printRandomPercentage(length) {
+	var percentage = random(1,100);
+	var percentage_as_a_decimal = percentage/100;
+	text(percentage + "% of the length " + length + "cm = ", random (1,15));
+	var result = (percentage_as_a_decimal * length).toFixed(2);
+	text(percentage/100 + " * " + length + "cm = " + result + "cm", random(1,15), "center", 25);
+}
+printRandomPercentage(random(1,20));
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson52");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

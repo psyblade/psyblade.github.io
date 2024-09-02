@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Health Bar and Damage</h1>
+	<p>Create 3 options for the user to choose form.</p>
+	<p>Option 1: Take 50% damage.<br>
+Option 2: Take 5pt damage.<br>
+Option 3: Reset.</p>
+<pre>
+print ("Option 1: Take 50% damage.");
+print ("Option 2: Take 5pt damage.");
+print ("Option 3: Reset.");
+var choice = await input ("Select 1, 2, or 3:);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson50');">Lesson 50</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson51');">Lesson 51</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+const health_max = 100;
+var health_now = 100;
+var health_bar = 53-6;
+rect(5, 14, 54, 24, "lime");
+rect(6, 15, 53, 23, "green");
+rect(6, 15, 53, 23, "cyan");
+
+text ("Health:" + health_now, "black", "center", 18);
+
+print ("Option 1: Take 50% damage.");
+print ("Option 2: Take 5pt damage.");
+print ("Option 3: Reset.");
+
+while (true) {
+	var choice = await input ("Select 1, 2, or 3:");
+
+	if (choice == 1) {
+		health_now = parseInt(health_now * 0.5);
+		if (health_now < 0) health_now = 0;
+		health_bar = ((53-6) * (health_now/100));
+		gr();
+		rect(5, 14, 54, 24, "lime");
+		rect(6, 15, 53, 23, "green");
+		rect(6, 15, 5 + health_bar, 23, "cyan");
+		home();
+	} else if (choice == 2) {
+		health_now = parseInt(health_now - 5);
+		if (health_now < 0) health_now = 0;
+		health_bar = ((53-6) * (health_now/100));
+		gr();
+		rect(5, 14, 54, 24, "lime");
+		rect(6, 15, 53, 23, "green");
+		rect(6, 15, 5 + health_bar, 23, "cyan");
+		home();
+	} else {
+		health_now = 100;
+		health_bar = ((53-6) * (health_now/100));
+		rect(5, 14, 54, 24, "lime");
+		rect(6, 15, 53, 23, "green");
+		rect(6, 15, 53, 23, "cyan");
+		home();
+	}
+	text ("Health:" + health_now, "black", "center", 18);
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+const health_max = 100;
+var health_now = 100;
+var health_bar = 53-6;
+rect(5, 14, 54, 24, "lime");
+rect(6, 15, 53, 23, "green");
+rect(6, 15, 53, 23, "cyan");
+
+text ("Health:" + health_now, "black", "center", 18);
+
+print ("Option 1: Take 50% damage.");
+print ("Option 2: Take 5pt damage.");
+print ("Option 3: Reset.");
+
+while (true) {
+	var choice = await input ("Select 1, 2, or 3:");
+
+	if (choice == 1) {
+		health_now = parseInt(health_now * 0.5);
+		if (health_now < 0) health_now = 0;
+		health_bar = ((53-6) * (health_now/100));
+		gr();
+		rect(5, 14, 54, 24, "lime");
+		rect(6, 15, 53, 23, "green");
+		rect(6, 15, 5 + health_bar, 23, "cyan");
+		home();
+	} else if (choice == 2) {
+		health_now = parseInt(health_now - 5);
+		if (health_now < 0) health_now = 0;
+		health_bar = ((53-6) * (health_now/100));
+		gr();
+		rect(5, 14, 54, 24, "lime");
+		rect(6, 15, 53, 23, "green");
+		rect(6, 15, 5 + health_bar, 23, "cyan");
+		home();
+	} else {
+		health_now = 100;
+		health_bar = ((53-6) * (health_now/100));
+		rect(5, 14, 54, 24, "lime");
+		rect(6, 15, 53, 23, "green");
+		rect(6, 15, 53, 23, "cyan");
+		home();
+	}
+	text ("Health:" + health_now, "black", "center", 18);
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson50x");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

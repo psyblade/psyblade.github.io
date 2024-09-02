@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 56: Drawing Image</h1>
+	<p>We can draw any image onto our screen using the function drawImageFromURL() as shown below:</p>
+	
+<pre>
+drawImageFromURL(url, x1, y1, width, height);
+</pre>
+	<p>Note: Image may take a while to load.</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson55x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson56x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+drawImageFromURL('https://cdn.pixabay.com/photo/2023/09/01/17/42/ai-generated-8227409_960_720.jpg', 0, 0, gravitygraphicscontext.width, gravitygraphicscontext.height);
+
+// refreshes the loaded image on the screen
+await delay(2);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+drawImageFromURL('https://cdn.pixabay.com/photo/2023/09/01/17/42/ai-generated-8227409_960_720.jpg', 0, 0, gravitygraphicscontext.width, gravitygraphicscontext.height);
+
+// refreshes the loaded image on the screen
+await delay(2); 
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson56");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

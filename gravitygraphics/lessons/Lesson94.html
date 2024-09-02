@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson: Two Dimension Arrays</h1>
+	<p>When we add an array within array, it becomes a two-dimension array. Here we added the price to our fruits array.</p>
+<pre>
+let array_fruits = [
+    ["apple", 1.50], 
+    ["orange", 0.80], 
+    ["banana", 0.60],
+    ["blueberry", 3.00], 
+    ["lime", 0.50], 
+    ["coconut", 2.50]
+];
+</pre>
+	<p>Here's how we access the name and price of the fruits</p>
+<pre>
+var fruit1_name = array_fruits[0][0];
+var fruit1_color = array_fruits[0][1]
+print(fruit1_name + " is " + fruit1_color);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson93');">Lesson 93</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson95');">Lesson95</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// We define our array
+let array_fruits = [
+    ["apple", 1.50], 
+    ["orange", 0.80], 
+    ["banana", 0.60],
+    ["blueberry", 3.00], 
+    ["lime", 0.50], 
+    ["coconut", 2.50]
+];
+
+// Fruit 1
+var fruit1_name = array_fruits[0][0];
+var fruit1_price = array_fruits[0][1]
+print(fruit1_name + " is $" + fruit1_price);
+
+// Fruit 2
+var fruit2_name = array_fruits[1][0];
+var fruit2_price = array_fruits[1][1]
+print(fruit2_name + " is $" + fruit2_price);
+</textarea>
+<textarea id="LessonExampleCode">
+// We define our array
+let array_fruits = [
+    ["apple", 1.50], 
+    ["orange", 0.80], 
+    ["banana", 0.60],
+    ["blueberry", 3.00], 
+    ["lime", 0.50], 
+    ["coconut", 2.50]
+];
+
+// Fruit 1
+var fruit1_name = array_fruits[0][0];
+var fruit1_price = array_fruits[0][1]
+print(fruit1_name + " is " + fruit1_price);
+
+// Fruit 2
+var fruit2_name = array_fruits[1][0];
+var fruit2_price = array_fruits[1][1]
+print(fruit2_name + " is " + fruit2_price);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson94");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

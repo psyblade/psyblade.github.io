@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson: Arrays</h1>
+	<p>Arrays are ordered collections of values in JavaScript that can be accessed using numerical indexes. In other words, to print the fruit on a given shelf you would normally do:</p>
+<pre>
+var shelf = 2
+if (shelf == 0) print ("apple");
+if (shelf == 1) print ("orange");
+if (shelf == 2) print ("banana");
+if (shelf == 3) print ("blueberry");
+if (shelf == 4) print ("lime");
+if (shelf == 5) print ("coconut");
+</pre>
+	<p>But by using array, you can make your code easier.</p>
+<pre>
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+print(array_fruits[2]);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson64x4');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson91');">Lesson 91</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+print(array_fruits[2]);
+</textarea>
+<textarea id="LessonExampleCode">
+// Define your array of items
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+
+// Print a fruit in the array
+print(array_fruits[0]); // This will print apple
+print(array_fruits[1]); // This will print orange
+print(array_fruits[2]); // This will print banana
+print(array_fruits[3]); // This will print blueberry
+print(array_fruits[4]); // This will print lime
+print(array_fruits[5]); // This will print coconut
+
+// If you want to print something from a given shelf
+var shelf = 2;
+
+print(array_fruits[shelf]);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson90");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

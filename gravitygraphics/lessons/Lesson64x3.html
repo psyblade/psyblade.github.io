@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Collision Detection</h1>
+	<p>We are going to turn the previous lesson into a Snake game by detecting colision by getting the color of a specific coordinate on the screen. To detect color we use: </p>
+<pre>
+var color = getPixelColor(x, y);
+</pre>
+	<p>If it returns the color black (#000000), then no collision is detected. Any other color means, it has collided.</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson64x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson64x4');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+var player1_moved = false;
+var player2_moved = false;
+
+var x1 = 5, y1 = 5;
+var x2 = 60-5, y2 = 36-5;
+
+plot(x1, y1, "red");
+plot(x2, y2, "blue");
+
+// Function to handle any key press
+function onKeyDown(event) {
+
+	// Prevent the default action (like scrolling)
+	event.preventDefault();
+	
+	if (event.key == "w") { y1 -= 1; player1_moved = true; }
+	if (event.key == "a") { x1 -= 1; player1_moved = true; }
+	if (event.key == "s") { y1 += 1; player1_moved = true; }
+	if (event.key == "d") { x1 += 1; player1_moved = true; }
+	
+	if (event.key == "ArrowUp") { y2 -= 1; player2_moved = true; }
+	if (event.key == "ArrowLeft") { x2 -= 1; player2_moved = true; }
+	if (event.key == "ArrowDown") { y2 += 1; player2_moved = true; }
+	if (event.key == "ArrowRight") { x2 += 1; player2_moved = true; }
+	
+	// Check for Collision
+	
+	if (player1_moved) {
+		var color1 = getPixelColor(x1, y1);
+		var result1 = (color1 != "#000000");
+		if (result1 == true) {
+			onCollision("Player 2");
+			drawExplotion(x1, y1);
+			}
+		else {
+			plot(x1, y1, "red");
+			player1_moved = false;
+		}
+	}
+	
+	if (player2_moved) {
+		var color2 = getPixelColor(x2, y2);
+		var result2 = (color2 != "#000000");
+		if (result2 == true) {
+			onCollision("Player 1");
+			drawExplotion(x2, y2);
+			}
+		else {
+			plot(x2, y2, "blue");
+			player2_moved = false;
+		}
+	}
+}
+
+async function drawExplotion(x, y) {
+	for (i=0; i<10; i++) {
+		plot(x, y, "yellow");
+		await delay(0.5);
+		plot(x, y, "orange");
+		await delay(0.5);
+	}
+}
+
+function onCollision(winner) {
+	// Remove the event listener after the key is pressed
+    window.removeEventListener('keydown', onKeyDown);
+	
+	text("The winner is " + winner, "white");
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+var player1_moved = false;
+var player2_moved = false;
+
+var x1 = 5, y1 = 5;
+var x2 = 60-5, y2 = 36-5;
+
+plot(x1, y1, "red");
+plot(x2, y2, "blue");
+
+// Function to handle any key press
+function onKeyDown(event) {
+
+	// Prevent the default action (like scrolling)
+	event.preventDefault();
+	
+	if (event.key == "w") { y1 -= 1; player1_moved = true; }
+	if (event.key == "a") { x1 -= 1; player1_moved = true; }
+	if (event.key == "s") { y1 += 1; player1_moved = true; }
+	if (event.key == "d") { x1 += 1; player1_moved = true; }
+	
+	if (event.key == "ArrowUp") { y2 -= 1; player2_moved = true; }
+	if (event.key == "ArrowLeft") { x2 -= 1; player2_moved = true; }
+	if (event.key == "ArrowDown") { y2 += 1; player2_moved = true; }
+	if (event.key == "ArrowRight") { x2 += 1; player2_moved = true; }
+	
+	// Check for Collision
+	
+	if (player1_moved) {
+		var color1 = getPixelColor(x1, y1);
+		var result1 = (color1 != "#000000");
+		if (result1 == true) {
+			onCollision("Player 2");
+			drawExplotion(x1, y1);
+			}
+		else {
+			plot(x1, y1, "red");
+			player1_moved = false;
+		}
+	}
+	
+	if (player2_moved) {
+		var color2 = getPixelColor(x2, y2);
+		var result2 = (color2 != "#000000");
+		if (result2 == true) {
+			onCollision("Player 1");
+			drawExplotion(x2, y2);
+			}
+		else {
+			plot(x2, y2, "blue");
+			player2_moved = false;
+		}
+	}
+}
+
+async function drawExplotion(x, y) {
+	for (i=0; i<10; i++) {
+		plot(x, y, "yellow");
+		await delay(0.5);
+		plot(x, y, "orange");
+		await delay(0.5);
+	}
+}
+
+function onCollision(winner) {
+	// Remove the event listener after the key is pressed
+    window.removeEventListener('keydown', onKeyDown);
+	
+	text("The winner is " + winner, "white");
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson64x3");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

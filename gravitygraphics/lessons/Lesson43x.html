@@ -11,22 +11,22 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 43: Error Checking</h1>
-	<p>In the guessing game we created, you will notice that if you type the any answer that is not a number such as 'a' it will say you guess correctly. This is why we need to write some error checking into our code.</p>
+	<h1>Practice: Insert Fireworks</h1>
+	<p>In the 'Guess the Number' game, show some fireworks when the user guessed the correct number. Here's the code for the animted fireworks:</p>
 <pre>
-if (isNaN(guess)) {
+while(true) {
 	gr();
-	text("Please type in a valid number.");
-} else if (guess === "") {
-	gr();
-	text("Input cannot be empty.");
+	text("That is correct!");
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35));
+	await delay(1);
 }
 </pre>
-	<p>isNaN means 'is Not a Number'. So if it is not a number, or if it is an empty string, we can perform some error checking and prevent unwanted inputs.</p>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson42');">Lesson 42</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson43x');">Practice</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson43');">Lesson 43</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson44');">Lesson 44</button>
 	</div>
 </div>
 
@@ -50,9 +50,15 @@ while (guess != number) {
 		gr();
 		text("Guess higher");
 	} else {
-		gr();
-		text("That is correct!");
 		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+		while(true) {
+			gr();
+			text("That is correct!");
+			plot(random(0,59), random(0,35));
+			plot(random(0,59), random(0,35));
+			plot(random(0,59), random(0,35));
+			await delay(1);
+		}
 	}
 }
 </textarea>
@@ -76,17 +82,25 @@ while (guess != number) {
 		gr();
 		text("Guess higher");
 	} else {
-		gr();
-		text("That is correct!");
 		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+		// Show fireworks
+		while(true) {
+			gr();
+			text("That is correct!");
+			plot(random(0,59), random(0,35));
+			plot(random(0,59), random(0,35));
+			plot(random(0,59), random(0,35));
+			await delay(1);
+		}
 	}
 }
 </textarea>
 <script>
 parent.ShowExample();
-parent.LoadYourCode("TextAreaYourCode", "Lesson43");
+parent.LoadYourCode("TextAreaYourCode", "Lesson43x");
 parent.HideHelper();
 parent.HideHelperButton();
+parent.HideSolution();
 </script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 49: Rounding Decimals</h1>
+	<p>You can use rounding functions to handle the number of decimals you want to see. For example:</p>
+<pre>
+let num = 123.456789;
+
+// Convert a value to a fixed number of decimal places
+print(num.toFixed(2)); // Output: "123.46"
+
+// parseInt(num) can convert a string or number to interger
+print(parseInt(123.456789)); // Output: "123"
+</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson48');">Lesson 48</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson50');">Lesson 50</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+let num = 123.456789;
+
+// Convert a value to a fixed number of decimal places
+print(num.toFixed(2)); // Output: "123.46"
+
+// parseInt(num) can convert a string or number to interger
+print(parseInt(123.456789)); // Output: "123"
+</textarea>
+<textarea id="LessonExampleCode">
+let num = 123.456789;
+
+// Convert a value to a fixed number of decimal places
+print(num.toFixed(2)); // Output: "123.46"
+
+// parseInt(num) can convert a string or number to interger
+print(parseInt(123.456789)); // Output: "123"
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson49");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 48: Multiplication</h1>
+	<p>To multiply we use the sign (*). For example, multiplying 2 and 3 we get 6:</p>
+<pre>
+print (2*3); // You get 6
+</pre>
+	<p>If you multiply a length by the decimal percentage of 0.4, you will get 40% of that length.</p>
+<pre>
+var length = 200;
+var decimal_percentage = 40/100;
+print (length * decimal_percentage);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson47');">Lesson 47</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson49');">Lesson 49</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+var length = random(1,100);
+var percentage = random(1,100);
+print("length = " + length + "m * " + percentage + "% = " +  length + "m * " + (percentage/100) + " = " + length * (percentage / 100) + "m");
+</textarea>
+<textarea id="LessonExampleCode">
+var length = random(1,100);
+var percentage = random(1,100);
+print("length = " + length + "m * " + percentage + "% = " +  length + "m * " + (percentage/100) + " = " + length * (percentage / 100) + "m");
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson48");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

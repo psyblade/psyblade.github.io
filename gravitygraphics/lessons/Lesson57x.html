@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Fillscreen Function</h1>
+	<p>Write a function called myFillScreen() that will fill the entire screen with a color using the rect() function.</p>
+<pre>
+function myFillScreen(color) {
+	rect(...);
+}
+</pre>
+	<p>There is also a built in function called fillScreen(color)</p>
+<pre>
+fillScreen("lightblue")
+</pre>
+	<p>You can try both of these</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson57');">Lesson 57</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson57x2');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+function myFillscreeen(color=random(1,15)) {
+	rect(0,0,60,36,color);
+}
+
+myFillscreeen("lightblue");
+
+await input("Press enter to continue");
+
+myFillscreeen("grey");
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+function myFillscreeen(color=random(1,15)) {
+	rect(0,0,60,36,color);
+}
+
+myFillscreeen("lightblue");
+
+await input("Press enter to continue");
+
+myFillscreeen("grey");
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson57x");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

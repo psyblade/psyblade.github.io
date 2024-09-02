@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Fruits on Shelves</h1>
+	<p>Let the user select a shelf and you can print the fruit on that shelf.</p>
+<pre>
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+var shelf = await input ("Pick an item from by selecting a shelf number:");
+</pre>
+	<p>picture resources:</p>
+<pre>
+drawImageFromURL('./pics/fruits/apple.png', x, y, 10, 10);
+drawImageFromURL('./pics/fruits/orange.png', x, y, 10, 10);
+drawImageFromURL('./pics/fruits/banana.png', x, y, 10, 10);
+drawImageFromURL('./pics/fruits/blueberry.png', x, y, 10, 10);
+drawImageFromURL('./pics/fruits/lime.png', x, y, 10, 10);
+drawImageFromURL('./pics/fruits/coconut.png', x, y, 10, 10);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson90');">Lesson 90</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson91x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+var x = 5, y = 5;
+drawGraphics();
+await delay(1);
+
+// Define your array of items
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+
+// Get the user input
+var user_shelf = await input ("Pick an item by selecting a shelf number:");
+
+// Change to shelf_index
+var shelf_index = user_shelf - 1;
+
+// Print out the fruit on the selected shelf
+print(array_fruits[shelf_index])
+
+function drawGraphics() {
+	gr();
+	var shelf_color = "brown"
+	x = 5; y = 5;
+	drawImageFromURL('./pics/fruits/apple.png', x, y, 10, 10);
+	text("1", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 25; y = 5;
+	drawImageFromURL('./pics/fruits/orange.png', x, y, 10, 10);
+	text("2", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 45; y = 5;
+	drawImageFromURL('./pics/fruits/banana.png', x, y, 10, 10);
+	text("3", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 5; y = 20;
+	drawImageFromURL('./pics/fruits/blueberry.png', x, y, 10, 10);
+	text("4", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 25; y = 20;
+	drawImageFromURL('./pics/fruits/lime.png', x, y, 10, 10);
+	text("5", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 45; y = 20;
+	drawImageFromURL('./pics/fruits/coconut.png', x, y, 10, 10);
+	text("6", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+}
+</textarea>
+<textarea id="LessonExampleCode">
+var x = 5, y = 5;
+drawGraphics();
+
+// Define your array of items
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+
+// Get the user input
+var user_shelf = await input ("Pick an item by selecting a shelf number:");
+
+// Change to shelf_index
+var shelf_index = user_shelf - 1;
+
+// Print out the fruit on the selected shelf
+print(array_fruits[shelf_index])
+
+function drawGraphics() {
+	gr();
+	var shelf_color = "brown"
+	x = 5; y = 5;
+	drawImageFromURL('./pics/fruits/apple.png', x, y, 10, 10);
+	text("1", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 25; y = 5;
+	drawImageFromURL('./pics/fruits/orange.png', x, y, 10, 10);
+	text("2", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 45; y = 5;
+	drawImageFromURL('./pics/fruits/banana.png', x, y, 10, 10);
+	text("3", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 5; y = 20;
+	drawImageFromURL('./pics/fruits/blueberry.png', x, y, 10, 10);
+	text("4", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 25; y = 20;
+	drawImageFromURL('./pics/fruits/lime.png', x, y, 10, 10);
+	text("5", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+	
+	x = 45; y = 20;
+	drawImageFromURL('./pics/fruits/coconut.png', x, y, 10, 10);
+	text("6", "beige", x+5, y+10);
+	line(x, y+8, x+10, y+8, shelf_color);
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson91");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

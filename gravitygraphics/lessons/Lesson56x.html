@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Picture Frame</h1>
+	<p>We are going use the squareBoxes() function in the 3 square boxes lesson to make a picture frame and draw an image in it.</p>
+	<p>Alter the squareBoxes function to include drawing an image in the smallest box, and call the function pictureFrame().</p>
+<pre>
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+
+}
+</pre>
+	<p>To draw the image, call the drawImageFromURL() function below:</p>
+<pre>
+drawImageFromURL(url, x1, y1, width, height);
+</pre>
+	<p>Note: Image may take a while to load.</p>
+	<br>
+	<br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson56');">Lesson 56</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson56x2');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+// MAKING A PHOTO FRAME
+
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+	// box 2
+	var x1 = x - size * 1.5;
+	var y1 = y - size * 1.5;
+	var x2 = x + size * 1.5;
+	var y2 = y + size * 1.5;
+	rect(x1, y1, x2, y2, color + 1);
+	
+	// box 1
+	var x1 = x - size;
+	var y1 = y - size;
+	var x2 = x + size;
+	var y2 = y + size;
+	rect(x1, y1, x2, y2, color);
+	
+	// box 3
+	var x1 = x - size * 0.8;
+	var y1 = y - size * 0.8;
+	var x2 = x + size * 0.8;
+	var y2 = y + size * 0.8;
+	rect(x1, y1, x2, y2, color - 1);
+	
+	drawImageFromURL(url, x1, y1, (size + 0.6) * 0.8 * 2, (size + 0.6) * 0.8 * 2);
+}
+pictureFrame('https://robohash.org/1.png?size=200x200', x=30, y=20, size=10, color=random(1,15));
+await delay(2);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+// MAKING A PHOTO FRAME
+
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+	// box 2
+	var x1 = x - size * 1.5;
+	var y1 = y - size * 1.5;
+	var x2 = x + size * 1.5;
+	var y2 = y + size * 1.5;
+	rect(x1, y1, x2, y2, color + 1);
+	
+	// box 1
+	var x1 = x - size;
+	var y1 = y - size;
+	var x2 = x + size;
+	var y2 = y + size;
+	rect(x1, y1, x2, y2, color);
+	
+	// box 3
+	var x1 = x - size * 0.8;
+	var y1 = y - size * 0.8;
+	var x2 = x + size * 0.8;
+	var y2 = y + size * 0.8;
+	rect(x1, y1, x2, y2, color - 1);
+	
+	// insert picture
+	drawImage(url, x1, y1, (size + 1) * 0.8 * 2, (size + 1) * 0.8 * 2);
+}
+
+// Call the function
+pictureFrame('https://robohash.org/1.png?size=200x200', x=30, y=20, size=10, color=random(1,15));
+
+// refreshes the loaded image on the screen
+await delay(2);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson56x");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

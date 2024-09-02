@@ -11,42 +11,74 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 42: Dynamic Variables and While Loop</h1>
-	<p>Let's use dynamic variables to draw a fan with diagonal lines. The code to draw a line is this:</p>
+	<h1>Lesson 42: Comparison Operators</h1>
+	<p>Let's make a guessing game with comparison operators where the computer will hint the user to guess lower or higher until the user guess the correct number.</p>
+	<p>Comparison operators are used to compare two values and return a Boolean (true or false) based on the comparison.</p>
 <pre>
-line(x1=0, y1=0, x2=59, y2=35, color="red");
+< (less than): 5 < 10 // true
+> (greater than): 10 > 5 // true
+<= (less than or equal to): 5 <= 5 // true
+>= (greater than or equal to): 10 >= 5 // true
+== (equal to): 5 == 5 // true
+!= (not equal to): 5 != 10 // true
+=== (strict equal to): 5 === 5 // true
+!== (strict not equal to): 5 !== '5' // true
 </pre>
 
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x2.html');">Exercise</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson42x.html')">Exercise</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x5');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson43');">Lesson 43</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
 gr();
-var i = 0;
-var j = 0;
-while (i < 60) {
-	i = i + 3;
-	j = 60-i;
-	line(x1=i, y1=0, x2=j, y2=35, color="red");
-	await delay();
-}
+var number = random (0,10);
+var question = "What number am I thinking of?"
+text(question);
 
+while (guess != number) {
+	var guess = await input ("Type in your guess (0-10):");
+	if (guess > number) {
+		clear();
+		drawgrid();
+		text("Guess lower");
+	} else if (guess < number) {
+		clear();
+		drawgrid();
+		text("Guess higher");
+	} else {
+		clear();
+		drawgrid();
+		text("That is correct!");
+		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+	}
+}
 </textarea>
 <textarea id="LessonExampleCode">
 gr();
-var i = 0;
-var j = 0;
-while (i < 60) {
-	i = i + 3;
-	j = 60-i;
-	line(x1=i, y1=0, x2=j, y2=35, color="red");
-	await delay();
-}
+var number = random (0,10);
+var question = "What number am I thinking of?"
+text(question);
 
+while (guess != number) {
+	var guess = await input ("Type in your guess (0-10):");
+	if (guess > number) {
+		clear();
+		drawgrid();
+		text("Guess lower");
+	} else if (guess < number) {
+		clear();
+		drawgrid();
+		text("Guess higher");
+	} else {
+		clear();
+		drawgrid();
+		text("That is correct!");
+		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+	}
+}
 </textarea>
 <script>
 parent.ShowExample();

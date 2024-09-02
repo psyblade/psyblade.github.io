@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 59: Alternate Lines Using Mod</h1>
+	<p>One of the uses of the mod operator is to generate alternate lines like the ones you see in your notebook.</p>
+	<p>The gist of it is:</p>
+<pre>
+for (let y=0; y < 40; y++) {
+	result = y%2;
+	if (result == 1) { // draw white line }
+	if (result == 0) { // draw grey line }
+}
+</pre>
+	<p>To generate some gibberish text for testing, you can use the Lorem Ipsum function:</p>
+<pre>
+print (generateLoremIpsum(3)); // Generate a paragraph with 3 sentences
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson58');">Lesson 58</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson59x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+var line_height = 2;
+
+for (let y=0; y < 40; y++) {
+	var result = y%2;
+	if (result == 1) rect(0, (y * line_height), 60, (y * line_height) + line_height, "white");
+	if (result == 0) rect(0, (y * line_height), 60, (y * line_height) + line_height, "#efefef");
+}
+
+print (generateLoremIpsum(3)); // Generate a paragraph with 3 sentences
+</textarea>
+<textarea id="LessonExampleCode">
+var line_height = 2;
+
+for (let y=0; y < 40; y++) {
+	var result = y%2;
+	if (result == 1) rect(0, (y * line_height), 60, (y * line_height) + line_height, "white"); 	// draw white line (Odd Number)
+	if (result == 0) rect(0, (y * line_height), 60, (y * line_height) + line_height, "#efefef");// draw grey line (Even Number)
+}
+
+print (generateLoremIpsum(3)); // Generate a paragraph with 3 sentences
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson59");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

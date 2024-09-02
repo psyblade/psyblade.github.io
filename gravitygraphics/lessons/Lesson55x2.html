@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Change Size by Percentage</h1>
+	<p>In the previous exercise we change the size of the rectangle using pixels. Now we are going to change the height using percentage.</p>
+	<p>If we want a size to be 50% bigger then we multiply the size by 1.5 (150/100). If we want the size to be 50% smaller, then we multiply by the size by 0.5 (50/100). The multiply sign is represented by the asterisk (*) </p>
+<pre>
+normal_width = width * 1;
+bigger_width = width * 2;
+smaller_width = width * 0.5;
+</pre>
+
+	<p>Edit your threeFrames function from the previous lesson to quicken your work.</p>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson55x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson56');">Lesson 56</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+function threeFrames(x, y, width, height, color=random(1,15)) {
+	frame(x, y, width, height, random(1,15));
+	frame(x, y, width * 1.5, height * 1.5, random(1,15));
+	frame(x, y, width * 0.5, height * 0.5, random(1,15));
+}
+
+threeFrames(30, 20, 30, 20);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+function myFrame (x, y, width, height, color=random(1,15)) {
+	line(x - (width/2), y - (height/2), x + (width/2), y - (height/2), color); 
+	line(x + (width/2), y - (height/2), x + (width/2), y + (height/2), color);
+	line(x + (width/2), y + (height/2), x - (width/2), y + (height/2), color); 
+	line(x - (width/2), y + (height/2), x - (width/2), y - (height/2), color); 
+}
+
+function threeFrames(x, y, width, height, color=random(1,15)) {
+	myFrame(x, y, width, height, random(1,15));
+	myFrame(x, y, width * 1.5, height * 1.5, random(1,15));
+	myFrame(x, y, width * 0.5, height * 0.5, random(1,15));
+}
+
+threeFrames(30, 20, 30, 20);
+
+
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson55x2");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

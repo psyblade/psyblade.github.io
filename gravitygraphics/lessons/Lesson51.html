@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 51: Functions</h1>
+	<p>Functions is a way to group and organize your code to make it neat, simple, and more readable. For example instead of just generating a random percentage like this:</p>
+<pre>
+var number = random(1,100);
+text(number + "% = " + number + "/100 = " + (number / 100));
+</pre>
+	<p>We can write a randomPercentage() function for more readability:</p>
+<pre>
+function randomPercentage() {
+	var number = random(1,100);
+	text(number + "% = " + number + "/100 = " + (number / 100));
+}
+randomPercentage();
+</pre>
+	<p>After writing the function we have to call the function to execute it. Otherwise, it would not do anything.</p>
+	<p>This is a function without parameters.</p>
+	<br>
+	<br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson50');">Lesson 50</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson51x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+function randomPercentage() {
+	var number = random(1,100);
+	text(number + "% = " + number + "/100 = " + (number / 100));
+}
+randomPercentage();
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+function randomPercentage() {
+	text(number + "% = " + number + "/100 = " + (number / 100));
+}
+randomPercentage();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson51");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 60: Detect Pixel Color</h1>
+	<p>You can detect the color of a pixel by using the function:</p>
+<pre>
+getPixelColor(x, y)
+</pre>
+	<p>To find the color of (1, 0) on the screen, we simply type:</p>
+<pre>
+print (getPixelColor(1, 0));
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson59x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson60x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+while (true) {
+	gr();
+	plot (1, 0);
+	var color = getPixelColor(1, 0);
+	print ("The color at (1, 0) is " + color);
+	await input ("Press enter to continue:");
+	home();
+}
+</textarea>
+<textarea id="LessonExampleCode">
+while (true) {
+	gr();
+	plot (1, 0);
+	var color = getPixelColor(1, 0);
+	print ("The color at (1, 0) is " + color);
+	await input ("Press enter to continue:");
+	home();
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson60");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

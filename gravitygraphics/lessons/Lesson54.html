@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 54: Write Your Own Function</h1>
+	<p>Let's write your own function that draws a frame given the center x, and y, together with the width, and height.</p>
+	<p>To write a function, it must always start with the word 'function' followed by the name you give your function.</p>
+	<p>Name your function myFrame as shown below.</p>
+	
+<pre>
+function myFrame(x, y, width, height, color) {
+
+}
+</pre>
+
+	<p>Use the line function to draw each sides.</p>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson53x3');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson54x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+frame(30, 20, 30, 20);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+function myFrame (x, y, width, height, color=random(1,15)) {
+	line(x - (width/2), y - (height/2), x + (width/2), y - (height/2), color); 
+	line(x + (width/2), y - (height/2), x + (width/2), y + (height/2), color);
+	line(x + (width/2), y + (height/2), x - (width/2), y + (height/2), color); 
+	line(x - (width/2), y + (height/2), x - (width/2), y - (height/2), color); 
+}
+
+myFrame(x=30, y=20, width=30, height=20, color=random(3,20));
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson54");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

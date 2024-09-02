@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 93: For-each Loop</h1>
+	<p>You can print an array using the for-loop...</p>
+<pre>
+let fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+for(i=0; i < fruits.length; i++) {
+	print(fruits[i])
+}
+</pre>
+	<p>... or you can print it using the for-each loop:</p>
+<pre>
+let fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+fruits.forEach(fruit => {
+  print(fruit);
+});
+</pre>
+	<p>Note that fruit (which is different from fruits which is an array) carries the current fruit that the for-each loop is pointing to.</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson92');">Lesson 92</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson94');">Lesson 94</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+array_fruits.forEach(fruit => print(fruit));
+</textarea>
+<textarea id="LessonExampleCode">
+// We define our array
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+
+// Printing the array using for-each loop
+array_fruits.forEach(fruit => {
+  print(fruit)
+});
+
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson93");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

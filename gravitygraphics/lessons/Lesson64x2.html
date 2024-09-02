@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Snake-o-tron Game</h1>
+	<p>Now we are going to add another line of a different color and moving it using the arrow keys.</p>
+<pre>
+// Function to handle any key press
+function onKeyDown(event) {
+	if (event.key == "ArrowUp") y -= 1;
+	...
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</pre>
+	<p>Give it a try.</p>
+	
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson64x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson64x3');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+var x1 = 5;
+var y1 = 5;
+
+var x2 = 60-5;
+var y2 = 36-5;
+
+plot(x1, y1, "red");
+plot(x2, y2, "blue");
+
+// Function to handle any key press
+function onKeyDown(event) {
+
+	// Prevent the default action (like scrolling)
+	event.preventDefault();
+	
+	if (event.key == "w") y1 -= 1;
+	if (event.key == "a") x1 -= 1;
+	if (event.key == "s") y1 += 1;
+	if (event.key == "d") x1 += 1;
+	if (event.key == "ArrowUp") y2 -= 1;
+	if (event.key == "ArrowLeft") x2 -= 1;
+	if (event.key == "ArrowDown") y2 += 1;
+	if (event.key == "ArrowRight") x2 += 1;
+	plot(x1, y1, "red");
+	plot(x2, y2, "blue");
+}
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+var x1 = 5;
+var y1 = 5;
+
+var x2 = 60-5;
+var y2 = 36-5;
+
+plot(x1, y1, "red");
+plot(x2, y2, "blue");
+
+// Function to handle any key press
+function onKeyDown(event) {
+
+	// Prevent the default action (like scrolling)
+	event.preventDefault();
+
+	if (event.key == "w") y1 -= 1;
+	if (event.key == "a") x1 -= 1;
+	if (event.key == "s") y1 += 1;
+	if (event.key == "d") x1 += 1;
+	if (event.key == "ArrowUp") y2 -= 1;
+	if (event.key == "ArrowLeft") x2 -= 1;
+	if (event.key == "ArrowDown") y2 += 1;
+	if (event.key == "ArrowRight") x2 += 1;
+	plot(x1, y1, "red");
+	plot(x2, y2, "blue");
+}
+
+
+
+// Add event listener to detect any key press
+window.addEventListener('keydown', onKeyDown);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson64x2");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

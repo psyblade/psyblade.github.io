@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 61: Dots and Circles</h1>
+	<p>To make dots and circles, use the dot() function. Example:</p>
+<pre>
+while(true) {
+	gr();
+	dot(x=30, y=20, radius=1);
+	await delay(1);
+	dot(x=30, y=20, radius=4);
+	await delay(1);
+	dot(x=30, y=20, radius=10);
+}
+</pre>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson60x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson61x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+while(true) {
+	gr();
+	dot(x=30, y=20, radius=1);
+	await delay(1);
+	dot(x=30, y=20, radius=4);
+	await delay(1);
+	dot(x=30, y=20, radius=10);
+	await delay(1);
+}
+</textarea>
+<textarea id="LessonExampleCode">
+while(true) {
+	gr();
+	dot(x=30, y=20, radius=1);
+	await delay(1);
+	dot(x=30, y=20, radius=4);
+	await delay(1);
+	dot(x=30, y=20, radius=10);
+	await delay(1);
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson61");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

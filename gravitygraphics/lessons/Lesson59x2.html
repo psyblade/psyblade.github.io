@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Challenge: Draw a Chess Board Using Mod</h1>
+	<p>Let's draw a chess board with alternating color between red and black by using only the rect() function. The size of each square is 4x4</p>
+	<p>Draw the chess board using mod(%)</p>
+	<p>Hint: If you can generate the sequece of numbers like shown on the left, you can solve this puzzel.</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson59x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson60');">Lesson 60</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+const boardSize = 8; // 8x8 squares
+const squareSize = 4; // Each square is 4x4
+var color = "";
+
+// Make square
+function drawSquare(x, y, color) {
+	rect(x,y, x+squareSize-1, y+squareSize-1, color);
+}
+
+function drawChessboard() {
+    for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+            let result = (row + col) % 2;
+			if (result == 0) color = 'red'; else color = "black";
+            drawSquare(col * squareSize, row * squareSize, color);
+			text(row + col, "white", col * squareSize, row * squareSize);
+        }
+    }
+}
+
+drawChessboard();
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+const boardSize = 8; // 8x8 squares
+const squareSize = 4; // Each square is 4x4
+var color = "";
+
+// Make square
+function drawSquare(x, y, color) {
+	rect(x,y, x+squareSize-1, y+squareSize-1, color);
+}
+
+function drawChessboard() {
+    for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+            let result = (row + col) % 2;
+			if (result == 0) color = 'red'; else color = "black";
+            drawSquare(col * squareSize, row * squareSize, color);
+        }
+    }
+}
+
+drawChessboard();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson59x2");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

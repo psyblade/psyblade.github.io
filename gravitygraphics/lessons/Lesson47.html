@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 47: Percentage</h1>
+	<p>A percentage is a way to express a number as a fraction of 100, representing a proportion or ratio out of a whole.</p>
+	<p>Example: If you take a numerator 20 divided by a base number 100, you will get a percentage of 0.2 or 20%.</p>
+<pre>
+print (20/100); // You get 0.2
+</pre>
+	<p>0.2 is the decimal form of the percentage.</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson46');">Lesson 46</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson48');">Lesson 48</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var number = random(1,100);
+text(number + "% = " + number + "/100 = " + (number / 100));
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var number = random(1,100);
+text(number + "% = " + number + "/100 = " + (number / 100));
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson47");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

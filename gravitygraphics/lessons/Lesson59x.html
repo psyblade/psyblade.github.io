@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Challenge: Draw a Chess Board</h1>
+	<p>Let's draw a chess board with alternating color between red and black. The size of each square is 4x4</p>
+	<p>Draw the chess board without using mod(%)</p>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson59');">Lesson 59</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson59x2');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+// Make square
+function drawSquare(x, y, color) {
+	rect(x,y, x+3, y+3, color);
+}
+
+function drawRow1(y) {
+	for (x=0; x < 4; x++) {
+		drawSquare((x * 8), y, "red") 		// Start with red square
+		drawSquare((x * 8) + 4, y, "black")  // Followed by blue square
+	}
+}
+
+function drawRow2(y) {
+	for (x=0; x < 4; x++) {
+		drawSquare((x * 8), y, "black") 		// Start with blue square
+		drawSquare((x * 8) + 4, y, "red") 	// Followed by red square
+	}
+}
+
+function drawBoard() {
+	for (y=0; y < 4; y++) {
+		drawRow1((y * 8)); // Draw Row 1
+		drawRow2((y * 8)+4); // Draw Row 2
+	}
+}
+
+drawBoard();
+</textarea>
+<textarea id="LessonExampleCode">
+// Try it. No solutions this time. :)
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson59x");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

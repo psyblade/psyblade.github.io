@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 95: Adding to List</h1>
+	<p>Let's make a shopping list and add fruits into it.</p>
+<pre>
+let fruits = [
+    ["apple", 1.50], 
+    ["orange", 0.80], 
+    ["banana", 0.60],
+    ["blueberry", 3.00], 
+    ["lime", 0.50], 
+    ["coconut", 2.50]
+];
+</pre>
+	<p>You can add or remove from list by using:</p>
+<pre>
+push() // Add to the end.
+unshift() // Add to the beginning.
+pop() // Removes the Last Element from the Array
+shift() // Removes the First Element from the Array
+</pre>
+
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson94');">Lesson 94</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson96');">Lesson96</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// We define our array
+let fruits = [
+    ["apple", 1.50], 
+    ["orange", 0.80], 
+    ["banana", 0.60],
+    ["blueberry", 3.00], 
+    ["lime", 0.50], 
+    ["coconut", 2.50]
+];
+
+var shopping_list = [];
+var basket = [];
+var belt = [];
+var checkout = [];
+
+function printFruitList() {
+	print ("List of fruits:");
+	for (let i=0; i < fruits.length; i++) {
+		print (i + ": " + fruits[i][0] + " $" + fruits[i][1].toFixed(2));
+	}
+}
+
+function printShoppingList() {
+	print ("Shopping List:");
+	for (let i=0; i < shopping_list.length; i++) {
+		print (i + ": " + shopping_list[i][0]);
+	}
+}
+
+function printBasket() {
+	print ("Basket (LIFO - Last in first out):");
+	for (let i=0; i < basket.length; i++) {
+		print (i + ": " + basket[i][0]);
+	}
+}
+
+function printBelt() {
+	print ("Conveyor Belt (FIFO - First in first out):");
+	for (let i=0; i < belt.length; i++) {
+		print (i + ": " + belt[i][0]);
+	}
+}
+
+function printCheckout() {
+	var total = 0;
+	print ("Checked Out:");
+	for (let i=0; i < checkout.length; i++) {
+		print (i + ": " + checkout[i][0]);
+		total = total + checkout[i][1];
+	}
+	print ("Total: $" + total.toFixed(2));
+}
+
+async function addToShoppingList() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Add three fruits to your shopping list (0-2):");
+		shopping_list.push(fruits[index]);
+		home();
+		printFruitList();
+		printShoppingList();
+	}
+	addToBasket();
+}
+
+async function addToBasket() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Which fruit in shopping list to buy and put in basket? (0-2):");
+		basket.unshift(shopping_list[index]);
+		home();
+		printFruitList();
+		printShoppingList();
+		printBasket();
+	}
+	addToConveyorBelt();
+}
+
+async function addToConveyorBelt() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Press enter to take out fruit from bag and put it on the conveyor belt:");
+		var item = basket.shift(); // LIFO
+		belt.push (item);
+		home();
+		printFruitList();
+		printShoppingList();
+		printBasket();
+		printBelt();
+	}
+	checkOutItem()
+}
+
+async function checkOutItem() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Press enter to check out the fruits on the conveyor belt:");
+		var item = belt.shift(); // FIFO
+		checkout.push (item);
+		home();
+		printFruitList();
+		printShoppingList();
+		printBasket();
+		printBelt();
+		printCheckout();
+	}
+}
+
+
+printFruitList();
+addToShoppingList();
+
+</textarea>
+<textarea id="LessonExampleCode">
+// We define our array
+let fruits = [
+    ["apple", 1.50], 
+    ["orange", 0.80], 
+    ["banana", 0.60],
+    ["blueberry", 3.00], 
+    ["lime", 0.50], 
+    ["coconut", 2.50]
+];
+
+var shopping_list = [];
+var basket = [];
+var belt = [];
+var checkout = [];
+
+function printFruitList() {
+	print ("List of fruits:");
+	for (let i=0; i < fruits.length; i++) {
+		print (i + ": " + fruits[i][0] + " $" + fruits[i][1].toFixed(2));
+	}
+}
+
+function printShoppingList() {
+	print ("Shopping List:");
+	for (let i=0; i < shopping_list.length; i++) {
+		print (i + ": " + shopping_list[i][0]);
+	}
+}
+
+function printBasket() {
+	print ("Basket (LIFO - Last in first out):");
+	for (let i=0; i < basket.length; i++) {
+		print (i + ": " + basket[i][0]);
+	}
+}
+
+function printBelt() {
+	print ("Conveyor Belt (FIFO - First in first out):");
+	for (let i=0; i < belt.length; i++) {
+		print (i + ": " + belt[i][0]);
+	}
+}
+
+function printCheckout() {
+	var total = 0;
+	print ("Checked Out:");
+	for (let i=0; i < checkout.length; i++) {
+		print (i + ": " + checkout[i][0]);
+		total = total + checkout[i][1];
+	}
+	print ("Total: $" + total.toFixed(2));
+}
+
+async function addToShoppingList() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Add three fruits to your shopping list (0-2):");
+		shopping_list.push(fruits[index]);
+		home();
+		printFruitList();
+		printShoppingList();
+	}
+	addToBasket();
+}
+
+async function addToBasket() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Which fruit in shopping list to buy and put in basket? (0-2):");
+		basket.unshift(shopping_list[index]);
+		home();
+		printFruitList();
+		printShoppingList();
+		printBasket();
+	}
+	addToConveyorBelt();
+}
+
+async function addToConveyorBelt() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Press enter to take out fruit from bag and put it on the conveyor belt:");
+		var item = basket.shift(); // LIFO
+		belt.push (item);
+		home();
+		printFruitList();
+		printShoppingList();
+		printBasket();
+		printBelt();
+	}
+	checkOutItem()
+}
+
+async function checkOutItem() {
+	for (let i=0; i < 3; i++) {
+		var index = await input ("Press enter to check out the fruits on the conveyor belt:");
+		var item = belt.shift(); // FIFO
+		checkout.push (item);
+		home();
+		printFruitList();
+		printShoppingList();
+		printBasket();
+		printBelt();
+		printCheckout();
+	}
+}
+
+
+printFruitList();
+addToShoppingList();
+
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson95");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

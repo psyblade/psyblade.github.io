@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 53: Reusing the Star</h1>
+	<p>If we want reuse this code, we have to put this code into a function and pass in the x, y coordinates:</p>
+<pre>
+function drawStar(x, y, color) {
+	plot(x+1, y, color);
+	plot(x-1, y, color);
+	plot(x, y+1, color);
+	plot(x, y-1, color);
+}
+</pre>
+	<p>The we call the function by writing:</p>
+<pre>
+drawStar(20, 20, "red");
+drawStar(10, 10, "yellow");
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson53');">Lesson 53</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson53x2');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr()
+plot(21, 20, "cyan");
+plot(19, 20, "cyan");
+plot(20, 21, "cyan");
+plot(20, 19, "cyan");
+
+</textarea>
+<textarea id="LessonExampleCode">
+gr()
+function drawStar(x, y, color) {
+	plot(x+1, y, color);
+	plot(x-1, y, color);
+	plot(x, y+1, color);
+	plot(x, y-1, color);
+}
+
+drawStar(20, 20, "red");
+drawStar(10, 10, "yellow");
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson53x");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

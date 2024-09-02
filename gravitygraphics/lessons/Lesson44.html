@@ -11,105 +11,57 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 44: Use Functions to Organize Your Code</h1>
-	<p>Let's use functions to organize our code by putting repetative codes into functions.</p>
-	<p>We also do error checking using 'typeof' to make sure 'guess' is not 'undefined' or a non-number</p>
+	<h1>Lesson 44: Comments</h1>
+	<p>As our code gets longer, a way to keep track of our code is to use comments. Comments makes it easier for other and ourselves to read what is written.</p>
+	<p>Use the double backstroke sign (//), to write a comment. Anything to the right of the (//) sign on the same line, the computer will ignore.</p>
 <pre>
-if (typeof guess === 'undefined') {
-	resetAndWrite(question);
-	return false;
-} else if (typeof Number(guess) !== 'number') {
-	resetAndWrite("Please type in a number");
-	return false;
-} 
-</pre>
+// Print week days
+print("Monday");
+print("Tuesday");
+print("Wednesday");
+print("Thursday");
+print("Friday");
 
-	<h3></h3>
+// Print weekends
+print("Saturday");
+print("Sunday");
+</pre>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson43.html');">Lesson 43</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson44x.html')">Exercise</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson43x');">Practice</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson45');">Lesson 45</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-gr();
-var number = random (0,100);
-var question = "What number am I thinking of?"
-text(question);
+// Print week days
+print("Monday");
+print("Tuesday");
+print("Wednesday");
+print("Thursday");
+print("Friday");
 
-while (checkGuess(guess, number) == false) {
-	var guess = await input ("Type in your guess (0-100):");
-}
-
-function checkGuess(guess, number) {
-	console.log(typeof guess);
-	if (typeof guess === 'undefined') {
-		resetAndWrite(question);
-		return false;
-	} else if (typeof Number(guess) !== 'number') {
-		resetAndWrite("Please type in a number");
-		return false;
-	} else if (guess > number) {
-		resetAndWrite("Guess lower");
-		return false;
-	} else if (guess < number) {
-		resetAndWrite("Guess higher");
-		return false;
-	} else {
-		resetAndWrite("That is correct!");
-		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
-		return true;
-	}
-}
-
-function resetAndWrite(string) {
-	clear();
-	drawgrid();
-	text(string);
-}
+// Print weekends
+print("Saturday");
+print("Sunday");
 </textarea>
 <textarea id="LessonExampleCode">
-gr();
-var number = random (0,100);
-var question = "What number am I thinking of?"
-text(question);
+// Print week days
+print("Monday");
+print("Tuesday");
+print("Wednesday");
+print("Thursday");
+print("Friday");
 
-while (checkGuess(guess, number) == false) {
-	var guess = await input ("Type in your guess (0-100):");
-}
-
-function checkGuess(guess, number) {
-	console.log(typeof guess);
-	if (typeof guess === 'undefined') {
-		resetAndWrite(question);
-		return false;
-	} else if (typeof Number(guess) !== 'number') {
-		resetAndWrite("Please type in a number");
-		return false;
-	} else if (guess > number) {
-		resetAndWrite("Guess lower");
-		return false;
-	} else if (guess < number) {
-		resetAndWrite("Guess higher");
-		return false;
-	} else {
-		resetAndWrite("That is correct!");
-		beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
-		return true;
-	}
-}
-
-function resetAndWrite(string) {
-	clear();
-	drawgrid();
-	text(string);
-}
+// Print weekends
+print("Saturday");
+print("Sunday");
 </textarea>
 <script>
 parent.ShowExample();
 parent.LoadYourCode("TextAreaYourCode", "Lesson44");
 parent.HideHelper();
 parent.HideHelperButton();
+parent.HideSolution();
 </script>
 </body>
 </html>

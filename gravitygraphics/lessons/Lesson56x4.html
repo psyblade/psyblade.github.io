@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Challenge: Memory Game</h1>
+	<p>We are going make 6 picture frames using your pictureFrame function with 6 different images from the Internet.</p>
+	<p>Call the pictureFrame() function using the example below:</p>
+<pre>
+pictureFrame(url, x=30, y=20, size=10, color=random(1,15));
+</pre>
+	<p>In this challenge we can use the built-in function square() which is the same as your function squareBox()</p>
+<pre>
+square(x=30, y=20, size=10, color=random(1,15));
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson56x3');">Challenge</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson57');">Lesson 57</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+// Make a photo frame
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+	square(x, y, size * 1.5); 	// box 2
+	square(x, y, size); 		// box 1
+	square(x, y, size * 0.8);	// box 3
+	drawImageFromURL(url, x - size * 0.8, y - size * 0.8, (size + 0.6) * 0.8 * 2, (size + 0.6) * 0.8 * 2);
+}
+
+function showCards() {
+	pictureFrame("https://robohash.org/" + card1 + ".png?size=200x200", x=12, y=9, size=4, color=random(1,15)); // box 1
+	pictureFrame("https://robohash.org/" + card2 + ".png?size=200x200", x=30, y=9, size=4, color=random(1,15)); // box 2
+	pictureFrame("https://robohash.org/" + card3 + ".png?size=200x200", x=48, y=9, size=4, color=random(1,15)); // box 3
+	pictureFrame("https://robohash.org/" + card4 + ".png?size=200x200", x=12, y=26, size=4, color=random(1,15)); // box 4
+	pictureFrame("https://robohash.org/" + card5 + ".png?size=200x200", x=30, y=26, size=4, color=random(1,15)); // box 5
+	pictureFrame("https://robohash.org/" + card6 + ".png?size=200x200", x=48, y=26, size=4, color=random(1,15)); // box 6
+}
+
+function hideCards() {
+	pictureFrame('https://placehold.co/200?text=1&font=roboto', x=12, y=9, size=4, color=random(1,15)); // box 1
+	pictureFrame('https://placehold.co/200?text=2&font=roboto', x=30, y=9, size=4, color=random(1,15)); // box 2
+	pictureFrame('https://placehold.co/200?text=3&font=roboto', x=48, y=9, size=4, color=random(1,15)); // box 3
+	pictureFrame('https://placehold.co/200?text=4&font=roboto', x=12, y=26, size=4, color=random(1,15)); // box 4
+	pictureFrame('https://placehold.co/200?text=5&font=roboto', x=30, y=26, size=4, color=random(1,15)); // box 5
+	pictureFrame('https://placehold.co/200?text=6&font=roboto', x=48, y=26, size=4, color=random(1,15)); // box 6
+}
+
+// Make random cards
+var card1 = random(1,999);
+var card2 = random(1,999);
+var card3 = random(1,999);
+var card4 = random(1,999);
+var card5 = random(1,999);
+var card6 = random(1,999);
+
+// Show cards
+showCards();
+await delay(2);
+text("Memorize");
+await delay(3);
+gr();
+
+// Hide Cards
+hideCards();
+await delay(1);
+text("Picking a card...");
+await delay(1);
+
+// Generate Question Card
+var card_answer = random(1,6);
+var card_value = 0;
+if (card_answer == 1) {
+	card_value = card1;
+} else if (card_answer == 2) {
+	card_value = card2;
+} else if (card_answer == 3) {
+	card_value = card3;
+} else if (card_answer == 4) {
+	card_value = card4;
+} else if (card_answer == 5) {
+	card_value = card5;
+} else if (card_answer == 6) {
+	card_value = card6;
+}
+
+// Show Question Card
+pictureFrame("https://robohash.org/" + card_value + ".png?size=200x200", x=30, y=18, size=10, color=random(1,15));
+
+// Ask user for the answer
+var answer = await input("Which is this?");
+
+// Determine if user's answer is correct or not
+if (answer == card_answer) {
+	gr();
+	showCards();
+	text("You are correct!");
+} else {
+	gr();
+	showCards();
+	text("You are incorrect!");
+	print("Not correct. The answer is " + card_answer + ".");
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+// Make a photo frame
+function pictureFrame(url, x=30, y=20, size=10, color=random(1,15)) {
+	square(x, y, size * 1.5); 	// box 2
+	square(x, y, size); 		// box 1
+	square(x, y, size * 0.8);	// box 3
+	drawImageFromURL(url, x - size * 0.8, y - size * 0.8, (size + 0.6) * 0.8 * 2, (size + 0.6) * 0.8 * 2);
+}
+
+function showCards() {
+	pictureFrame("https://robohash.org/" + card1 + ".png?size=200x200", x=12, y=9, size=4, color=random(1,15)); // box 1
+	pictureFrame("https://robohash.org/" + card2 + ".png?size=200x200", x=30, y=9, size=4, color=random(1,15)); // box 2
+	pictureFrame("https://robohash.org/" + card3 + ".png?size=200x200", x=48, y=9, size=4, color=random(1,15)); // box 3
+	pictureFrame("https://robohash.org/" + card4 + ".png?size=200x200", x=12, y=26, size=4, color=random(1,15)); // box 4
+	pictureFrame("https://robohash.org/" + card5 + ".png?size=200x200", x=30, y=26, size=4, color=random(1,15)); // box 5
+	pictureFrame("https://robohash.org/" + card6 + ".png?size=200x200", x=48, y=26, size=4, color=random(1,15)); // box 6
+}
+
+function hideCards() {
+	pictureFrame('https://placehold.co/200?text=1&font=roboto', x=12, y=9, size=4, color=random(1,15)); // box 1
+	pictureFrame('https://placehold.co/200?text=2&font=roboto', x=30, y=9, size=4, color=random(1,15)); // box 2
+	pictureFrame('https://placehold.co/200?text=3&font=roboto', x=48, y=9, size=4, color=random(1,15)); // box 3
+	pictureFrame('https://placehold.co/200?text=4&font=roboto', x=12, y=26, size=4, color=random(1,15)); // box 4
+	pictureFrame('https://placehold.co/200?text=5&font=roboto', x=30, y=26, size=4, color=random(1,15)); // box 5
+	pictureFrame('https://placehold.co/200?text=6&font=roboto', x=48, y=26, size=4, color=random(1,15)); // box 6
+}
+
+// Make random cards
+var card1 = random(1,999);
+var card2 = random(1,999);
+var card3 = random(1,999);
+var card4 = random(1,999);
+var card5 = random(1,999);
+var card6 = random(1,999);
+
+// Show cards
+showCards();
+await delay(2);
+text("Memorize");
+await delay(3);
+gr();
+
+// Hide Cards
+hideCards();
+await delay(1);
+text("Picking a card...");
+await delay(1);
+
+// Generate Question Card
+var card_answer = random(1,6);
+var card_value = 0;
+if (card_answer == 1) {
+	card_value = card1;
+} else if (card_answer == 2) {
+	card_value = card2;
+} else if (card_answer == 3) {
+	card_value = card3;
+} else if (card_answer == 4) {
+	card_value = card4;
+} else if (card_answer == 5) {
+	card_value = card5;
+} else if (card_answer == 6) {
+	card_value = card6;
+}
+
+// Show Question Card
+pictureFrame("https://robohash.org/" + card_value + ".png?size=200x200", x=30, y=18, size=10, color=random(1,15));
+
+// Ask user for the answer
+var answer = await input("Which is this?");
+
+// Determine if user's answer is correct or not
+if (answer == card_answer) {
+	gr();
+	showCards();
+	text("You are correct!");
+} else {
+	gr();
+	showCards();
+	text("You are incorrect!");
+	print("Not correct. The answer is " + card_answer + ".");
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson56x4");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

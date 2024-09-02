@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Practice: Text Font Size</h1>
+	<p>Replicate what you see on the screen:</p>
+	<p>For references here's the text function with various parameters:</p>
+	<pre>
+text(str, color, x, y, fontsize);
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x3');">Practice</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson41x5');">Practice</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+for (var i = 0; i < 70; i=i+2) {
+	text("Hello Moles", color=random(1, 15), x="center", y="center", fontsize=i);
+	await delay();
+}
+text("Hello Moles", color="white", x="center", y="center", fontsize=i);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+for (var i = 0; i < 70; i=i+2) {
+	text("Hello Moles", color=random(1, 15), x="center", y="center", fontsize=i);
+	await delay();
+}
+text("Hello " + "Moles", color="white", x="center", y="center", fontsize=i);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson41x4");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>
