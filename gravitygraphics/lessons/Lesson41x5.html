@@ -17,6 +17,23 @@
 	<pre>
 text(str, color, x, y, fontsize, fontfamily);
 </pre>
+	<p>Some of the available fonts in this library are:</p>
+<pre>
+CabinSketch
+Creepster
+GermaniaOne
+PirataOne
+PixelifySans
+SairaStencilOne
+Satisfy
+Sevillana
+ShadowsIntoLight
+Silkscreen
+</pre>
+
+<p>Try changing the fonts.</p>
+
+<br><br>
 	<h3></h3>
 	<div id="buttons">
 		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson41x3');">Practice</button>
@@ -27,28 +44,32 @@ text(str, color, x, y, fontsize, fontfamily);
 <textarea id="LessonRunCode">
 while (true) {
 	gr();
+	font_family = "gunship";
 	for (i=150; i > 70; i=i-8) {
-		text("LOVE", color=random(1, 15), x="center", y="center", fontsize=i, fontfamily="gunship");
+		text("LOVE", color=random(1, 15), x="center", y="center", fontsize=i, fontfamily=font_family);
 	}
-	text("LOVE", color="black", x="center", y="center", fontsize=i, fontfamily="gunship");
+	text("LOVE", color="black", x="center", y="center", fontsize=i, fontfamily=font_family);
 	i=i-8;
-	text("LOVE", color="white", x="center", y="center", fontsize=i, fontfamily="gunship");
+	text("LOVE", color="white", x="center", y="center", fontsize=i, fontfamily=font_family);
 	await delay();
 	clear();
 }
+
 </textarea>
 <textarea id="LessonExampleCode">
 while (true) {
 	gr();
+	font_family = "gunship";
 	for (i=150; i > 70; i=i-8) {
-		text("LOVE", color=random(1, 15), x="center", y="center", fontsize=i, fontfamily="gunship");
+		text("LOVE", color=random(1, 15), x="center", y="center", fontsize=i, fontfamily=font_family);
 	}
-	text("LOVE", color="black", x="center", y="center", fontsize=i, fontfamily="gunship");
+	text("LOVE", color="black", x="center", y="center", fontsize=i, fontfamily=font_family);
 	i=i-8;
-	text("LOVE", color="white", x="center", y="center", fontsize=i, fontfamily="gunship");
+	text("LOVE", color="white", x="center", y="center", fontsize=i, fontfamily=font_family);
 	await delay();
 	clear();
 }
+
 </textarea>
 <script>
 parent.ShowExample();
