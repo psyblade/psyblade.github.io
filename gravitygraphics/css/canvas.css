@@ -22,6 +22,57 @@
   font-family: Anton;
   src: url(../fonts/Anton-Regular.ttf);
 }
+
+@font-face {
+  font-family: 'CabinSketch';
+  src: url(../fonts/CabinSketch/CabinSketch-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Creepster';
+  src: url(../fonts/Creepster/Creepster-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'GermaniaOne';
+  src: url(../fonts/GermaniaOne/GermaniaOne-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PirataOne';
+  src: url(../fonts/PirataOne/PirataOne-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PixelifySans';
+  src: url(../fonts/PixelifySans/PixelifySans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SairaStencilOne';
+  src: url(../fonts/SairaStencilOne/SairaStencil_One-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Satisfy';
+  src: url(../fonts/Satisfy/Satisfy-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Sevillana';
+  src: url(../fonts/Sevillana/Sevillana-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ShadowsIntoLight';
+  src: url(../fonts/ShadowsIntoLight/ShadowsIntoLight-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url(../fonts/Silkscreen/Silkscreen-Regular.ttf) format('truetype');
+}
+
 body {
 	overflow:hidden;
 	font-family: II40;
