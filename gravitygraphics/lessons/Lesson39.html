@@ -11,47 +11,43 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 39: Reusing the Star</h1>
-	<p>If we want reuse this code, we have to put this code into a function and pass in the x, y coordinates:</p>
+	<h1>Lesson 39: Moving Animations</h1>
+	<p>To do moving animations we simply draw something, delay for a bit, clear the canvas and do it all over again.</p>
+	<p>Now let's try to add clear canvas to our code and see what happens</p>
 <pre>
-function drawStar(x, y, color) {
-	plot(x+1, y, color);
-	plot(x-1, y, color);
-	plot(x, y+1, color);
-	plot(x, y-1, color);
+for (i=0; i<100; i++) {
+	plot(random(0,59), random(0,35), random(1,15));
+	plot(random(0,59), random(0,35), random(1,15));
+	await delay(1);
+	clear();
 }
 </pre>
-	<p>The we call the function by writing:</p>
-<pre>
-drawStar(20, 20, "red");
-drawStar(10, 10, "yellow");
-</pre>
+
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson38.html');">Lesson 38</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson39x.html')">Exercise</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson38');">Lesson 38</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson39x');">Exercise</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-gr()
-plot(21, 20, "cyan");
-plot(19, 20, "cyan");
-plot(20, 21, "cyan");
-plot(20, 19, "cyan");
+for (i=0; i<100; i++) {
+	gr()
+	plot(random(0,59), random(0,35), random(1,15));
+	plot(random(0,59), random(0,35), random(1,15));
+	await delay(1);
+	clear();
+}
 
 </textarea>
 <textarea id="LessonExampleCode">
-gr()
-function drawStar(x, y, color) {
-	plot(x+1, y, color);
-	plot(x-1, y, color);
-	plot(x, y+1, color);
-	plot(x, y-1, color);
+for (i=0; i<100; i++) {
+	gr()
+	plot(random(0,59), random(0,35), random(1,15));
+	plot(random(0,59), random(0,35), random(1,15));
+	await delay(1);
+	clear();
 }
-
-drawStar(20, 20, "red");
-drawStar(10, 10, "yellow");
 </textarea>
 <script>
 parent.ShowExample();

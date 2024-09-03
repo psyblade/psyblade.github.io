@@ -14,13 +14,13 @@
 	<h1>Lesson 17: Random Color</h1>
 	
 	<p>We can also have the computer to pick a random color for us using the <b>random()</b> command, like this example below:</p>
-	<pre>dot(random(0,59), random(0,39), random(0,15));</pre>
+	<pre>plot(random(0,59), random(0,39), random(0,15));</pre>
 	<p>By specifying a range like (0,15), we are asking the computer to pick a color anywhere from 0 to 15 for us.</p>
 	<p>Click <b>RUN EXAMPLE CODE</b> multiple times to see the pixels change locations and colors!</p>
 	
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson16.html')">Lesson 16</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson18.html')">Lesson 18</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson16');">Lesson 16</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson18');">Lesson 18</button>
 	</div>
 </div>
 <textarea id="LessonRunCode">
@@ -28,8 +28,8 @@ gr();
 </textarea>
 <textarea id="LessonExampleCode">
 gr();
-dot(random(0,59), random(0,39), random(0,15));
-dot(random(0,59), random(0,39), random(0,15));
+plot(random(0,59), random(0,39), random(0,15));
+plot(random(0,59), random(0,39), random(0,15));
 </textarea>
 <script>
 parent.ShowExample();
