@@ -310,8 +310,8 @@
 	<img id="logo" src="imgs/menu-logo.png" alt="logo">
 	
 	<div class="tabs">
-		<div id="tab1" class="tab" onclick="showMenu('1');"><h1>Menu 1 |</h1></div>
-		<div id="tab2" class="tab" onclick="showMenu('2');"><h1>Menu 2</h1></div>
+		<div id="tab1" class="tab" onclick="NavigateToMenu('1');"><h1>Menu 1 |</h1></div>
+		<div id="tab2" class="tab" onclick="NavigateToMenu('2');"><h1>Menu 2</h1></div>
 	</div>
 	
 	<div id="menu1" class="menu">
@@ -551,6 +551,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+const params = new URLSearchParams(window.location.search);
+const menu = params.get('menu');
+
+function NavigateToMenu(url) {
+	window.top.location.href  = '../index.html?menu=' + url // + '&' + (Math.random()*Math.random());
+	
+}
+
 function showMenu(menuNum) {
 	$("#menu1").hide();
 	$("#menu2").hide();
@@ -565,8 +573,13 @@ function showMenu(menuNum) {
 }
 	
 $(document).ready(function() {
+	$("#menu1").hide();
 	$("#menu2").hide();
-	showMenu(1);
+	if (menu === null) {
+		showMenu(1);
+	} else {
+		showMenu(menu);
+	}
 });
 
 </script>
