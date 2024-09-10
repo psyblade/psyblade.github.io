@@ -503,12 +503,33 @@
 				<a href="app.html?p=Lesson64x2">Snake-o-tron Game</a>
 				<a href="app.html?p=Lesson64x3">Collision Detection</a>
 				<a href="app.html?p=Lesson64x4">Border Collision</a>
-				<a href="">Animation Loop</a>
 			</div>
 			<div class="menu-column">
 				<div class="fa-stack">
 					<div class="circle">
 					<strong>5</strong>
+					</div>
+				</div>
+				<a href="app.html?p=Lesson65">Animation Loop</a>
+				<a href="app.html?p=Lesson66">Frame Rate</a>
+				<a href="app.html?p=Lesson66x">Second Player</a>
+				<a href="app.html?p=Lesson66x2">Collision Detection</a>
+				<a href="app.html?p=Lesson67">KeyUp</a>
+				<a href="app.html?p=Lesson67x">Border Collision</a>
+				<a href="app.html?p=Lesson67x2">Teleporting Borders</a>
+				<a href="app.html?p=Lesson68">Chase Mechanics</a>
+				<a href="app.html?p=Lesson69">Player-Enemy Collision</a>
+				<a href="app.html?p=Lesson69x">Normalization</a>
+				<a href="app.html?p=Lesson69x2">Enemy Range</a>
+				<a href="app.html?p=Lesson69x3">Sentinel</a>
+				<a href="app.html?p=Lesson69x4">Patroller</a>
+				<a href="app.html?p=Lesson69x5">Pong</a>
+				<a href="app.html?p=Lesson69x6">Pong Scores</a>
+			</div>
+			<div class="menu-column">
+				<div class="fa-stack">
+					<div class="circle">
+					<strong>6</strong>
 					</div>
 				</div>
 				<a href="app.html?p=Lesson90">Arrays</a>
@@ -521,14 +542,12 @@
 				<a href="app.html?p=Lesson95">Adding to List</a>
 				<a href="app.html?p=Lesson96">Quiz Game With Arrays</a>
 				<a href="app.html?p=Lesson97">Planetary Quiz</a>
-			</div>
-			<div class="menu-column">
-				<div class="fa-stack">
-					<div class="circle">
-					<strong>6</strong>
-					</div>
-				</div>
-
+				<a href="app.html?p=Lesson98">Random Words</a>
+				<a href="app.html?p=Lesson98x">Different Color Letters</a>
+				<a href="app.html?p=Lesson98x2">Typer Shark</a>
+				<a href="app.html?p=Lesson99">Animated Starfield</a>
+				<a href="app.html?p=Lesson99x">Planet Background</a>
+				
 				<!--a href="app.html?p=Lesson34">Mouse Input (Whack a Pixel Mole Game)</a>
 				<a href="app.html?p=Lesson34">Mouse Input (Own Drawing App)</a-->
 			</div>
@@ -555,7 +574,7 @@ const params = new URLSearchParams(window.location.search);
 const menu = params.get('menu');
 
 function NavigateToMenu(url) {
-	window.top.location.href  = '../index.html?menu=' + url // + '&' + (Math.random()*Math.random());
+	window.top.location.href  = './index.html?menu=' + url // + '&' + (Math.random()*Math.random());
 	
 }
 
