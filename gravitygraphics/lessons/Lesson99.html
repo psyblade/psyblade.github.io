@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 99: Animated Starfield</h1>
+	<p>Using the Animation Loop and Array, we will animate the starfield from right to left.</p>
+	
+<pre>
+// PROCESS:
+// 1. push into array random dots
+function animate() { // 2. in animation loop,
+    updateStars(); // 3. update position of every star in array
+    drawStars(); // 4. clear screen and draw every star in array
+    requestAnimationFrame(animate);
+}
+</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson98x2');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson99x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// Array (starfield) 
+// RIGHT TO LEFT ANIMATED STARFIELD
+
+const stars = [];
+const numStars = 50; // Number of stars
+
+// Initialize stars with random positions
+function initStars() {
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * 60,
+            y: Math.random() * 36,
+            speed: 0.5 + Math.random() * 1.5, // Random speed for each star
+        });
+    }
+}
+
+// Draw the stars
+function drawStars() {
+    clear();
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        dot(star.x, star.y, 1, 15); // Draw the star as a 1x1 pixel dot
+    }
+}
+
+// Update the position of the stars
+function updateStars() {
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.x -= star.speed; // Move star left
+        if (star.x < 0) {
+            star.x = 60; // Loop the star back to the right
+            star.y = Math.random() * 36; // Randomize the y position
+        }
+    }
+}
+
+// Animation loop
+function animate() {
+    updateStars();
+    drawStars();
+    requestAnimationFrame(animate);
+}
+
+// Initialize and start animation
+initStars();
+animate();
+</textarea>
+<textarea id="LessonExampleCode">
+// Array (starfield) 
+// RIGHT TO LEFT ANIMATED STARFIELD
+
+const stars = [];
+const numStars = 50; // Number of stars
+
+// Initialize stars with random positions
+function initStars() {
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * 60,
+            y: Math.random() * 36,
+            speed: 0.5 + Math.random() * 1.5, // Random speed for each star
+        });
+    }
+}
+
+// Draw the stars
+function drawStars() {
+    clear();
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        dot(star.x, star.y, 1, 15); // Draw the star as a 1x1 pixel dot
+    }
+}
+
+// Update the position of the stars
+function updateStars() {
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.x -= star.speed; // Move star left
+        if (star.x < 0) {
+            star.x = 60; // Loop the star back to the right
+            star.y = Math.random() * 36; // Randomize the y position
+        }
+    }
+}
+
+// Animation loop
+function animate() {
+    updateStars();
+    drawStars();
+    requestAnimationFrame(animate);
+}
+
+// Initialize and start animation
+initStars();
+animate();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson99");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
