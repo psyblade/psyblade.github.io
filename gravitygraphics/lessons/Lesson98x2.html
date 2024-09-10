@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Challenge: Typer Shark</h1>
+	<p>Generate a random word and display it in green on the screen. As the user types, compare each character they input with the corresponding letter in the word. If the user types the correct letter, highlight that letter in red, while keeping the rest of the word green. Once the user correctly types all the letters of the word, replace it with a new random word and repeat the process.</p>	
+<pre>
+const words = [
+	"apple", "banana", "orange", "grape", "pear", "peach", "mango", "pineapple", "cherry", "strawberry",
+	"car", "truck", "bicycle", "train", "plane", "boat", "bus", "scooter", "motorcycle", "helicopter",
+	"dog", "cat", "mouse", "elephant", "lion", "tiger", "bear", "rabbit", "fox", "wolf",
+	"house", "apartment", "cottage", "mansion", "castle", "hut", "villa", "bungalow", "shack", "lodge"
+];
+</pre>
+
+
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson98x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson99');">Lesson 99</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var random_text = generateRandomWord();
+var correct_text = "";
+var correct_index = 0;
+drawColoredText(random_text, correct_text, 30, 20);
+
+function generateRandomWord() {
+    const words = [
+        "apple", "banana", "orange", "grape", "pear", "peach", "mango", "pineapple", "cherry", "strawberry",
+        "car", "truck", "bicycle", "train", "plane", "boat", "bus", "scooter", "motorcycle", "helicopter",
+        "dog", "cat", "mouse", "elephant", "lion", "tiger", "bear", "rabbit", "fox", "wolf",
+        "house", "apartment", "cottage", "mansion", "castle", "hut", "villa", "bungalow", "shack", "lodge"
+    ];
+    
+    // Select a random word from the array
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+}
+
+// Function to draw random colored characters on canvas
+function drawColoredText(itext, icorrect_text, x, y) {
+    for (let i = 0; i < icorrect_text .length; i++) {
+        // Draw the character on the canvas
+        text(itext[i], "red", ((x - (itext.length/2)) + (i * 2)), y);  // 2px spacing between characters
+    }
+    for (let i = icorrect_text .length; i < itext.length; i++) {
+        // Draw the character on the canvas
+        text(itext[i], "green", ((x - (itext.length/2)) + (i * 2)), y);  // 2px spacing between characters
+    }
+}
+
+function onKeyPress(event) {
+    const key = event.key;
+
+    if (key == random_text[correct_index]) {
+        correct_text = correct_text + random_text[correct_index];
+		drawColoredText(random_text, correct_text, 30, 20);
+		correct_index++;
+		if (correct_index == random_text.length) {
+			gr();
+			random_text = generateRandomWord();
+			correct_text = "";
+			correct_index = 0;
+			drawColoredText(random_text, correct_text, 30, 20);
+		}
+    } 
+}
+
+document.addEventListener('keydown', onKeyPress);
+
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var random_text = "hello";
+var correct_text = "";
+var correct_index = 0;
+drawColoredText(random_text, correct_text, 30, 20);
+
+function generateRandomWord() {
+    const words = [
+        "apple", "banana", "orange", "grape", "pear", "peach", "mango", "pineapple", "cherry", "strawberry",
+        "car", "truck", "bicycle", "train", "plane", "boat", "bus", "scooter", "motorcycle", "helicopter",
+        "dog", "cat", "mouse", "elephant", "lion", "tiger", "bear", "rabbit", "fox", "wolf",
+        "house", "apartment", "cottage", "mansion", "castle", "hut", "villa", "bungalow", "shack", "lodge"
+    ];
+    
+    // Select a random word from the array
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+}
+
+// Function to draw random colored characters on canvas
+function drawColoredText(itext, icorrect_text, x, y) {
+    for (let i = 0; i < icorrect_text .length; i++) {
+        // Draw the character on the canvas
+        text(itext[i], "red", ((x - (itext.length/2)) + (i * 2)), y);  // 2px spacing between characters
+    }
+    for (let i = icorrect_text .length; i < itext.length; i++) {
+        // Draw the character on the canvas
+        text(itext[i], "green", ((x - (itext.length/2)) + (i * 2)), y);  // 2px spacing between characters
+    }
+}
+
+function onKeyPress(event) {
+    const key = event.key;
+
+    if (key == random_text[correct_index]) {
+        correct_text = correct_text + random_text[correct_index];
+		drawColoredText(random_text, correct_text, 30, 20);
+		correct_index++;
+		if (correct_index == random_text.length) {
+			gr();
+			random_text = generateRandomWord();
+			correct_text = "";
+			correct_index = 0;
+			drawColoredText(random_text, correct_text, 30, 20);
+		}
+    } 
+}
+
+document.addEventListener('keydown', onKeyPress);
+
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson98x2");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Random Words</h1>
+	<p>Using what you have learned from array, use this list to generate random words on the screen.</p>
+	
+<pre>
+const words = [
+	"apple", "banana", "orange", "grape", "pear", 
+	"peach", "mango", "pineapple", "cherry", 
+	"strawberry", "car", "truck", "bicycle", 
+	"train", "plane", "boat", "bus", "scooter", 
+	"motorcycle", "helicopter", "dog", "cat", 
+	"mouse", "elephant", "lion", "tiger", "bear", 
+	"rabbit", "fox", "wolf", "house", "apartment", 
+	"cottage", "mansion", "castle", "hut", "villa", 
+	"bungalow", "shack", "lodge"
+];
+</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson97');">Lesson 97</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson98x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+function generateRandomWord() {
+	const words = [
+		"apple", "banana", "orange", "grape", "pear", 
+		"peach", "mango", "pineapple", "cherry", 
+		"strawberry", "car", "truck", "bicycle", 
+		"train", "plane", "boat", "bus", "scooter", 
+		"motorcycle", "helicopter", "dog", "cat", 
+		"mouse", "elephant", "lion", "tiger", "bear", 
+		"rabbit", "fox", "wolf", "house", "apartment", 
+		"cottage", "mansion", "castle", "hut", "villa", 
+		"bungalow", "shack", "lodge"
+	];
+    
+    // Select a random word from the array
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+}
+
+// Example usage: Generate 5 random words
+while(true) {
+	gr();
+    text(generateRandomWord());
+	await input ("Press enter to continue");
+	home();
+}
+</textarea>
+<textarea id="LessonExampleCode">
+function generateRandomWord() {
+	const words = [
+		"apple", "banana", "orange", "grape", "pear", 
+		"peach", "mango", "pineapple", "cherry", 
+		"strawberry", "car", "truck", "bicycle", 
+		"train", "plane", "boat", "bus", "scooter", 
+		"motorcycle", "helicopter", "dog", "cat", 
+		"mouse", "elephant", "lion", "tiger", "bear", 
+		"rabbit", "fox", "wolf", "house", "apartment", 
+		"cottage", "mansion", "castle", "hut", "villa", 
+		"bungalow", "shack", "lodge"
+	];
+    
+    // Select a random word from the array
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+}
+
+// Example usage: Generate 5 random words
+while(true) {
+	gr();
+    text(generateRandomWord());
+	await input ("Press enter to continue");
+	home();
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson98");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Different Color Letters</h1>
+	<p>You have the word "Hello" and you want to print "Hel" in red and "lo" in green. The way to do it is:</p>	
+<pre>
+var x_center = 30, y_center = 20;
+var spacing = 2, word = "Hello";
+for (let i = 0; i < word.length; i++) {
+	text(word[i], "red", ((x_center - (word.length/2)) + (i * spacing)), y_center); 
+}
+for (let i = 3; i < word.length; i++) {
+	text(word[i], "green", ((x_center - (word.length/2)) + (i * spacing)), y_center);  
+}
+</pre>
+	<p>(word.length/2) is to center the word by dividing the width of the word into 2</p>	
+
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson98');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson98x2');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+var x_center = 30;
+var y_center = 20;
+var spacing = 2;
+var word = "Hello";
+for (let i = 0; i < word.length; i++) {
+	text(word[i], "red", ((x_center - (word.length/2)) + (i * spacing)), y_center); 
+}
+for (let i = 3; i < word.length; i++) {
+	text(word[i], "green", ((x_center - (word.length/2)) + (i * spacing)), y_center);  
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+var x_center = 30;
+var y_center = 20;
+var spacing = 2;
+var word = "Hello";
+for (let i = 0; i < word.length; i++) {
+	text(word[i], "red", ((x_center - (word.length/2)) + (i * spacing)), y_center); 
+}
+for (let i = 3; i < word.length; i++) {
+	text(word[i], "green", ((x_center - (word.length/2)) + (i * spacing)), y_center);  
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson98x");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

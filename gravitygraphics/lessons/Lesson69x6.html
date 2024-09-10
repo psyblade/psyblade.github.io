@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Challenge: Pong Scores</h1>
+	<p>Show scores on the Pong game. Modify the code given.</p>
+<pre>
+
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson69x5');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson90');">Lesson 90</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// Initial position of the paddles and ball
+let playerX = 2; // Player paddle (left) x position
+let playerY = 18; // Player paddle (left) y position
+let playerHeight = 5;
+let playerScore = 0;
+
+let enemyX = 58; // Enemy paddle (right) x position
+let enemyY = 18; // Enemy paddle (right) y position
+let enemyHeight = 5;
+let enemyScore = 0;
+
+let ballX = 30; // Ball initial x position
+let ballY = 18; // Ball initial y position
+let ballSpeedX = 0.4; // Speed of the ball on x-axis
+let ballSpeedY = 0.4; // Speed of the ball on y-axis
+
+// Object to track which keys are pressed
+const keys = {
+  w: false,
+  s: false,
+  ArrowUp: false,
+  ArrowDown: false
+};
+
+// Event listeners for key down and key up
+document.addEventListener('keydown', onKeyDown);
+document.addEventListener('keyup', onKeyUp);
+
+function onKeyDown(event) {
+  switch (event.key) {
+    case 'w':
+      keys.w = true;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 's':
+      keys.s = true;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowUp':
+      keys.ArrowUp = true;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowDown':
+      keys.ArrowDown = true;
+      event.preventDefault(); // Prevent default action
+      break;
+  }
+}
+
+function onKeyUp(event) {
+  switch (event.key) {
+    case 'w':
+      keys.w = false;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 's':
+      keys.s = false;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowUp':
+      keys.ArrowUp = false;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowDown':
+      keys.ArrowDown = false;
+      event.preventDefault(); // Prevent default action
+      break;
+  }
+}
+
+// Function to move the player paddle based on key presses
+function movePlayer() {
+	if (keys.w && playerY > 0) {
+		playerY -= 1; // Move paddle up
+	}
+	if (keys.s && playerY + playerHeight < 36) {
+		playerY += 1; // Move paddle down
+	}
+}
+
+// Function to move the enemy paddle based on key presses
+function moveEnemy() {
+	if (keys.ArrowUp && enemyY > 0) {
+		enemyY -= 1; // Move paddle up
+	}
+	if (keys.ArrowDown && enemyY + enemyHeight < 36) {
+		enemyY += 1; // Move paddle down
+	}
+}
+
+// Function to move the ball
+function moveBall() {
+	ballX += ballSpeedX;
+	ballY += ballSpeedY;
+
+	// Ball collision with top and bottom walls
+	if (ballY <= 0 || ballY >= 36) {
+		ballSpeedY *= -1; // Reverse direction on y-axis
+	}
+
+	// Ball collision with player paddle
+	if (ballX <= playerX + 1 && ballY >= playerY && ballY <= playerY + playerHeight) {
+		ballSpeedX *= -1; // Reverse direction on x-axis
+	}
+
+	// Ball collision with enemy paddle
+	if (ballX >= enemyX - 1 && ballY >= enemyY && ballY <= enemyY + enemyHeight) {
+		ballSpeedX *= -1; // Reverse direction on x-axis
+	}
+	
+	// Show score
+	if (ballX < 0) enemyScore += 1;
+	if (ballX > 60) playerScore += 1;
+
+	// Ball out of bounds (scoring logic)
+	if (ballX < 0 || ballX > 60) {
+		console.log("Score! Resetting ball position.");
+		resetBall();
+	}
+}
+
+// Function to reset the ball position after scoring
+function resetBall() {
+	ballX = 30;
+	ballY = 18;
+	ballSpeedX = -ballSpeedX; // Reverse direction after a score
+}
+
+// Function to draw the paddles and ball
+function drawPlayer() {
+	for (let i = 0; i < playerHeight; i++) {
+		plot(playerX, playerY + i, 'blue'); // Draw the player paddle 
+	}
+}
+
+function drawEnemy() {
+	for (let i = 0; i < enemyHeight; i++) {
+		plot(enemyX, enemyY + i, 'red'); // Draw the enemy paddle
+	}
+}
+
+function drawBall() {
+	plot(ballX, ballY, 'white'); // Draw the ball
+}
+
+function drawScore() {
+	rect(29,0, 29,36, "#333");
+	text(playerScore, "green", 15, 3, 30); // Draw player score
+	text(enemyScore, "green", 45, 3, 30); // Draw enemy score
+}
+
+// Game loop to update positions and redraw the scene
+function gameLoop() {
+	gr(); // Clear screen
+	movePlayer(); // Move the player paddle based on key presses
+	moveEnemy(); // Move the enemy paddle based on key presses
+	moveBall(); // Move the ball
+	drawPlayer(); // Draw the player paddle
+	drawEnemy(); // Draw the enemy paddle
+	drawScore(); // Draw score
+	drawBall(); // Draw the ball
+
+	requestAnimationFrame(gameLoop); // Continue the loop
+}
+
+// Start the animation loop
+requestAnimationFrame(gameLoop);
+</textarea>
+<textarea id="LessonExampleCode">
+// Initial position of the paddles and ball
+let playerX = 2; // Player paddle (left) x position
+let playerY = 18; // Player paddle (left) y position
+let playerHeight = 5;
+
+let enemyX = 58; // Enemy paddle (right) x position
+let enemyY = 18; // Enemy paddle (right) y position
+let enemyHeight = 5;
+
+let ballX = 30; // Ball initial x position
+let ballY = 18; // Ball initial y position
+let ballSpeedX = 0.4; // Speed of the ball on x-axis
+let ballSpeedY = 0.4; // Speed of the ball on y-axis
+
+// Object to track which keys are pressed
+const keys = {
+  w: false,
+  s: false,
+  ArrowUp: false,
+  ArrowDown: false
+};
+
+// Event listeners for key down and key up
+document.addEventListener('keydown', onKeyDown);
+document.addEventListener('keyup', onKeyUp);
+
+function onKeyDown(event) {
+  switch (event.key) {
+    case 'w':
+      keys.w = true;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 's':
+      keys.s = true;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowUp':
+      keys.ArrowUp = true;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowDown':
+      keys.ArrowDown = true;
+      event.preventDefault(); // Prevent default action
+      break;
+  }
+}
+
+function onKeyUp(event) {
+  switch (event.key) {
+    case 'w':
+      keys.w = false;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 's':
+      keys.s = false;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowUp':
+      keys.ArrowUp = false;
+      event.preventDefault(); // Prevent default action
+      break;
+    case 'ArrowDown':
+      keys.ArrowDown = false;
+      event.preventDefault(); // Prevent default action
+      break;
+  }
+}
+
+// Function to move the player paddle based on key presses
+function movePlayer() {
+	if (keys.w && playerY > 0) {
+		playerY -= 1; // Move paddle up
+	}
+	if (keys.s && playerY + playerHeight < 36) {
+		playerY += 1; // Move paddle down
+	}
+}
+
+// Function to move the enemy paddle based on key presses
+function moveEnemy() {
+	if (keys.ArrowUp && enemyY > 0) {
+		enemyY -= 1; // Move paddle up
+	}
+	if (keys.ArrowDown && enemyY + enemyHeight < 36) {
+		enemyY += 1; // Move paddle down
+	}
+}
+
+// Function to move the ball
+function moveBall() {
+	ballX += ballSpeedX;
+	ballY += ballSpeedY;
+
+	// Ball collision with top and bottom walls
+	if (ballY <= 0 || ballY >= 36) {
+		ballSpeedY *= -1; // Reverse direction on y-axis
+	}
+
+	// Ball collision with player paddle
+	if (ballX <= playerX + 1 && ballY >= playerY && ballY <= playerY + playerHeight) {
+		ballSpeedX *= -1; // Reverse direction on x-axis
+	}
+
+	// Ball collision with enemy paddle
+	if (ballX >= enemyX - 1 && ballY >= enemyY && ballY <= enemyY + enemyHeight) {
+		ballSpeedX *= -1; // Reverse direction on x-axis
+	}
+
+	// Ball out of bounds (scoring logic)
+	if (ballX < 0 || ballX > 60) {
+		console.log("Score! Resetting ball position.");
+		resetBall();
+	}
+}
+
+// Function to reset the ball position after scoring
+function resetBall() {
+	ballX = 30;
+	ballY = 18;
+	ballSpeedX = -ballSpeedX; // Reverse direction after a score
+}
+
+// Function to draw the paddles and ball
+function drawPlayer() {
+	for (let i = 0; i < playerHeight; i++) {
+		plot(playerX, playerY + i, 'blue'); // Draw the player paddle 
+	}
+}
+
+function drawEnemy() {
+	for (let i = 0; i < enemyHeight; i++) {
+		plot(enemyX, enemyY + i, 'red'); // Draw the enemy paddle
+	}
+}
+
+function drawBall() {
+	plot(ballX, ballY, 'white'); // Draw the ball
+}
+
+// Game loop to update positions and redraw the scene
+function gameLoop() {
+	gr(); // Clear screen
+	movePlayer(); // Move the player paddle based on key presses
+	moveEnemy(); // Move the enemy paddle based on key presses
+	moveBall(); // Move the ball
+	drawPlayer(); // Draw the player paddle
+	drawEnemy(); // Draw the enemy paddle
+	drawBall(); // Draw the ball
+
+	requestAnimationFrame(gameLoop); // Continue the loop
+}
+
+// Start the animation loop
+requestAnimationFrame(gameLoop);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson69x6");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Insert Planet in Background</h1>
+	<p>Insert any planet you wish in the background.</p>
+	
+<pre>
+
+</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson99');">Lesson 99</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('');"></button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// Array (starfield) 
+// RIGHT TO LEFT ANIMATED STARFIELD
+
+const stars = [];
+const numStars = 50; // Number of stars
+
+// Initialize stars with random positions
+function initStars() {
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * 60,
+            y: Math.random() * 36,
+            speed: 0.5 + Math.random() * 1.5, // Random speed for each star
+        });
+    }
+}
+
+// Draw the stars
+function drawStars() {
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        dot(star.x, star.y, 1, 15); // Draw the star as a 1x1 pixel dot
+    }
+}
+
+// Update the position of the stars
+function updateStars() {
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.x -= star.speed; // Move star left
+        if (star.x < 0) {
+            star.x = 60; // Loop the star back to the right
+            star.y = Math.random() * 36; // Randomize the y position
+        }
+    }
+}
+
+const image_planet = new Image();
+function drawPlanet() {
+	drawImage(image_planet, 40, -20, 40, 40);
+}
+
+function loadImage(src) {
+    image_planet .src = src;
+
+    // Once the image has loaded, push it into the array
+    image_planet.onload = function() {
+        console.log('Image loaded and pushed to array:', src);
+    };
+
+    image_planet.onerror = function() {
+        console.error('Failed to load image:', src);
+    };
+}
+
+// Animation loop
+function animate() {
+	clear();
+	drawPlanet();
+    updateStars();
+    drawStars();
+    requestAnimationFrame(animate);
+}
+
+gr();
+
+// Load images into holder
+loadImage('./pics/planets/Mars.png');
+await delay(1);
+
+// Initialize and start animation
+initStars();
+animate();
+</textarea>
+<textarea id="LessonExampleCode">
+// Array (starfield) 
+// RIGHT TO LEFT ANIMATED STARFIELD
+
+const stars = [];
+const numStars = 50; // Number of stars
+
+// Initialize stars with random positions
+function initStars() {
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * 60,
+            y: Math.random() * 36,
+            speed: 0.5 + Math.random() * 1.5, // Random speed for each star
+        });
+    }
+}
+
+// Draw the stars
+function drawStars() {
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        dot(star.x, star.y, 1, 15); // Draw the star as a 1x1 pixel dot
+    }
+}
+
+// Update the position of the stars
+function updateStars() {
+    for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.x -= star.speed; // Move star left
+        if (star.x < 0) {
+            star.x = 60; // Loop the star back to the right
+            star.y = Math.random() * 36; // Randomize the y position
+        }
+    }
+}
+
+const image_planet = new Image();
+function drawPlanet() {
+	drawImage(image_planet, 40, -20, 40, 40);
+}
+
+function loadImage(src) {
+    image_planet .src = src;
+
+    // Once the image has loaded, push it into the array
+    image_planet.onload = function() {
+        console.log('Image loaded and pushed to array:', src);
+    };
+
+    image_planet.onerror = function() {
+        console.error('Failed to load image:', src);
+    };
+}
+
+// Animation loop
+function animate() {
+	clear();
+	drawPlanet();
+    updateStars();
+    drawStars();
+    requestAnimationFrame(animate);
+}
+
+gr();
+
+// Load images into holder
+loadImage('./pics/planets/Mars.png');
+await delay(1);
+
+// Initialize and start animation
+initStars();
+animate();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson99");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
