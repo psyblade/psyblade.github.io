@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Loading Images Into Memory</h1>
+	<p>For images that we want to keep calling and reusing, we don't want to load it from the URL source everytime. We want to get the image from the URL and then load it into memory (or a variable) where we can quickly access it anytime. Loading it from memory (which is on your local machine) is much quicker than loading it from a URL source on the Internet. To load and draw an image into and from memory use this:</p>
+<pre>
+// Load image into memory
+var image_holder = loadImageFromURL(src); 
+
+// Draw image from memory
+drawImage(img=image_holder, x=20, y=10, width=20, height=20); // Draw Image
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson99x');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson100x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+// Load image into memory
+var image_holder_apple = new Image();
+var image_holder_orange = new Image();
+var image_holder_banana = new Image();
+
+image_holder_apple = loadImageFromURL('./pics/fruits/apple.png', x=20, y=10, width=20, height=20); 
+image_holder_orange = loadImageFromURL('./pics/fruits/orange.png', x=20, y=10, width=20, height=20);
+image_holder_banana = loadImageFromURL('./pics/fruits/banana.png', x=20, y=10, width=20, height=20); 
+await delay(1);
+
+// Draw image from memory
+for (i=0; i<100; i++) {
+	gr();
+	drawImage(img=image_holder_apple, x=20, y=10, width=20, height=20); // Draw Image
+	text("fruits", random (1,15), "center", "10");
+	await delay();
+	gr();
+	drawImage(img=image_holder_orange, x=20, y=10, width=20, height=20); // Draw Image
+	text("fruits", random (1,15), "center", "10");
+	await delay();
+	gr();
+	drawImage(img=image_holder_banana, x=20, y=10, width=20, height=20); // Draw Image
+	text("fruits", random (1,15), "center", "10");
+	await delay();
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+// Load image into memory
+var image_holder_apple = new Image();
+var image_holder_orange = new Image();
+var image_holder_banana = new Image();
+
+image_holder_apple = loadImageFromURL('./pics/fruits/apple.png', x=20, y=10, width=20, height=20); 
+image_holder_orange = loadImageFromURL('./pics/fruits/orange.png', x=20, y=10, width=20, height=20);
+image_holder_banana = loadImageFromURL('./pics/fruits/banana.png', x=20, y=10, width=20, height=20); 
+await delay(1);
+
+// Draw image from memory
+for (i=0; i<100; i++) {
+	gr();
+	drawImage(img=image_holder_apple, x=20, y=10, width=20, height=20); // Draw Image
+	text("fruits", random (1,15), "center", "10");
+	await delay();
+	gr();
+	drawImage(img=image_holder_orange, x=20, y=10, width=20, height=20); // Draw Image
+	text("fruits", random (1,15), "center", "10");
+	await delay();
+	gr();
+	drawImage(img=image_holder_banana, x=20, y=10, width=20, height=20); // Draw Image
+	text("fruits", random (1,15), "center", "10");
+	await delay();
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson100");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>

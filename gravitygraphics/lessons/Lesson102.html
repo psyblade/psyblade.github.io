@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 102: Scrolling Background</h1>
+	<p>To scroll a background, we draw two of the same backgrounds one after the other. If the length of our background image is 100, then we draw at x = 0 and x = 0 + 100. We then decrease x until x == -100. When x hits -100 we reset x to 0.</p>
+	
+<pre>
+function updateBackground() {
+    backgroundX -= backgroundSpeed; // Move background to the left
+    if (backgroundX <= -backgroundWidth) backgroundX = 0; // If background scrolls off screen, reset background position
+}
+
+function drawBackground() {
+    drawImage(backgroundImage, backgroundX, 0, backgroundWidth, 36); // Draw first background image
+    drawImage(backgroundImage, backgroundX + backgroundWidth, 0, backgroundWidth, 36); // Draw second image to create a seamless loop
+}
+</pre>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson101');">Lesson 101</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson102x');">Exercise</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+const backgroundImage = new Image();
+let backgroundWidth = 270; // This is the width of the image you are using as background
+let backgroundX = 0; // Initial background position
+let backgroundSpeed = 0.5; // Scrolling speed for the background
+
+// Load scrolling background image
+backgroundImage.src = "./pics/scrollers/planet_terrain.png";
+
+// Scroll and draw the background
+function updateBackground() {
+    backgroundX -= backgroundSpeed; // Move background to the left
+    if (backgroundX <= -backgroundWidth) { // If background scrolls off screen
+        backgroundX = 0; // Reset background position
+    }
+}
+
+// Draw the scrolling background
+function drawBackground() {
+    drawImage(backgroundImage, backgroundX, 0, backgroundWidth, 36); // Draw first background image
+    drawImage(backgroundImage, backgroundX + backgroundWidth, 0, backgroundWidth, 36); // Draw second image to create a seamless loop
+}
+
+// Game loop
+function gameLoop() {
+	clear();
+    updateBackground();
+    drawBackground();
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+
+</textarea>
+<textarea id="LessonExampleCode">
+const backgroundImage = new Image();
+let backgroundWidth = 270; // This is the width of the image you are using as background
+let backgroundX = 0; // Initial background position
+let backgroundSpeed = 0.5; // Scrolling speed for the background
+
+// Load scrolling background image
+backgroundImage.src = "./pics/scrollers/planet_terrain.png";
+
+// Scroll and draw the background
+function updateBackground() {
+    backgroundX -= backgroundSpeed; // Move background to the left
+    if (backgroundX <= -backgroundWidth) { // If background scrolls off screen
+        backgroundX = 0; // Reset background position
+    }
+}
+
+// Draw the scrolling background
+function drawBackground() {
+    drawImage(backgroundImage, backgroundX, 0, backgroundWidth, 36); // Draw first background image
+    drawImage(backgroundImage, backgroundX + backgroundWidth, 0, backgroundWidth, 36); // Draw second image to create a seamless loop
+}
+
+// Game loop
+function gameLoop() {
+	clear();
+    updateBackground();
+    drawBackground();
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson102");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Exercise: Fruit Slot Machine</h1>
+	<p>Make a game where the computer keeps rolling random fruits until you hit a key to stop it and it will compare it with the selected fruit to see if you got it correct.</p>
+<pre>
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+</pre>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson100');">Lesson 100</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson101');">Lesson 101</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+
+var picked_index = random(0,5);
+var picked_fruit_name = array_fruits[picked_index];
+
+var random_index = 0;
+var random_fruit_name = "";
+
+var exit_spin = false;
+
+const array_fruits_images = []; // Array to hold loaded images
+
+// Event listener for keydown events
+window.addEventListener('keydown', onKeyDown);
+
+function onKeyDown(event) {
+	// Get the key that was pressed
+	const keyPressed = event.key;
+
+	// You can add more logic here based on the key pressed
+	console.log(`>>> Key pressed: ${keyPressed}`);
+	
+	exit_spin = true;
+}
+
+function pushImage(src) {
+    const img_fruit = new Image();
+    img_fruit.src = src;
+
+    // Once the image has loaded, push it into the array
+    img_fruit.onload = function() {
+        array_fruits_images.push(img_fruit);
+        console.log('Image loaded and pushed to array:', src);
+    };
+
+    img_fruit.onerror = function() {
+        console.error('Failed to load image:', src);
+    };
+}
+
+// Load images into the array
+for (i=0; i < array_fruits.length; i++) {
+	pushImage('./pics/fruits/' + array_fruits[i] + '.png');
+}
+
+await delay(1);
+	
+while (true) {
+	gr()
+	text(picked_fruit_name, "beige", "center", 4);
+	random_index = random(0, array_fruits.length);
+	random_fruit_name = array_fruits[random_index];
+	drawImage(array_fruits_images[random_index], 20, 10, 20, 20);
+	text(random_fruit_name, "beige", "center", "bottom");
+	if (exit_spin) {
+		if (random_fruit_name == picked_fruit_name) {
+			print ("You stopped at " + random_fruit_name + ". You won!");
+		}
+		else {
+			print ("You stopped at " + random_fruit_name + ". You lost!");
+		}
+		break;
+	}
+	await delay(0.2)
+}
+</textarea>
+<textarea id="LessonExampleCode">
+let array_fruits = ["apple", "orange", "banana", "blueberry", "lime", "coconut"];
+
+var picked_index = random(0,5);
+var picked_fruit_name = array_fruits[picked_index];
+
+var random_index = 0;
+var random_fruit_name = "";
+
+var exit_spin = false;
+
+const array_fruits_images = []; // Array to hold loaded images
+
+// Event listener for keydown events
+window.addEventListener('keydown', onKeyDown);
+
+function onKeyDown(event) {
+	// Get the key that was pressed
+	const keyPressed = event.key;
+
+	// You can add more logic here based on the key pressed
+	console.log(`>>> Key pressed: ${keyPressed}`);
+	
+	exit_spin = true;
+}
+
+function pushImage(src) {
+    const img_fruit = new Image();
+    img_fruit.src = src;
+
+    // Once the image has loaded, push it into the array
+    img_fruit.onload = function() {
+        array_fruits_images.push(img_fruit);
+        console.log('Image loaded and pushed to array:', src);
+    };
+
+    img_fruit.onerror = function() {
+        console.error('Failed to load image:', src);
+    };
+}
+
+// Load images into the array
+for (i=0; i < array_fruits.length; i++) {
+	pushImage('./pics/fruits/' + array_fruits[i] + '.png');
+}
+
+await delay(1);
+	
+while (true) {
+	gr()
+	text(picked_fruit_name, "beige", "center", 4);
+	random_index = random(0, array_fruits.length);
+	random_fruit_name = array_fruits[random_index];
+	drawImage(array_fruits_images[random_index], 20, 10, 20, 20);
+	text(random_fruit_name, "beige", "center", "bottom");
+	if (exit_spin) {
+		if (random_fruit_name == picked_fruit_name) {
+			print ("You stopped at " + random_fruit_name + ". You won!");
+		}
+		else {
+			print ("You stopped at " + random_fruit_name + ". You lost!");
+		}
+		break;
+	}
+	await delay(0.2)
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson91x2");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>
