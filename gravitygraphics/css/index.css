@@ -133,7 +133,18 @@ section {
   border:0px;
 }
 
-#section3 .container {
+#section3 textarea {
+	width: 100%;
+	height: 200px;
+	background-color: #f9d6d5;
+	color: red;
+	font-family: monospace;
+	white-space: pre-wrap;
+	padding: 10px;
+	border: 1px solid red;
+}
+
+#section4 .container {
   clear: both;
   border: 1px solid #d3d3d3;
   background-color: #fff;
@@ -141,7 +152,7 @@ section {
   width: 100%;
   max-width: 650px;
 }
-#section3 textarea {
+#section4 textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -157,7 +168,7 @@ section {
   white-space: pre;
   overflow-wrap: normal;
 }
-#section3 .buttonRunCode {
+#section4 .buttonRunCode {
   padding: 8px 20px 8px 20px;
   background-color: green;
   border: 0px solid black;
@@ -168,43 +179,43 @@ section {
   float: right;
   margin-top: -4px;
 }
-#section3 #YourCodeContainer {
+#section4 #YourCodeContainer {
   width: 650px;
   border-right: 1px solid #d3d3d3;
 }
-#section3 #YourCodeContainer #YourCodeTitleBar {
+#section4 #YourCodeContainer #YourCodeTitleBar {
   background-color: lightblue;
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
 }
-#section3 #YourCodeContainer #YourCodeTitleBar #YourCodeTitle {
+#section4 #YourCodeContainer #YourCodeTitleBar #YourCodeTitle {
   font-family: II40;
   font-size: 14px;
   display: inline-block;
   margin-left: 20px;
 }
-#section3 #YourCodeContainer #TextAreaYourCode {
+#section4 #YourCodeContainer #TextAreaYourCode {
   width: 100%;
   height: 500px;
 }
-#section3 #ExampleCodeContainer {
+#section4 #ExampleCodeContainer {
   float: none;
   overflow: hidden;
 }
-#section3 #ExampleCodeContainer #ExampleCodeTitleBar {
+#section4 #ExampleCodeContainer #ExampleCodeTitleBar {
   background-color: lightgreen;
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
 }
-#section3 #ExampleCodeContainer #ExampleCodeTitleBar #ExampleCodeTitle {
+#section4 #ExampleCodeContainer #ExampleCodeTitleBar #ExampleCodeTitle {
   font-family: II40;
   font-size: 14px;
   display: inline-block;
   margin-left: 20px;
 }
-#section3 #ExampleCodeContainer #TextAreaExampleCode {
+#section4 #ExampleCodeContainer #TextAreaExampleCode {
   width: 100%;
   height: 500px;
   /* pointer-events: none; */
@@ -262,10 +273,10 @@ section {
     max-width: 1100px;
   }
 
-  #section3 .container {
+  #section4 .container {
     max-width: 1100px;
   }
-  #section3 .container #YourCodeContainer {
+  #section4 .container #YourCodeContainer {
     float: left;
     width: 550px;
   }

@@ -84,6 +84,7 @@ body {
 canvas {
 	margin:0px; padding:0px;
 	background-color:black;
+	image-rendering: pixelated;
 }
 
 #gravityhelpercanvas {
