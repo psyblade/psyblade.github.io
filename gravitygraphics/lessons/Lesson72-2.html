@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 72-2: Linear Function</h1>
+	<p>Here's how y = 2x look like in a program, which is essentially the same as x = x + 1; and y = y + 2.
+	</p>
+<pre>
+// y = 2x
+for (let x=-30; x < 30; x += 0.1) {
+	y = 2 * x;
+	plotGraph(x, y);
+}
+</pre>
+<pre>
+var x = 0;
+var y = 0;
+for (let i=0; i < 60; i += 0.1) {
+	x = x + 0.1;
+	y = y + 0.2;
+	dot(x, 36 - y, 1, "cyan");
+}
+</pre>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson72');">Lesson 72</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson72-3');">Lesson 72-3</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+plotAxis();
+plotFirstQuadrantAxis();
+
+for (let x=-30; x < 30; x += 0.1) {
+	y = 2 * x;
+	plotGraph(x, y);
+}
+
+var x = 0;
+var y = 0;
+for (let i=0; i < 60; i += 0.1) {
+	x = x + 0.1;
+	y = y + 0.2;
+	dot(x, 36 - y, 1, "cyan");
+}
+
+
+///////////////////////
+// UTILITY FUNCTIONS
+///////////////////////
+
+// Plot graph
+function plotGraph(x, y, color=random(1,15)) {
+	dot(shiftX(x, 30), invertY(shiftY(y, 18)), 1, color);
+}
+
+// Invert Y because for screen coordinates, y=0 starts from the top
+function invertY(y) {
+	return 36 - y;
+}
+
+// Shift X
+function shiftX(x, shift) {
+	return x + shift;
+}
+
+// Shift Y
+function shiftY(y, shift) {
+	return y + shift;
+}
+
+// Plot axis
+function plotAxis() {
+	for (let i=0; i<60; i+=0.1) {
+		dot(i, 18, 1, "green");
+	}
+	for (let i=0; i<36; i+=0.1) {
+		dot(30, i, 1, "green");
+	}
+}
+
+// Plot first quadrant axis
+function plotFirstQuadrantAxis() {
+	for (let i=0; i<60; i+=0.1) {
+		dot(i, 36, 2, "cyan");
+	}
+	for (let i=0; i<36; i+=0.1) {
+		dot(0, i, 2, "cyan");
+	}
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+plotAxis();
+plotFirstQuadrantAxis();
+
+for (let x=-30; x < 30; x += 0.1) {
+	y = 2 * x;
+	plotGraph(x, y);
+}
+
+var x = 0;
+var y = 0;
+for (let i=0; i < 60; i += 0.1) {
+	x = x + 0.1;
+	y = y + 0.2;
+	dot(x, 36 - y, 1, "cyan");
+}
+
+
+///////////////////////
+// UTILITY FUNCTIONS
+///////////////////////
+
+// Plot graph
+function plotGraph(x, y, color=random(1,15)) {
+	dot(shiftX(x, 30), invertY(shiftY(y, 18)), 1, color);
+}
+
+// Invert Y because for screen coordinates, y=0 starts from the top
+function invertY(y) {
+	return 36 - y;
+}
+
+// Shift X
+function shiftX(x, shift) {
+	return x + shift;
+}
+
+// Shift Y
+function shiftY(y, shift) {
+	return y + shift;
+}
+
+// Plot axis
+function plotAxis() {
+	for (let i=0; i<60; i+=0.1) {
+		dot(i, 18, 1, "green");
+	}
+	for (let i=0; i<36; i+=0.1) {
+		dot(30, i, 1, "green");
+	}
+}
+
+// Plot first quadrant axis
+function plotFirstQuadrantAxis() {
+	for (let i=0; i<60; i+=0.1) {
+		dot(i, 36, 2, "cyan");
+	}
+	for (let i=0; i<36; i+=0.1) {
+		dot(0, i, 2, "cyan");
+	}
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson72-2");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

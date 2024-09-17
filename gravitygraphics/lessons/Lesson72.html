@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 72: Plotting Graphs</h1>
+	<p>In this lesson we are going to show you how programs relate to the cartesian coordinates and graphing functions in math you learn in your algebra class in school.</p>
+	<p>
+	Here's how y = x look like in a program.<br>It is similar to y = y + 1; x = x + 1;
+	</p>
+<pre>
+// y = x
+
+for (let x=-30; x < 30; x += 0.1) {
+	y = x;
+	plotGraph(x, y);
+}
+</pre>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson71');">Lesson 71</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson72-2');">Lesson 72-2</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+plotAxis();
+
+for (let x=-30; x < 30; x += 0.1) {
+	y = x;
+	plotGraph(x, y);
+}
+
+
+///////////////////////
+// UTILITY FUNCTIONS
+///////////////////////
+
+// Plot graph
+function plotGraph(x, y) {
+	dot(shiftX(x, 30), invertY(shiftY(y, 18)));
+}
+
+// Invert Y because for screen coordinates, y=0 starts from the top
+function invertY(y) {
+	return 36 - y;
+}
+
+// Shift X
+function shiftX(x, shift) {
+	return x + shift;
+}
+
+// Shift Y
+function shiftY(y, shift) {
+	return y + shift;
+}
+
+// Plot axis
+function plotAxis() {
+	for (let i=0; i<60; i+=0.1) {
+		dot(i, 18, 1, "green");
+	}
+	for (let i=0; i<36; i+=0.1) {
+		dot(30, i, 1, "green");
+	}
+}
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+plotAxis();
+
+for (let x=-30; x < 30; x += 0.1) {
+	y = x;
+	plotGraph(x, y);
+}
+
+
+///////////////////////
+// UTILITY FUNCTIONS
+///////////////////////
+
+// Plot graph
+function plotGraph(x, y) {
+	dot(shiftX(x, 30), invertY(shiftY(y, 18)));
+}
+
+// Invert Y because for screen coordinates, y=0 starts from the top
+function invertY(y) {
+	return 36 - y;
+}
+
+// Shift X
+function shiftX(x, shift) {
+	return x + shift;
+}
+
+// Shift Y
+function shiftY(y, shift) {
+	return y + shift;
+}
+
+// Plot axis
+function plotAxis() {
+	for (let i=0; i<60; i+=0.1) {
+		dot(i, 18, 1, "green");
+	}
+	for (let i=0; i<36; i+=0.1) {
+		dot(30, i, 1, "green");
+	}
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson72");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
