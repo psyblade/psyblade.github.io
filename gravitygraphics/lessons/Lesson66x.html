@@ -37,7 +37,7 @@ let gameOver = false;  // Flag to stop the game when a collision occurs
 
 // Function to update positions of both pixels
 async function updatePosition() {
-    if (!gameOver) {
+    if (!gameOver) {		
 		plot(x1, y1, color1); // Plot line
 		x1 += moveX1;
 		y1 += moveY1;
@@ -96,6 +96,9 @@ document.addEventListener('keydown', (event) => {
             break;
     }
 });
+
+gr();
+print ("Use W,A,S,D and Arrow Keys to move the vehicles.");
 
 // Start the animation
 requestAnimationFrame(updatePosition);
@@ -181,6 +184,8 @@ document.addEventListener('keydown', (event) => {
             break;
     }
 });
+
+print ("Use W,A,S,D and Arrow Keys to move the vehicles.");
 
 // Start the animation
 requestAnimationFrame(updatePosition);

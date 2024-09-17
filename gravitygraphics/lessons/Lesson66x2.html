@@ -97,7 +97,6 @@ function onCollision(winner) {
 	text(winner + " Wins!", "white");
 }
 
-
 // Event listeners for WASD keys to control the first pixel
 document.addEventListener('keydown', onKeyDownWASD);
 
@@ -149,6 +148,9 @@ function onKeyDownArrowKeys(event) {
             break;
     }
 }
+
+gr();
+print ("Use W,A,S,D and Arrow Keys to move the vehicles.");
 
 // Start the animation
 requestAnimationFrame(updatePosition);
@@ -283,6 +285,9 @@ function onKeyDownArrowKeys(event) {
             break;
     }
 }
+
+gr();
+print ("Use W,A,S,D and Arrow Keys to move the vehicles.");
 
 // Start the animation
 requestAnimationFrame(updatePosition);
