@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 70: Object Oriented Programming</h1>
+	<p>Object-oriented programming (OOP) is grouping variables (data) and functions (behavior) around the concept of "objects,", making it easier to manage complex systems.</p>
+	<p>
+	For example, instead of variables playerX, playerY, speed, and the functions movePlayer(), and drawPlayer() which are scattered throughout the code, we want to group them together as an object. One way we can do that is using Object Literals. Have a look at how the our code looks below without Object Literal. Now proceed to the next lesson to see how we can use Object Literals to organize our code.
+	</p>
+<pre>
+var playerX = 0;
+var playerY = 20;
+var playerSpeed = 0.3;
+
+function movePlayer() { 
+	playerX += playerSpeed;
+}
+
+function drawPlayer() { 
+	plot(playerX, playerY, "blue"); 
+}
+</pre>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson69x6');">Exercise</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson71');">Lesson 71</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+var playerX = 0;
+var playerY = 20;
+var enemyX = 59;
+var enemyY = 20;
+var playerSpeed = 0.3;
+var enemySpeed = 0.2;
+
+function movePlayer() { 
+	playerX += playerSpeed;
+}
+
+function moveEnemy() {
+	enemyX -= enemySpeed;
+}
+function drawPlayer() {
+	plot(playerX, playerY, "blue");
+
+}
+function drawEnemy() {
+	plot(enemyX, enemyY, "red");
+}
+
+function gameLoop() {
+	gr();
+	movePlayer(); drawPlayer();
+	moveEnemy(); drawEnemy();
+	requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);
+</textarea>
+<textarea id="LessonExampleCode">
+var playerX = 0;
+var playerY = 20;
+var enemyX = 59;
+var enemyY = 20;
+var playerSpeed = 0.3;
+var enemySpeed = 0.2;
+
+function movePlayer() { 
+	playerX += playerSpeed;
+}
+
+function moveEnemy() {
+	enemyX -= enemySpeed;
+}
+function drawPlayer() {
+	plot(playerX, playerY, "blue");
+
+}
+function drawEnemy() {
+	plot(enemyX, enemyY, "red");
+}
+
+function gameLoop() {
+	gr();
+	movePlayer(); drawPlayer();
+	moveEnemy(); drawEnemy();
+	requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson70");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

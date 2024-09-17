@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 71: (OOP) Object Literal</h1>
+	<p>Object literal in JavaScript is a way to define an object using a set of key-value pairs directly within curly braces {}. It is one of the most straightforward methods for creating objects, and the keys (properties) can be assigned specific values.</p>
+	<p>
+	Object literals are part of object-oriented programming (OOP) in JavaScript, but they are a more lightweight, simplified approach to defining objects. Using object literals, we will make the code from the previous lesson object oriented:
+	</p>
+<pre>
+const player = {
+	x: 0,
+	y: 20,
+	speed: 0.3,
+	
+	movePlayer: function() {
+		player.x += player.speed;
+	},
+	
+	drawPlayer: function() { 
+		plot(player.x, player.y, "blue"); 
+	}
+};
+</pre>
+	<p>
+	Now try making the enemy object object oriented with object literals. You can copy the entire code from the previous lesson and modify from there.
+	</p>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson70');">Lesson70</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson90');">Lesson 90</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// Player object
+const player = {
+	x: 0,
+	y: 20,
+	speed: 0.3,
+	
+	move: function() {
+		player.x += player.speed;
+	},
+	
+	draw: function() { 
+		plot(player.x, player.y, "blue"); 
+	}
+};
+
+// Enemy object
+const enemy = {
+	x: 59,
+	y: 20,
+	speed: 0.2,
+	
+	move: function() {
+		enemy.x -= enemy.speed;
+	},
+	
+	draw: function() { 
+		plot(enemy.x, enemy.y, "red"); 
+	}
+};
+
+// Game loop to update the position based on key presses
+function gameLoop() {
+	gr();
+	player.move();
+	player.draw();
+	enemy.move();
+	enemy.draw();
+	requestAnimationFrame(gameLoop); // Continue the loop
+}
+
+// Start the animation
+requestAnimationFrame(gameLoop);
+</textarea>
+<textarea id="LessonExampleCode">
+// Player object
+const player = {
+	x: 0,
+	y: 20,
+	speed: 0.3,
+	
+	move: function() {
+		player.x += player.speed;
+	},
+	
+	draw: function() { 
+		plot(player.x, player.y, "blue"); 
+	}
+};
+
+// Enemy object
+const enemy = {
+	x: 59,
+	y: 20,
+	speed: 0.2,
+	
+	move: function() {
+		enemy.x -= enemy.speed;
+	},
+	
+	draw: function() { 
+		plot(enemy.x, enemy.y, "red"); 
+	}
+};
+
+// Game loop to update the position based on key presses
+function gameLoop() {
+	gr();
+	player.move();
+	player.draw();
+	enemy.move();
+	enemy.draw();
+	requestAnimationFrame(gameLoop); // Continue the loop
+}
+
+// Start the animation
+requestAnimationFrame(gameLoop);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson71");
+parent.HideHelper();
+parent.HideHelperButton();
+parent.HideSolution();
+</script>
+</body>
+</html>
