@@ -11,20 +11,58 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 105: Add Obstacles</h1>
-	<p>Insert asteroids.</p>
+	<h1>Lesson 108: Bullet Enemy Collision</h1>
+	<p>For each bullet, we need to compare that bullet with each of the aliens to see if they collided. That is why the nested for-loop (i and j).</p>
 <pre>
+// Check for collisions between bullets and aliens
+for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	for (let j = aliens.alienArray.length - 1; j >= 0; j--) {
+		if (isColliding(bullets.bulletsArray[i], aliens.alienArray[j])) {
+			// Draw enemy explosion
+			drawAlienExplosion(aliens.alienArray[j].x, aliens.alienArray[j].y - 3, 8, 8);
 
+			// Remove the bullet and the alien upon collision
+			bullets.bulletsArray.splice(i, 1);
+			aliens.alienArray.splice(j, 1);
+			break; // Exit the inner loop as the bullet is removed
+		}
+	}
+}
 </pre>
-
+	<br><br>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson104-1');">Lesson 104-1</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson106');">Lesson 106</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson107');">Lesson 107</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('');"></button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
+// Explosion image
+const imageExplosion = new Image();
+imageExplosion.src = `./pics/explosions/explosion6.png`;
+
+// Draw spaceship explosion
+async function drawSpaceshipExplosion() {
+	for (let i=0; i<10; i++) {
+		drawImage(imageExplosion, random(spaceship.x-4, spaceship.x+8), random(spaceship.y-2, spaceship.y+3), 4, 4);
+		await delay(0.2);
+	}
+}
+
+// Draw alien explosion
+async function drawAlienExplosion(x, y, width, height) {
+	drawImage(imageExplosion, x, y, width, height);
+	await delay(0.2);
+}
+
+// AABB collision detection
+function isColliding(obj1, obj2) {
+    return obj1.x < obj2.x + obj2.width &&
+           obj1.x + obj1.width > obj2.x &&
+           obj1.y < obj2.y + obj2.height &&
+           obj1.y + obj1.height > obj2.y;
+}
 
 // Asteroid variation bitmaps
 const asteroidImages = [];
@@ -373,6 +411,46 @@ function gameLoop() {
     asteroids.move();          // Move the asteroids
     asteroids.draw();          // Draw the asteroids
     asteroids.remove();        // Remove off-screen asteroids
+	
+    // Check for collisions between bullets and aliens
+    for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+        for (let j = aliens.alienArray.length - 1; j >= 0; j--) {
+            if (isColliding(bullets.bulletsArray[i], aliens.alienArray[j])) {
+                console.log("Bullet hit alien!");
+
+                // Spawn an explosion at the point of collision
+                drawAlienExplosion(aliens.alienArray[j].x, aliens.alienArray[j].y - 3, 8, 8);
+
+                // Remove the bullet and the alien upon collision
+                bullets.bulletsArray.splice(i, 1);
+                aliens.alienArray.splice(j, 1);
+                break; // Exit the inner loop as the bullet is removed
+            }
+        }
+    }
+	
+    // Check for collisions with aliens
+    for (let i = aliens.alienArray.length - 1; i >= 0; i--) {
+        if (isColliding(spaceship, aliens.alienArray[i])) {
+            console.log("Collision with alien!"); // You can replace this with game over logic or health reduction
+            // Handle collision logic (e.g., end game, reduce health, etc.)
+			drawSpaceshipExplosion(random(spaceship.x-4, spaceship.x+8), random(spaceship.y-2, spaceship.y+3), 4, 4);
+			text ("Game Over", "red", "center", "17");
+			return;
+        }
+    }
+
+    // Check for collisions with asteroids
+    for (let i = asteroids.asteroidArray.length - 1; i >= 0; i--) {
+        if (isColliding(spaceship, asteroids.asteroidArray[i])) {
+            console.log("Collision with asteroid!"); // You can replace this with game over logic or health reduction
+            // Handle collision logic (e.g., end game, reduce health, etc.)
+			drawSpaceshipExplosion(random(spaceship.x-4, spaceship.x+8), random(spaceship.y-2, spaceship.y+3), 4, 4);
+			text ("Game Over", "red", "center", "17");
+			return;
+        }
+    }
+	
     requestAnimationFrame(gameLoop);
 }
 
@@ -398,6 +476,31 @@ start();
 
 </textarea>
 <textarea id="LessonExampleCode">
+// Explosion image
+const imageExplosion = new Image();
+imageExplosion.src = `./pics/explosions/explosion6.png`;
+
+// Draw spaceship explosion
+async function drawSpaceshipExplosion() {
+	for (let i=0; i<10; i++) {
+		drawImage(imageExplosion, random(spaceship.x-4, spaceship.x+8), random(spaceship.y-2, spaceship.y+3), 4, 4);
+		await delay(0.2);
+	}
+}
+
+// Draw alien explosion
+async function drawAlienExplosion(x, y, width, height) {
+	drawImage(imageExplosion, x, y, width, height);
+	await delay(0.2);
+}
+
+// AABB collision detection
+function isColliding(obj1, obj2) {
+    return obj1.x < obj2.x + obj2.width &&
+           obj1.x + obj1.width > obj2.x &&
+           obj1.y < obj2.y + obj2.height &&
+           obj1.y + obj1.height > obj2.y;
+}
 
 // Asteroid variation bitmaps
 const asteroidImages = [];
@@ -746,6 +849,46 @@ function gameLoop() {
     asteroids.move();          // Move the asteroids
     asteroids.draw();          // Draw the asteroids
     asteroids.remove();        // Remove off-screen asteroids
+	
+    // Check for collisions between bullets and aliens
+    for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+        for (let j = aliens.alienArray.length - 1; j >= 0; j--) {
+            if (isColliding(bullets.bulletsArray[i], aliens.alienArray[j])) {
+                console.log("Bullet hit alien!");
+
+                // Spawn an explosion at the point of collision
+                drawAlienExplosion(aliens.alienArray[j].x, aliens.alienArray[j].y - 3, 8, 8);
+
+                // Remove the bullet and the alien upon collision
+                bullets.bulletsArray.splice(i, 1);
+                aliens.alienArray.splice(j, 1);
+                break; // Exit the inner loop as the bullet is removed
+            }
+        }
+    }
+	
+    // Check for collisions with aliens
+    for (let i = aliens.alienArray.length - 1; i >= 0; i--) {
+        if (isColliding(spaceship, aliens.alienArray[i])) {
+            console.log("Collision with alien!"); // You can replace this with game over logic or health reduction
+            // Handle collision logic (e.g., end game, reduce health, etc.)
+			drawSpaceshipExplosion(random(spaceship.x-4, spaceship.x+8), random(spaceship.y-2, spaceship.y+3), 4, 4);
+			text ("Game Over", "red", "center", "17");
+			return;
+        }
+    }
+
+    // Check for collisions with asteroids
+    for (let i = asteroids.asteroidArray.length - 1; i >= 0; i--) {
+        if (isColliding(spaceship, asteroids.asteroidArray[i])) {
+            console.log("Collision with asteroid!"); // You can replace this with game over logic or health reduction
+            // Handle collision logic (e.g., end game, reduce health, etc.)
+			drawSpaceshipExplosion(random(spaceship.x-4, spaceship.x+8), random(spaceship.y-2, spaceship.y+3), 4, 4);
+			text ("Game Over", "red", "center", "17");
+			return;
+        }
+    }
+	
     requestAnimationFrame(gameLoop);
 }
 
@@ -768,11 +911,10 @@ function start() {
 }
 
 start();
-
 </textarea>
 <script>
 parent.ShowExample();
-parent.LoadYourCode("TextAreaYourCode", "Lesson105");
+parent.LoadYourCode("TextAreaYourCode", "Lesson108");
 parent.HideHelper();
 parent.HideHelperButton();
 </script>
