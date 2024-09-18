@@ -11,43 +11,17 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 103: Shooting a Single Bullet</h1>
-	<p>Here we learn the mechanics of firing a single bullet vertically. The gist of it is:</p>
+	<h1>Lesson 104: Space Invaders - Bullet-Enemy Collision</h1>
+	<p>Using what you have learned from array, to create the game space invaders.</p>
+	
 <pre>
-let bulletX = null;
-let bulletY = null;
-let bulletSpeed = -1;
-let bulletFired = false;
 
-// Move the bullet
-function moveBullet() {
-    if (bulletFired) {
-        bulletY += bulletSpeed;
-        if (bulletY < 0) {
-            bulletFired = false; // Reset bullet if it goes off-screen
-        }
-    }
-
-    // Fire a new bullet if space is pressed and no bullet is on screen
-    if (keys.Space && !bulletFired) {
-        bulletX = playerX + playerWidth / 2; // Set position of bullet to center of player paddle
-        bulletY = playerY - 1;
-        bulletFired = true;
-    }
-}
-
-// Function to draw the bullet
-function drawBullet() {
-    if (bulletFired) {
-        plot(bulletX, bulletY, 'white'); // Draw bullet
-    }
-}
 </pre>
-	<br><br>
+
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson102x2');">Exercise</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson103-2');">Lesson 103-2</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson103-4');">Lesson 103-4</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson104-1');">Lesson 104-1</button>
 	</div>
 </div>
 
@@ -61,6 +35,20 @@ let bulletX = null;
 let bulletY = null;
 let bulletSpeed = -1;
 let bulletFired = false;
+
+const enemyRows = 3;
+const enemyCols = 6;
+const enemies = [];
+var enemySpeedX = 0.2;
+const enemySpeedY = 1;
+
+// Enemy creation
+for (let row = 0; row < enemyRows; row++) {
+    enemies[row] = [];
+    for (let col = 0; col < enemyCols; col++) {
+        enemies[row][col] = { x: col * 8 + 10, y: row * 4 + 2, alive: true, direction: 1 };
+    }
+}
 
 // Object to track which keys are pressed
 const keys = {
@@ -123,9 +111,40 @@ function moveBullet() {
 
     // Fire a new bullet if space is pressed and no bullet is on screen
     if (keys.Space && !bulletFired) {
-        bulletX = playerX + playerWidth / 2; // Set position of bullet to center of player paddle
-        bulletY = playerY - 1; // Set position of bullet to 1 pixel above the player paddle
+        bulletX = playerX + playerWidth / 2;
+        bulletY = playerY - 1;
         bulletFired = true;
+    }
+}
+
+// Move the enemies left and right, without moving down
+function moveEnemies() {
+    // Move all enemies horizontally
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive) {
+                enemy.x += enemySpeedX * enemy.direction;
+
+                // If any enemy hits the left or right boundary, reverse direction
+                if (enemy.x <= 0 || enemy.x >= 58) {
+                    enemy.direction = enemy.direction * -1;
+                }
+            }
+        }
+    }
+}
+
+// Detect collision between bullet and enemies
+function detectCollision() {
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive && bulletFired &&
+                bulletX >= enemy.x && bulletX <= enemy.x + 2 &&
+                bulletY >= enemy.y && bulletY <= enemy.y + 2) {
+                enemy.alive = false; // Kill enemy
+                bulletFired = false; // Reset bullet
+            }
+        }
     }
 }
 
@@ -133,6 +152,17 @@ function moveBullet() {
 function drawPlayer() {
     for (let i = 0; i < playerWidth; i++) {
         plot(playerX + i, playerY, 'blue'); // Draw player as a blue line
+    }
+}
+
+// Function to draw the enemies
+function drawEnemies() {
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive) {
+                plot(enemy.x, enemy.y, 'red'); // Draw live enemies as red dots
+            }
+        }
     }
 }
 
@@ -148,8 +178,11 @@ function gameLoop() {
     gr(); // Clear screen
     movePlayer(); // Move player based on key presses
     moveBullet(); // Move the bullet
+    moveEnemies(); // Move the enemies
+    detectCollision(); // Check for collisions
     drawPlayer(); // Draw the player
     drawBullet(); // Draw the bullet
+    drawEnemies(); // Draw the enemies
 
     requestAnimationFrame(gameLoop); // Continue the loop
 }
@@ -170,6 +203,20 @@ let bulletY = null;
 let bulletSpeed = -1;
 let bulletFired = false;
 
+const enemyRows = 3;
+const enemyCols = 6;
+const enemies = [];
+var enemySpeedX = 0.2;
+const enemySpeedY = 1;
+
+// Enemy creation
+for (let row = 0; row < enemyRows; row++) {
+    enemies[row] = [];
+    for (let col = 0; col < enemyCols; col++) {
+        enemies[row][col] = { x: col * 8 + 10, y: row * 4 + 2, alive: true, direction: 1 };
+    }
+}
+
 // Object to track which keys are pressed
 const keys = {
     a: false,
@@ -231,9 +278,40 @@ function moveBullet() {
 
     // Fire a new bullet if space is pressed and no bullet is on screen
     if (keys.Space && !bulletFired) {
-        bulletX = playerX + playerWidth / 2; // Set position of bullet to center of player paddle
-        bulletY = playerY - 1; // Set position of bullet to 1 pixel above the player paddle
+        bulletX = playerX + playerWidth / 2;
+        bulletY = playerY - 1;
         bulletFired = true;
+    }
+}
+
+// Move the enemies left and right, without moving down
+function moveEnemies() {
+    // Move all enemies horizontally
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive) {
+                enemy.x += enemySpeedX * enemy.direction;
+
+                // If any enemy hits the left or right boundary, reverse direction
+                if (enemy.x <= 0 || enemy.x >= 58) {
+                    enemy.direction = enemy.direction * -1;
+                }
+            }
+        }
+    }
+}
+
+// Detect collision between bullet and enemies
+function detectCollision() {
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive && bulletFired &&
+                bulletX >= enemy.x && bulletX <= enemy.x + 2 &&
+                bulletY >= enemy.y && bulletY <= enemy.y + 2) {
+                enemy.alive = false; // Kill enemy
+                bulletFired = false; // Reset bullet
+            }
+        }
     }
 }
 
@@ -241,6 +319,17 @@ function moveBullet() {
 function drawPlayer() {
     for (let i = 0; i < playerWidth; i++) {
         plot(playerX + i, playerY, 'blue'); // Draw player as a blue line
+    }
+}
+
+// Function to draw the enemies
+function drawEnemies() {
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive) {
+                plot(enemy.x, enemy.y, 'red'); // Draw live enemies as red dots
+            }
+        }
     }
 }
 
@@ -256,8 +345,11 @@ function gameLoop() {
     gr(); // Clear screen
     movePlayer(); // Move player based on key presses
     moveBullet(); // Move the bullet
+    moveEnemies(); // Move the enemies
+    detectCollision(); // Check for collisions
     drawPlayer(); // Draw the player
     drawBullet(); // Draw the bullet
+    drawEnemies(); // Draw the enemies
 
     requestAnimationFrame(gameLoop); // Continue the loop
 }
@@ -269,7 +361,7 @@ print("Use A,D to move and Space to shoot.");
 </textarea>
 <script>
 parent.ShowExample();
-parent.LoadYourCode("TextAreaYourCode", "Lesson98");
+parent.LoadYourCode("TextAreaYourCode", "Lesson104");
 parent.HideHelper();
 parent.HideHelperButton();
 </script>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 104-1: Enemies Movements</h1>
+	<p>Insert enemies.</p>
+<pre>
+
+</pre>
+
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson104');">Lesson 104</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson105');">Lesson 105</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+// Alien object
+function alien(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 6; // Width in pixels
+    this.height = 3; // Height in pixels
+    this.speedX = Math.random() * 1.5 + 0.5; // Random horizontal speed
+    this.speedY = (Math.random() - 0.5) * 2; // Random vertical speed for unpredictable movement
+	this.image = new Image();
+	this.image.src = "./pics/spaceships/ufo.png";
+	
+    // Update the alien's position
+    this.move = function() {
+        this.x -= this.speedX; // Move left
+        this.y += this.speedY; // Move up or down unpredictably
+
+        // If alien hits the top or bottom boundaries, reverse Y direction
+        if (this.y < 0 || this.y > 36 - this.height) {
+            this.speedY *= -1;
+        }
+    };
+
+    // Draw the alien
+    this.draw = function() {
+        drawImage(this.image, this.x, this.y, this.width, this.height);
+    };
+}
+
+// Aliens object
+const aliens = {
+    alienArray: [],
+
+    // Spawn new aliens at random intervals
+    spawnAlien: function() {
+        if (Math.random() < 0.02) { // 2% chance to spawn a new alien each frame
+            this.alienArray.push(new alien(60, Math.random() * (36 - 5))); // Spawn at right edge at random Y position
+        }
+    },
+
+    move: function() {
+        for (let i = this.alienArray.length - 1; i >= 0; i--) {
+            this.alienArray[i].move();
+        }
+    },
+
+    draw: function() {
+        for (let i = this.alienArray.length - 1; i >= 0; i--) {
+            this.alienArray[i].draw();
+        }
+    },
+
+    remove: function() {
+        for (let i = this.alienArray.length - 1; i >= 0; i--) {
+            // Remove aliens that move off screen
+            if (this.alienArray[i].x < -this.alienArray[i].width) {
+                this.alienArray.splice(i, 1);
+            }
+        }
+    }
+};
+
+// Bullet object
+function bullet(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 2;
+    this.height = 1;
+    this.speed = 2;
+    
+    // Update bullet position
+    this.move = function() {
+        this.x += this.speed; // Move bullet to the right
+    };
+
+    // Draw the bullet
+    this.draw = function() {
+    	// console.log(this.x, this.y);
+        // dot(this.x, this.y, 4, "white"); // Drawing bullet as a rectangle
+        plot(this.x, this.y, "white"); // Drawing bullet as a rectangle
+    };
+}
+
+// Bullets object
+const bullets = {
+
+	bulletsArray: [],
+
+    move: function() {
+		for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	        bullets.bulletsArray[i].move();
+	    }
+	},
+
+    draw: function() {
+		for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	        bullets.bulletsArray[i].draw();
+	    }
+	},
+    
+
+    remove: function() {
+		for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	        // Remove bullets that move off screen
+	        if (bullets.bulletsArray[i].x > 60) {
+	            bullets.bulletsArray.splice(i, 1);
+	        }
+	    }
+	}
+}
+
+// Planet object
+const planet = {
+	image: new Image(),
+
+	// Draw the planet
+	drawPlanet: function() {
+		drawImage(planet.image, 40, -20, 40, 40);
+	}
+}
+
+// Background object
+const background = {
+	x: 0, // Initial background position
+	speed: 2, // Scrolling speed for the background
+	width: 270, // Width of background image
+	image: new Image(),
+	
+	// Scroll and draw the background
+	scrollBackground: function() {
+		background.x -= background.speed; // Move background to the left
+		if (background.x <= -background.width) { // If background scrolls off screen
+			background.x = 0; // Reset background position
+		}
+	},
+
+	// Draw the scrolling background
+	drawBackground: function() {
+		drawImage(background.image, background.x, 0, background.width, 36); // Draw first background image
+		drawImage(background.image, background.x + background.width, 0, background.width, 36); // Draw second image to create a seamless loop
+	}
+};
+
+// Spaceship object
+const spaceship = {
+    x: 30,
+    y: 20,
+    width: 8, // Placeholder width until image loads
+    height: 5, // Placeholder height until image loads
+    speed: 0.8,
+	friction: 0.98, // Friction for the sliding effect
+	movingRight: false, // Tracks if 'D' is pressed
+    dx: 0,
+    dy: 0,
+    image: new Image(),
+	
+	// Update the spaceship's position
+	updateSpaceship: function() {
+		spaceship.y += spaceship.dy;
+
+		if (spaceship.movingRight) {
+			spaceship.dx *= spaceship.friction; // Apply friction to the speed rather than the position
+			spaceship.x += spaceship.dx;
+		} else {
+			// Apply friction to slide back
+			spaceship.x *= spaceship.friction;
+		}
+
+		// Boundary checks
+		if (spaceship.y < 0) spaceship.y = 0;
+		if (spaceship.y > 36 - spaceship.height) spaceship.y = 36 - spaceship.height;
+		if (spaceship.x < 0) spaceship.x = 0;
+		if (spaceship.x > 60 - spaceship.width) spaceship.x = 60 - spaceship.width;
+	},
+
+	// Draw the spaceship
+	drawSpaceship: function() {
+		drawImage(spaceship.image, spaceship.x, spaceship.y, spaceship.width, spaceship.height); // Draw the spaceship
+	}
+};
+
+const starfield = {
+    stars: [],
+    numStars: 50, // Number of stars
+
+    // Initialize stars with random positions
+    initStars: function() {
+        for (let i = 0; i < this.numStars; i++) {
+            this.stars.push({
+                x: Math.random() * 60,
+                y: Math.random() * 36,
+                speed: 0.5 + Math.random() * 1.5, // Random speed for each star
+            });
+        }
+    },
+
+    // Draw the stars
+    drawStars: function() {
+        for (let i = 0; i < this.stars.length; i++) {
+            const star = this.stars[i];
+            dot(star.x, star.y, 1, 15); // Draw the star as a 1x1 pixel dot
+        }
+    },
+
+    // Update the position of the stars
+    updateStars: function() {
+        for (let i = 0; i < this.stars.length; i++) {
+            const star = this.stars[i];
+            star.x -= star.speed; // Move star left
+            if (star.x < 0) {
+                star.x = 60; // Loop the star back to the right
+                star.y = Math.random() * 36; // Randomize the y position
+            }
+        }
+    }
+};
+
+// Handle keyboard input
+window.addEventListener('keydown', (e) => {
+    switch (e.key) {
+        case 'w': // Move up
+            spaceship.dy = -spaceship.speed;
+            break;
+        case 'a': // Move left
+            spaceship.dx = -spaceship.speed;
+            break;
+        case 's': // Move down
+            spaceship.dy = spaceship.speed;
+            break;
+        case 'd': // Move right
+            spaceship.dx = spaceship.speed;
+            spaceship.movingRight = true;
+            break;
+        case ' ': // Shoot bullet when spacebar is pressed
+            e.preventDefault();
+            bullets.bulletsArray.push(new bullet(spaceship.x + spaceship.width, spaceship.y + spaceship.height / 2));
+            break;
+    }
+});
+
+window.addEventListener('keyup', (e) => {
+    if (e.key === 'd') {
+        spaceship.movingRight = false; // Stop moving right
+    } else if (e.key === 'w' || e.key === 's') {
+        spaceship.dy = 0; // Stop vertical movement
+    } else if (e.key === 'a') {
+        spaceship.dx = 0; // Stop horizontal movement (left)
+    }
+});
+
+// Game loop
+function gameLoop() {
+	clear();
+    background.scrollBackground();
+    background.drawBackground();
+    planet.drawPlanet();
+    starfield.updateStars();
+	starfield.drawStars();
+    spaceship.updateSpaceship();
+    spaceship.drawSpaceship();
+    bullets.move();
+    bullets.draw();
+    bullets.remove();
+    aliens.spawnAlien(); // Spawn new aliens
+    aliens.move();       // Move the aliens
+    aliens.draw();       // Draw the aliens
+    aliens.remove();     // Remove off-screen aliens
+    requestAnimationFrame(gameLoop);
+}
+
+function start() {
+	// Load scrolling background image
+	background.image.src = "./pics/scrollers/planet_terrain.png";
+
+	// Load planet image
+	planet.image.src = "./pics/planets/Mars.png";
+
+	// Load spaceship image
+	spaceship.image.src = "./pics/spaceships/spaceship.png";
+
+	// Load ufo image
+	// alien.image.src = "./pics/spaceships/ufo.png";
+
+	// Init starfield
+	starfield.initStars();
+	gameLoop();
+}
+
+start();
+
+</textarea>
+<textarea id="LessonExampleCode">
+// Alien object
+function alien(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 6; // Width in pixels
+    this.height = 3; // Height in pixels
+    this.speedX = Math.random() * 1.5 + 0.5; // Random horizontal speed
+    this.speedY = (Math.random() - 0.5) * 2; // Random vertical speed for unpredictable movement
+	this.image = new Image();
+	this.image.src = "./pics/spaceships/ufo.png";
+	
+    // Update the alien's position
+    this.move = function() {
+        this.x -= this.speedX; // Move left
+        this.y += this.speedY; // Move up or down unpredictably
+
+        // If alien hits the top or bottom boundaries, reverse Y direction
+        if (this.y < 0 || this.y > 36 - this.height) {
+            this.speedY *= -1;
+        }
+    };
+
+    // Draw the alien
+    this.draw = function() {
+        drawImage(this.image, this.x, this.y, this.width, this.height);
+    };
+}
+
+// Aliens object
+const aliens = {
+    alienArray: [],
+
+    // Spawn new aliens at random intervals
+    spawnAlien: function() {
+        if (Math.random() < 0.02) { // 2% chance to spawn a new alien each frame
+            this.alienArray.push(new alien(60, Math.random() * (36 - 5))); // Spawn at right edge at random Y position
+        }
+    },
+
+    move: function() {
+        for (let i = this.alienArray.length - 1; i >= 0; i--) {
+            this.alienArray[i].move();
+        }
+    },
+
+    draw: function() {
+        for (let i = this.alienArray.length - 1; i >= 0; i--) {
+            this.alienArray[i].draw();
+        }
+    },
+
+    remove: function() {
+        for (let i = this.alienArray.length - 1; i >= 0; i--) {
+            // Remove aliens that move off screen
+            if (this.alienArray[i].x < -this.alienArray[i].width) {
+                this.alienArray.splice(i, 1);
+            }
+        }
+    }
+};
+
+// Bullet object
+function bullet(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 2;
+    this.height = 1;
+    this.speed = 2;
+    
+    // Update bullet position
+    this.move = function() {
+        this.x += this.speed; // Move bullet to the right
+    };
+
+    // Draw the bullet
+    this.draw = function() {
+    	// console.log(this.x, this.y);
+        // dot(this.x, this.y, 4, "white"); // Drawing bullet as a rectangle
+        plot(this.x, this.y, "white"); // Drawing bullet as a rectangle
+    };
+}
+
+// Bullets object
+const bullets = {
+
+	bulletsArray: [],
+
+    move: function() {
+		for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	        bullets.bulletsArray[i].move();
+	    }
+	},
+
+    draw: function() {
+		for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	        bullets.bulletsArray[i].draw();
+	    }
+	},
+    
+
+    remove: function() {
+		for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
+	        // Remove bullets that move off screen
+	        if (bullets.bulletsArray[i].x > 60) {
+	            bullets.bulletsArray.splice(i, 1);
+	        }
+	    }
+	}
+}
+
+// Planet object
+const planet = {
+	image: new Image(),
+
+	// Draw the planet
+	drawPlanet: function() {
+		drawImage(planet.image, 40, -20, 40, 40);
+	}
+}
+
+// Background object
+const background = {
+	x: 0, // Initial background position
+	speed: 2, // Scrolling speed for the background
+	width: 270, // Width of background image
+	image: new Image(),
+	
+	// Scroll and draw the background
+	scrollBackground: function() {
+		background.x -= background.speed; // Move background to the left
+		if (background.x <= -background.width) { // If background scrolls off screen
+			background.x = 0; // Reset background position
+		}
+	},
+
+	// Draw the scrolling background
+	drawBackground: function() {
+		drawImage(background.image, background.x, 0, background.width, 36); // Draw first background image
+		drawImage(background.image, background.x + background.width, 0, background.width, 36); // Draw second image to create a seamless loop
+	}
+};
+
+// Spaceship object
+const spaceship = {
+    x: 30,
+    y: 20,
+    width: 8, // Placeholder width until image loads
+    height: 5, // Placeholder height until image loads
+    speed: 0.8,
+	friction: 0.98, // Friction for the sliding effect
+	movingRight: false, // Tracks if 'D' is pressed
+    dx: 0,
+    dy: 0,
+    image: new Image(),
+	
+	// Update the spaceship's position
+	updateSpaceship: function() {
+		spaceship.y += spaceship.dy;
+
+		if (spaceship.movingRight) {
+			spaceship.dx *= spaceship.friction; // Apply friction to the speed rather than the position
+			spaceship.x += spaceship.dx;
+		} else {
+			// Apply friction to slide back
+			spaceship.x *= spaceship.friction;
+		}
+
+		// Boundary checks
+		if (spaceship.y < 0) spaceship.y = 0;
+		if (spaceship.y > 36 - spaceship.height) spaceship.y = 36 - spaceship.height;
+		if (spaceship.x < 0) spaceship.x = 0;
+		if (spaceship.x > 60 - spaceship.width) spaceship.x = 60 - spaceship.width;
+	},
+
+	// Draw the spaceship
+	drawSpaceship: function() {
+		drawImage(spaceship.image, spaceship.x, spaceship.y, spaceship.width, spaceship.height); // Draw the spaceship
+	}
+};
+
+const starfield = {
+    stars: [],
+    numStars: 50, // Number of stars
+
+    // Initialize stars with random positions
+    initStars: function() {
+        for (let i = 0; i < this.numStars; i++) {
+            this.stars.push({
+                x: Math.random() * 60,
+                y: Math.random() * 36,
+                speed: 0.5 + Math.random() * 1.5, // Random speed for each star
+            });
+        }
+    },
+
+    // Draw the stars
+    drawStars: function() {
+        for (let i = 0; i < this.stars.length; i++) {
+            const star = this.stars[i];
+            dot(star.x, star.y, 1, 15); // Draw the star as a 1x1 pixel dot
+        }
+    },
+
+    // Update the position of the stars
+    updateStars: function() {
+        for (let i = 0; i < this.stars.length; i++) {
+            const star = this.stars[i];
+            star.x -= star.speed; // Move star left
+            if (star.x < 0) {
+                star.x = 60; // Loop the star back to the right
+                star.y = Math.random() * 36; // Randomize the y position
+            }
+        }
+    }
+};
+
+// Handle keyboard input
+window.addEventListener('keydown', (e) => {
+    switch (e.key) {
+        case 'w': // Move up
+            spaceship.dy = -spaceship.speed;
+            break;
+        case 'a': // Move left
+            spaceship.dx = -spaceship.speed;
+            break;
+        case 's': // Move down
+            spaceship.dy = spaceship.speed;
+            break;
+        case 'd': // Move right
+            spaceship.dx = spaceship.speed;
+            spaceship.movingRight = true;
+            break;
+        case ' ': // Shoot bullet when spacebar is pressed
+            e.preventDefault();
+            bullets.bulletsArray.push(new bullet(spaceship.x + spaceship.width, spaceship.y + spaceship.height / 2));
+            break;
+    }
+});
+
+window.addEventListener('keyup', (e) => {
+    if (e.key === 'd') {
+        spaceship.movingRight = false; // Stop moving right
+    } else if (e.key === 'w' || e.key === 's') {
+        spaceship.dy = 0; // Stop vertical movement
+    } else if (e.key === 'a') {
+        spaceship.dx = 0; // Stop horizontal movement (left)
+    }
+});
+
+// Game loop
+function gameLoop() {
+	clear();
+    background.scrollBackground();
+    background.drawBackground();
+    planet.drawPlanet();
+    starfield.updateStars();
+	starfield.drawStars();
+    spaceship.updateSpaceship();
+    spaceship.drawSpaceship();
+    bullets.move();
+    bullets.draw();
+    bullets.remove();
+    aliens.spawnAlien(); // Spawn new aliens
+    aliens.move();       // Move the aliens
+    aliens.draw();       // Draw the aliens
+    aliens.remove();     // Remove off-screen aliens
+    requestAnimationFrame(gameLoop);
+}
+
+function start() {
+	// Load scrolling background image
+	background.image.src = "./pics/scrollers/planet_terrain.png";
+
+	// Load planet image
+	planet.image.src = "./pics/planets/Mars.png";
+
+	// Load spaceship image
+	spaceship.image.src = "./pics/spaceships/spaceship.png";
+
+	// Load ufo image
+	// alien.image.src = "./pics/spaceships/ufo.png";
+
+	// Init starfield
+	starfield.initStars();
+	gameLoop();
+}
+
+start();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson104-1");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

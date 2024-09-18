@@ -11,43 +11,39 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 103: Shooting a Single Bullet</h1>
-	<p>Here we learn the mechanics of firing a single bullet vertically. The gist of it is:</p>
+	<h1>Lesson 103-2: Multiple Bullets with Constructor Function</h1>
+	<p>A constructor function is essential for creating multiple independent bullets because it encapsulates both the properties (like position) and behavior (like movement) for each bullet. This allows you to dynamically create as many bullets as you need, all of which can move independently without interfering with each other.</p>
+	
 <pre>
-let bulletX = null;
-let bulletY = null;
-let bulletSpeed = -1;
-let bulletFired = false;
+// Bullet constructor function
+function bullet(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 1;
+    this.height = 1;
+    this.speed = -1; // Bullets move upward
 
-// Move the bullet
-function moveBullet() {
-    if (bulletFired) {
-        bulletY += bulletSpeed;
-        if (bulletY < 0) {
-            bulletFired = false; // Reset bullet if it goes off-screen
-        }
-    }
+    // Update bullet position
+    this.update = function() {
+        this.y += this.speed;
+    };
 
-    // Fire a new bullet if space is pressed and no bullet is on screen
-    if (keys.Space && !bulletFired) {
-        bulletX = playerX + playerWidth / 2; // Set position of bullet to center of player paddle
-        bulletY = playerY - 1;
-        bulletFired = true;
-    }
-}
+    // Draw the bullet
+    this.draw = function() {
+        plot(this.x, this.y, 'white'); // Drawing the bullet
+    };
 
-// Function to draw the bullet
-function drawBullet() {
-    if (bulletFired) {
-        plot(bulletX, bulletY, 'white'); // Draw bullet
-    }
+    // Check if bullet is off-screen
+    this.isOffScreen = function() {
+        return this.y < 0;
+    };
 }
 </pre>
 	<br><br>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson102x2');">Exercise</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson103-2');">Lesson 103-2</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson103');">Lesson103</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson103-3');">Lesson 103-3</button>
 	</div>
 </div>
 
@@ -57,10 +53,8 @@ let playerX = 28; // Player's initial x position (horizontal)
 let playerY = 35; // Player stays at the bottom
 let playerWidth = 5;
 
-let bulletX = null;
-let bulletY = null;
-let bulletSpeed = -1;
-let bulletFired = false;
+// Array to store bullets
+let bullets = [];
 
 // Object to track which keys are pressed
 const keys = {
@@ -84,6 +78,7 @@ function onKeyDown(event) {
         case ' ':
             keys.Space = true;
 			event.preventDefault(); // Prevent default action
+			createBullet();
             break;
     }
 }
@@ -102,6 +97,30 @@ function onKeyUp(event) {
     }
 }
 
+// Bullet constructor function
+function Bullet(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 1;
+    this.height = 1;
+    this.speed = -1; // Bullets move upward
+
+    // Update bullet position
+    this.update = function() {
+        this.y += this.speed;
+    };
+
+    // Draw the bullet
+    this.draw = function() {
+        plot(this.x, this.y, 'white'); // Drawing the bullet
+    };
+
+    // Check if bullet is off-screen
+    this.isOffScreen = function() {
+        return this.y < 0;
+    };
+}
+
 // Move the player based on key presses
 function movePlayer() {
     if (keys.a && playerX > 0) {
@@ -112,21 +131,23 @@ function movePlayer() {
     }
 }
 
-// Move the bullet
-function moveBullet() {
-    if (bulletFired) {
-        bulletY += bulletSpeed;
-        if (bulletY < 0) {
-            bulletFired = false; // Reset bullet if it goes off-screen
-        }
-    }
+// Create bullet
+function createBullet() {
+	let bulletX = playerX + playerWidth / 2; // Set bullet's position to center of player
+	let bulletY = playerY - 1; // Set bullet's position above the player
+	bullets.push(new Bullet(bulletX, bulletY)); // Add new bullet to array
+}
 
-    // Fire a new bullet if space is pressed and no bullet is on screen
-    if (keys.Space && !bulletFired) {
-        bulletX = playerX + playerWidth / 2; // Set position of bullet to center of player paddle
-        bulletY = playerY - 1; // Set position of bullet to 1 pixel above the player paddle
-        bulletFired = true;
-    }
+// Move bullets
+function moveBullets() {
+    bullets.forEach((bullet, index) => {
+        bullet.update(); // Move each bullet
+
+        // Remove bullet if it goes off-screen
+        if (bullet.isOffScreen()) {
+            bullets.splice(index, 1); // Remove bullet from array
+        }
+    });
 }
 
 // Function to draw the player
@@ -136,20 +157,18 @@ function drawPlayer() {
     }
 }
 
-// Function to draw the bullet
-function drawBullet() {
-    if (bulletFired) {
-        plot(bulletX, bulletY, 'white'); // Draw bullet
-    }
+// Function to draw bullets
+function drawBullets() {
+    bullets.forEach(bullet => bullet.draw()); // Draw each bullet
 }
 
 // Game loop to update positions and redraw the scene
 function gameLoop() {
     gr(); // Clear screen
     movePlayer(); // Move player based on key presses
-    moveBullet(); // Move the bullet
+    moveBullets(); // Move bullets
     drawPlayer(); // Draw the player
-    drawBullet(); // Draw the bullet
+    drawBullets(); // Draw the bullets
 
     requestAnimationFrame(gameLoop); // Continue the loop
 }
@@ -165,10 +184,8 @@ let playerX = 28; // Player's initial x position (horizontal)
 let playerY = 35; // Player stays at the bottom
 let playerWidth = 5;
 
-let bulletX = null;
-let bulletY = null;
-let bulletSpeed = -1;
-let bulletFired = false;
+// Array to store bullets
+let bullets = [];
 
 // Object to track which keys are pressed
 const keys = {
@@ -192,6 +209,7 @@ function onKeyDown(event) {
         case ' ':
             keys.Space = true;
 			event.preventDefault(); // Prevent default action
+			createBullet();
             break;
     }
 }
@@ -210,6 +228,30 @@ function onKeyUp(event) {
     }
 }
 
+// Bullet constructor function
+function Bullet(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 1;
+    this.height = 1;
+    this.speed = -1; // Bullets move upward
+
+    // Update bullet position
+    this.update = function() {
+        this.y += this.speed;
+    };
+
+    // Draw the bullet
+    this.draw = function() {
+        plot(this.x, this.y, 'white'); // Drawing the bullet
+    };
+
+    // Check if bullet is off-screen
+    this.isOffScreen = function() {
+        return this.y < 0;
+    };
+}
+
 // Move the player based on key presses
 function movePlayer() {
     if (keys.a && playerX > 0) {
@@ -220,21 +262,23 @@ function movePlayer() {
     }
 }
 
-// Move the bullet
-function moveBullet() {
-    if (bulletFired) {
-        bulletY += bulletSpeed;
-        if (bulletY < 0) {
-            bulletFired = false; // Reset bullet if it goes off-screen
-        }
-    }
+// Create bullet
+function createBullet() {
+	let bulletX = playerX + playerWidth / 2; // Set bullet's position to center of player
+	let bulletY = playerY - 1; // Set bullet's position above the player
+	bullets.push(new Bullet(bulletX, bulletY)); // Add new bullet to array
+}
 
-    // Fire a new bullet if space is pressed and no bullet is on screen
-    if (keys.Space && !bulletFired) {
-        bulletX = playerX + playerWidth / 2; // Set position of bullet to center of player paddle
-        bulletY = playerY - 1; // Set position of bullet to 1 pixel above the player paddle
-        bulletFired = true;
-    }
+// Move bullets
+function moveBullets() {
+    bullets.forEach((bullet, index) => {
+        bullet.update(); // Move each bullet
+
+        // Remove bullet if it goes off-screen
+        if (bullet.isOffScreen()) {
+            bullets.splice(index, 1); // Remove bullet from array
+        }
+    });
 }
 
 // Function to draw the player
@@ -244,20 +288,18 @@ function drawPlayer() {
     }
 }
 
-// Function to draw the bullet
-function drawBullet() {
-    if (bulletFired) {
-        plot(bulletX, bulletY, 'white'); // Draw bullet
-    }
+// Function to draw bullets
+function drawBullets() {
+    bullets.forEach(bullet => bullet.draw()); // Draw each bullet
 }
 
 // Game loop to update positions and redraw the scene
 function gameLoop() {
     gr(); // Clear screen
     movePlayer(); // Move player based on key presses
-    moveBullet(); // Move the bullet
+    moveBullets(); // Move bullets
     drawPlayer(); // Draw the player
-    drawBullet(); // Draw the bullet
+    drawBullets(); // Draw the bullets
 
     requestAnimationFrame(gameLoop); // Continue the loop
 }
@@ -269,7 +311,7 @@ print("Use A,D to move and Space to shoot.");
 </textarea>
 <script>
 parent.ShowExample();
-parent.LoadYourCode("TextAreaYourCode", "Lesson98");
+parent.LoadYourCode("TextAreaYourCode", "Lesson103-2");
 parent.HideHelper();
 parent.HideHelperButton();
 </script>
