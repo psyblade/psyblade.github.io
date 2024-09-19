@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 73-1: Planetary Movements</h1>
+	<p>In this code, you're working with basic trigonometry and geometry to simulate the movement of a dot around a circle. This exercise teaches a few key mathematical and programming concepts:</p>
+	<p>
+	The dot is moving in a circular path, with its position calculated using trigonometric functions: cosine and sine.
+	</p>
+<pre>
+Base length=∣r⋅* cos(θ)∣
+Vertical length =∣r⋅* sin(θ)∣
+</pre>
+	<p>The angle (θ) is measured in radians, not degrees.</p>
+	
+	<p>360 degrees = 2π radians</p>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson71');">Lesson 71</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson72-2');">Lesson 72-2</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+  const zoomIn = 2; // Try 1 or 2
+  
+  const sun = { x: 60 / 2, y: 44 / 2, radius: 3, color: 'yellow' };
+
+  // Array of planets with their orbital radii, sizes, speeds and colors
+  const planets = [
+    { name: "Mercury", radius: 5, orbitRadius: 5, speed: 0.02, color: 'gray' },
+    { name: "Venus", radius: 8, orbitRadius: 8, speed: 0.015, color: 'orange' },
+    { name: "Earth", radius: 9, orbitRadius: 11, speed: 0.01, color: 'blue' },
+    { name: "Mars", radius: 7, orbitRadius: 15, speed: 0.008, color: 'red' },
+    { name: "Jupiter", radius: 15, orbitRadius: 20, speed: 0.005, color: 'brown' },
+    { name: "Saturn", radius: 12, orbitRadius: 25, speed: 0.004, color: 'lightyellow' },
+    { name: "Uranus", radius: 10, orbitRadius: 30, speed: 0.003, color: 'lightblue' },
+    { name: "Neptune", radius: 10, orbitRadius: 35, speed: 0.002, color: 'blue' }
+  ];
+
+  let angle = 0;
+
+  function drawSun() {
+    dot(sun.x, sun.y, sun.radius/zoomIn, sun.color);
+  }
+
+  function drawPlanet(planet, angle) {
+    // Calculate the position of the planet using the angle
+    const x = sun.x + (planet.orbitRadius/zoomIn) * Math.cos(angle * planet.speed);
+    const y = sun.y + (planet.orbitRadius/zoomIn) * Math.sin(angle * planet.speed);
+
+    // Draw orbit
+    circle(sun.x, sun.y, planet.orbitRadius/zoomIn, 'rgba(255, 255, 255, 0.2)');
+
+    // Draw the planet
+    dot(x, y, planet.radius, planet.color);
+  }
+
+  function drawSolarSystem() {
+    clear();  // Clear the canvas
+
+    drawSun();  // Draw the Sun
+
+    planets.forEach(planet => {
+      drawPlanet(planet, angle);  // Draw each planet at a given angle
+    });
+
+    angle += 1;  // Update the angle for motion
+    requestAnimationFrame(drawSolarSystem);  // Animate the system
+  }
+
+  drawSolarSystem();  // Start the animation loop
+</textarea>
+<textarea id="LessonExampleCode">
+  const zoomIn = 2; // Try 1 or 2
+  
+  const sun = { x: 60 / 2, y: 44 / 2, radius: 3, color: 'yellow' };
+
+  // Array of planets with their orbital radii, sizes, speeds and colors
+  const planets = [
+    { name: "Mercury", radius: 5, orbitRadius: 5, speed: 0.02, color: 'gray' },
+    { name: "Venus", radius: 8, orbitRadius: 8, speed: 0.015, color: 'orange' },
+    { name: "Earth", radius: 9, orbitRadius: 11, speed: 0.01, color: 'blue' },
+    { name: "Mars", radius: 7, orbitRadius: 15, speed: 0.008, color: 'red' },
+    { name: "Jupiter", radius: 15, orbitRadius: 20, speed: 0.005, color: 'brown' },
+    { name: "Saturn", radius: 12, orbitRadius: 25, speed: 0.004, color: 'lightyellow' },
+    { name: "Uranus", radius: 10, orbitRadius: 30, speed: 0.003, color: 'lightblue' },
+    { name: "Neptune", radius: 10, orbitRadius: 35, speed: 0.002, color: 'blue' }
+  ];
+
+  let angle = 0;
+
+  function drawSun() {
+    dot(sun.x, sun.y, sun.radius/zoomIn, sun.color);
+  }
+
+  function drawPlanet(planet, angle) {
+    // Calculate the position of the planet using the angle
+    const x = sun.x + (planet.orbitRadius/zoomIn) * Math.cos(angle * planet.speed);
+    const y = sun.y + (planet.orbitRadius/zoomIn) * Math.sin(angle * planet.speed);
+
+    // Draw orbit
+    circle(sun.x, sun.y, planet.orbitRadius/zoomIn, 'rgba(255, 255, 255, 0.2)');
+
+    // Draw the planet
+    dot(x, y, planet.radius, planet.color);
+  }
+
+  function drawSolarSystem() {
+    clear();  // Clear the canvas
+
+    drawSun();  // Draw the Sun
+
+    planets.forEach(planet => {
+      drawPlanet(planet, angle);  // Draw each planet at a given angle
+    });
+
+    angle += 1;  // Update the angle for motion
+    requestAnimationFrame(drawSolarSystem);  // Animate the system
+  }
+
+  drawSolarSystem();  // Start the animation loop
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson72");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
