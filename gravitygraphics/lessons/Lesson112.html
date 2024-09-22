@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 112: Array of Arrays</h1>
+	<p>To add more planets, we can use an array of arrays to store the data.</p>
+<pre>
+var planets = [
+	// [name, moons, sizeOnScreen]
+	["Mercury", 0, 5],
+	["Venus", 0, 12],
+	["Earth", 1, 13],
+	["Mars", 2, 7],
+	["Jupiter", 79, 30],
+	["Saturn", 83, 30],
+	["Uranus", 27, 18],
+	["Neptune", 14, 18]
+];
+</pre>
+<p>To access the name of the planet by just typing planet[2].name</p>
+<pre>
+// Dictionary
+To access Earth’s name: planets[2][0] → "Earth"
+To access Earth’s moons: planets[2][1] → 1
+</pre>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson111');">Lesson 111</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson113');">Lesson 113</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+var planets = [
+	// [name, mass, radius, distance, speed, orbitalPeriod, rotationalPeriod, moons, sizeOnScreen]
+	["Mercury", "3.285e23 kg", "2,439.7 km", "57.91m km", "47.87 km/s", "88d", "58.6d", 0, 5],
+	["Venus", "4.867e24 kg", "6,051.8 km", "108.2m km", "35.02 km/s", "225d", "243d", 0, 12],
+	["Earth", "5.972e24 kg", "6,371 km", "149.6m km", "29.78 km/s", "365.25d", "24 hours", 1, 13],
+	["Mars", "6.417e23 kg", "3,390 km", "227.9m km", "24.07 km/s", "687d", "24.6 hours", 2, 7],
+	["Jupiter", "1.898e27 kg", "69,911 km", "778.5m km", "13.07 km/s", "11.86y", "9.93 hours", 79, 30],
+	["Saturn", "5.683e26 kg", "58,232 km", "1.434b km", "9.69 km/s", "29.45y", "10.7 hours", 83, 30],
+	["Uranus", "8.681e25 kg", "25,362 km", "2.871b km", "6.81 km/s", "84y", "17.2 hours", 27, 18],
+	["Neptune", "1.024e26 kg", "24,622 km", "4.495b km", "5.43 km/s", "165y", "16.1 hours", 14, 18]
+];
+
+// Draw starfield
+function drawStarfield() {
+	const numStars = 50;
+	for (let i = 0; i < numStars; i++) {
+		dot(random(0,59), random(0,46), 1, 15); // Draw the star as a 1x1 pixel dot
+	}
+}
+
+const htab = 28;
+const vtab = 4;
+
+while(true) {
+	for (var i = 0; i < planets.length; i++) {
+		clear();
+		// drawgrid();
+		var planet = planets[i];
+		
+		drawStarfield();
+		// planet[0]: name, planet[8]: size
+		drawImageFromURL('./pics/planets/' + planet[0] + ".png", 17 - (planet[8]/2), 20 - (planet[8]/2), planet[8], planet[8]);
+		
+		// planet[0] = name, planet[1] = mass, planet[2] = radius, etc.
+		print("Planet: " + planet[0], "cyan", htab , vtab);
+		print("Mass: " + planet[1], random(1,10), htab); 
+		print("Radius: " + planet[2], random(1,10), htab);
+		print("Distance: " + planet[3], random(1,10), htab);
+		print("Speed: " + planet[4], random(1,10), htab);
+		print("Orbital Period: " + planet[5], random(1,10), htab);
+		print("Rotational Period: " + planet[6], random(1,10), htab);
+		print("Moons: " + planet[7], random(1,10), htab);
+
+		await input("Press Enter to continue", "grey", htab);
+		home();
+	}
+}
+</textarea>
+<textarea id="LessonExampleCode">
+var planets = [
+	// [name, mass, radius, distance, speed, orbitalPeriod, size, rotationalPeriod, moons, sizeOnScreen]
+	["Mercury", "3.285e23 kg", "2,439.7 km", "57.91m km", "47.87 km/s", "88d", "58.6d", 0, 5],
+	["Venus", "4.867e24 kg", "6,051.8 km", "108.2m km", "35.02 km/s", "225d", "243d", 0, 12],
+	["Earth", "5.972e24 kg", "6,371 km", "149.6m km", "29.78 km/s", "365.25d", "24 hours", 1, 13],
+	["Mars", "6.417e23 kg", "3,390 km", "227.9m km", "24.07 km/s", "687d", "24.6 hours", 2, 7],
+	["Jupiter", "1.898e27 kg", "69,911 km", "778.5m km", "13.07 km/s", "11.86y", "9.93 hours", 79, 30],
+	["Saturn", "5.683e26 kg", "58,232 km", "1.434b km", "9.69 km/s", "29.45y", "10.7 hours", 83, 30],
+	["Uranus", "8.681e25 kg", "25,362 km", "2.871b km", "6.81 km/s", "84y", "17.2 hours", 27, 18],
+	["Neptune", "1.024e26 kg", "24,622 km", "4.495b km", "5.43 km/s", "165y", "16.1 hours", 14, 18]
+];
+
+// Draw starfield
+function drawStarfield() {
+	const numStars = 50;
+	for (let i = 0; i < numStars; i++) {
+		dot(random(0,59), random(0,46), 1, 15); // Draw the star as a 1x1 pixel dot
+	}
+}
+
+const htab = 28;
+const vtab = 6;
+
+while(true) {
+	for (var i = 0; i < planets.length; i++) {
+		clear();
+		// drawgrid();
+		var planet = planets[i];
+		
+		drawStarfield();
+		// planet[0]: name, planet[6]: size
+		drawImageFromURL('./pics/planets/' + planet[0] + ".png", 17 - (planet[8]/2), 20 - (planet[8]/2), planet[8], planet[8]);
+		
+		// planet[0] = name, planet[1] = mass, planet[2] = radius, etc.
+		print("Planet: " + planet[0], "cyan", htab , vtab);
+		print("Mass: " + planet[1], random(1,10), htab); 
+		print("Radius: " + planet[2], random(1,10), htab);
+		print("Distance: " + planet[3], random(1,10), htab);
+		print("Speed: " + planet[4], random(1,10), htab);
+		print("Orbital Period: " + planet[5], random(1,10), htab);
+		print("Rotational Period: " + planet[6], random(1,10), htab);
+		print("Moons: " + planet[7], random(1,10), htab);
+
+		await input("Press Enter to continue", "grey", htab);
+		home();
+	}
+}
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson112");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 116: Circle Math</h1>
+	<p>In this code, you're working with basic trigonometry and geometry to simulate the movement of a dot around a circle. This exercise teaches a few key mathematical and programming concepts:</p>
+	<p>
+	The dot is moving in a circular path, with its position calculated using trigonometric functions: cosine and sine.
+	</p>
+<pre>
+Base length=∣r⋅* cos(θ)∣
+Vertical length =∣r⋅* sin(θ)∣
+</pre>
+	<p>The angle (θ) is measured in radians, not degrees.</p>
+	
+	<p>360 degrees = 2π radians</p>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson115');">Lesson 115</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson116-1');">Lesson 116-1</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+
+const centerX = 30;
+const centerY = 17;
+const radius = 10; // Define the radius of the circle
+let angle = 0; // Initial angle
+
+function drawDot() {
+    gr();
+	
+	// Draw circle
+	circle(centerX, centerY, radius, "purple");
+
+    // Calculate the x and y position of the dot
+    const x = centerX + radius * Math.cos(angle); // red line
+    const y = centerY + radius * Math.sin(angle); // blue line
+
+	text("r * cos(θ): " + (radius * Math.cos(angle)).toFixed(4), "green", 4, 30, 16);
+	text("r * sin(θ): " + (radius * Math.sin(angle)).toFixed(4), "green", 4, 33, 16);
+
+    // Draw the radius (line from center to the dot)
+    stroke(centerX, centerY, x, y, "green");
+
+    // Draw the right angle (perpendicular lines)
+    stroke(x, centerY, x, y, "blue"); // Vertical line from x to the center
+    stroke(centerX, centerY, x, centerY, "red"); // Horizontal line from centerX to the dot's x position
+
+    // Draw the moving dot
+    dot(x, y, 3, "yellow");
+
+    // Update the angle to move the dot
+    angle += 0.05; // Adjust this value to change the speed of the dot
+
+    requestAnimationFrame(drawDot); // Recursively call drawDot for animation
+}
+
+// Start the animation
+drawDot();
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+
+const centerX = 30;
+const centerY = 17;
+const radius = 10; // Define the radius of the circle
+let angle = 0; // Initial angle
+
+function drawDot() {
+    gr();
+	
+	// Draw circle
+	circle(centerX, centerY, radius, "purple");
+
+    // Calculate the x and y position of the dot
+    const x = centerX + radius * Math.cos(angle); // red line
+    const y = centerY + radius * Math.sin(angle); // blue line
+
+	text("r * cos(θ): " + (radius * Math.cos(angle)).toFixed(4), "green", 4, 30, 16);
+	text("r * sin(θ): " + (radius * Math.sin(angle)).toFixed(4), "green", 4, 33, 16);
+
+    // Draw the radius (line from center to the dot)
+    stroke(centerX, centerY, x, y, "green");
+
+    // Draw the right angle (perpendicular lines)
+    stroke(x, centerY, x, y, "blue"); // Vertical line from x to the center
+    stroke(centerX, centerY, x, centerY, "red"); // Horizontal line from centerX to the dot's x position
+
+    // Draw the moving dot
+    dot(x, y, 3, "yellow");
+
+    // Update the angle to move the dot
+    angle += 0.05; // Adjust this value to change the speed of the dot
+
+    requestAnimationFrame(drawDot); // Recursively call drawDot for animation
+}
+
+// Start the animation
+drawDot();
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson116");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
