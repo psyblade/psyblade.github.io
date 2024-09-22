@@ -95,6 +95,7 @@ function onCollision(winner) {
 	window.removeEventListener('keydown', onKeyDownArrowKeys);
 	moveX1 = 0, moveY1 = 0, moveX2 = 0, moveY2 = 0;
 	text(winner + " Wins!", "white");
+	gameOver = true;
 }
 
 // Event listeners for WASD keys to control the first pixel
