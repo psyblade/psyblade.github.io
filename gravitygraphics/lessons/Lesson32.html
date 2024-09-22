@@ -15,9 +15,9 @@
 	
 	<p>To plot 200 random dots we can't write the commond plot 200 times. That would be too tedious.</p>
 	<pre>
-plot(random(0,60), random(0,39));
-plot(random(0,60), random(0,39));
-plot(random(0,60), random(0,39));
+plot(random(0,60), random(0,39), random(1,15));
+plot(random(0,60), random(0,39), random(1,15));
+plot(random(0,60), random(0,39), random(1,15));
 .
 .
 .
@@ -25,23 +25,26 @@ plot(random(0,60), random(0,39));
 	<p>So what we can do instead, is use a "For Loop"</p>
 	<pre>
 for (i = 0; i < 200; i++) {
-	plot(random(0,60), random(0,39));
+	plot(random(0,60), random(0,39), random(1,15));
 }
 </pre>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson31');">Lesson 31</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson31x');">Exercise</button>
 		<button class="buttonNextLesson" onclick="NavigateTo('Lesson32x');">Exercise</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-gr()
+gr();
+for (i = 0; i < 200; i++) {
+	plot(random(0,60), random(0,39), random(1,15));
+}
 </textarea>
 <textarea id="LessonExampleCode">
 gr();
 for (i = 0; i < 200; i++) {
-	plot(random(0,60), random(0,39));
+	plot(random(0,60), random(0,39), random(1,15));
 }
 </textarea>
 <script>

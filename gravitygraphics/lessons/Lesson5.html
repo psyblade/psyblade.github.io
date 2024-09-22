@@ -37,10 +37,10 @@ while(posY < 36) {
 	if (posX < 60) {
 		clear();	
 		drawgrid();
-		dot(0 , 0, "lime");
+		plot(0 , 0, "lime");
 		word(0, 2, 4, "red", "left", "25px Arial");
 		
-		dot(posX , 0, "lime");
+		plot(posX , 0, "lime");
 		word(posX, posX-2, 4, "red", "left", "25px Arial");
 		posX = posX + 1;
 	}
@@ -49,13 +49,13 @@ while(posY < 36) {
 		if (posY < 36) {
 			clear();
 			drawgrid();
-			dot(0 , 0, "lime");
+			plot(0 , 0, "lime");
 			word(0, 2, 4, "red", "left", "25px Arial");
 			
-			dot(59, 0, "lime");
+			plot(59, 0, "lime");
 			word("59", 59-2, 4, "red", "left", "25px Arial");
 			
-			dot(0, posY, "lime");
+			plot(0, posY, "lime");
 			word(posY, 2, posY, "red", "left", "25px Arial");
 			posY = posY + 1;
 		}

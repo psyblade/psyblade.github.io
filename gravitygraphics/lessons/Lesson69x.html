@@ -116,7 +116,7 @@ function moveEnemy() {
 		let dy = playerY - enemyY; // Difference in y between player and enemy
 		let distance = Math.sqrt(dx * dx + dy * dy); // Calculate the distance
 		// Normalize the direction and move the enemy towards the player
-		print("dx/dist = " + dx.toFixed(2) + "/" + distance.toFixed(2) + " = " + (dx / distance).toFixed(2) + " * speed=" + enemySpeed + " = " + ((dx / distance) * enemySpeed).toFixed(2));
+		display("dx/dist = " + dx.toFixed(2) + "/" + distance.toFixed(2) + " = " + (dx / distance).toFixed(2) + " * speed=" + enemySpeed + " = " + ((dx / distance) * enemySpeed).toFixed(2));
 		enemyX += (dx / distance) * enemySpeed;
 		enemyY += (dy / distance) * enemySpeed;
 	}
@@ -146,6 +146,7 @@ function checkCollision() {
 // Game loop to update positions and redraw the scene
 while(true) {
 	gr(); // Clear screen
+	home();
 	movePlayer(); // Move the player based on key presses
 	moveEnemy(); // Move the enemy towards the player
 	drawPlayer(); // Draw the player 

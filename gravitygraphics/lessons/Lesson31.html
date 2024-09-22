@@ -11,49 +11,52 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 31: Adding Beeps</h1>
+	<h1>Lesson 31: Beeps</h1>
 	
 	<p>We can add beeps to our program by simply using the function 'beep' and passing in the notes which comprises the note value and the duration value.</p>
-	<pre>beep([[400,100], [500,100]])</pre>
+	<pre>
+	beep([[400,100], [500,100]]);
+	beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+	beep ([[440, 100], [300, 100], [360, 100], [300, 100]]);
+	</pre>
 	<p>Now lets put a series of beeps into our quiz when the player wins the quiz and a different series of beeps when the player loses the quiz.</p>
 
 	<h3></h3>
 	<div id="buttons">
 		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson30');">Lesson 30</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson32');">Lesson 32</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson31x');">Exercise</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
 gr()
-beep([[400,100], [500,100]])
+await input("Press Enter to listen to the beeps:");
+beep([[400,100], [500,100]]);
+home();
+await input("Press Enter to listen to more beeps:");
+beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+home();
+await input("Press Enter to listen to more beeps:");
+beep ([[440, 100], [300, 100], [360, 100], [300, 100]]);
+home();
+print ("THE END. That's all folks!");
 </textarea>
 <textarea id="LessonExampleCode">
-gr();
-var value1 = random (0,9);
-var value2 = random (0,9);
-var result = value1 + value2;
-var question = "What is " + value1 + "+" + value2 + "?";
-text(question);
-var answer = await input ("Type in your answer:");
-clear();
-drawgrid();
-if (answer == result) {
-	text("That is correct!");
-	beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
-} else {
-	text("That is incorrect!");
-	beep ([[440, 100], [300, 100], [360, 100], [300, 100]]);
-	
-}
-
-
-
+gr()
+await input("Press Enter to listen to the beeps:");
+beep([[400,100], [500,100]]);
+home();
+await input("Press Enter to listen to more beeps:");
+beep ([[500, 100], [600, 100], [600, 100], [600, 100]]);
+home();
+await input("Press Enter to listen to more beeps:");
+beep ([[440, 100], [300, 100], [360, 100], [300, 100]]);
+home();
+print ("THE END. That's all folks!");
 </textarea>
 <script>
 parent.LoadYourCode("TextAreaYourCode", "Lesson31");
 parent.HideHelper()
-parent.HideSolution();
 </script>
 </body>
 </html>
