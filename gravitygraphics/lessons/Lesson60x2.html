@@ -21,7 +21,6 @@ drawImageFromURL(url, x, y, width, height);
 <pre>
 './pics/landscapes/owl-creek.jpg'
 </pre>
-	<p>Note that getPixelColor only works with pictures from the same server as the program for security reasons.</p>
 	<h3></h3>
 	<div id="buttons">
 		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson60x');">Exercise</button>
@@ -31,14 +30,16 @@ drawImageFromURL(url, x, y, width, height);
 
 <textarea id="LessonRunCode">
 gr();
-drawImageFromURL('./pics/landscapes/owl-creek.jpg', 0,0, 60, 36);
-await input ("Press enter to pixellate image:");
+drawImageFromURL('./pics/landscapes/owl-creek.jpg', 0, 0, 60, 36);
+await input("Press enter to pixellate image:");
 home();
 print("Pixellating...");
 await delay(1);
-for (let y=0; y < 36; y++) {
-	for (let x=0; x < 60; x++) {
-		plot(x, y, getPixelColor(x, y));
+
+for (let y = 0; y < 36; y++) {
+	for (let x = 0; x < 60; x++) {
+		const color = getPixelColor(x, y); // Replace this with your pixel color retrieval logic
+		plot(x, y, color);
 	}
 }
 home();
@@ -46,14 +47,18 @@ print("Pixellated!");
 </textarea>
 <textarea id="LessonExampleCode">
 gr();
-drawImageFromURL('./pics/landscapes/owl-creek.jpg', 0,0, 60, 36);
-await input ("Press enter to pixellate image:");
+// drawImageFromURL('./pics/landscapes/owl-creek.jpg', 0, 0, 60, 36);
+drawImageFromURL('https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=2210&quality=70', 0, 0, 60, 36);
+
+await input("Press enter to pixellate image:");
 home();
 print("Pixellating...");
 await delay(1);
-for (let y=0; y < 36; y++) {
-	for (let x=0; x < 60; x++) {
-		plot(x, y, getPixelColor(x, y));
+
+for (let y = 0; y < 36; y++) {
+	for (let x = 0; x < 60; x++) {
+		const color = getPixelColor(x, y); // Replace this with your pixel color retrieval logic
+		plot(x, y, color);
 	}
 }
 home();
@@ -64,7 +69,6 @@ parent.ShowExample();
 parent.LoadYourCode("TextAreaYourCode", "Lesson60x2");
 parent.HideHelper();
 parent.HideHelperButton();
-parent.HideSolution();
 </script>
 </body>
 </html>

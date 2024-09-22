@@ -34,13 +34,12 @@ function drawBackground() {
 </div>
 
 <textarea id="LessonRunCode">
-const backgroundImage = new Image();
 let backgroundWidth = 270; // This is the width of the image you are using as background
 let backgroundX = 0; // Initial background position
 let backgroundSpeed = 0.5; // Scrolling speed for the background
 
 // Load scrolling background image
-backgroundImage.src = "./pics/scrollers/planet_terrain.png";
+const backgroundImage = await loadImage("./pics/scrollers/planet_terrain.png");
 
 // Scroll and draw the background
 function updateBackground() {
@@ -68,13 +67,12 @@ gameLoop();
 
 </textarea>
 <textarea id="LessonExampleCode">
-const backgroundImage = new Image();
 let backgroundWidth = 270; // This is the width of the image you are using as background
 let backgroundX = 0; // Initial background position
 let backgroundSpeed = 0.5; // Scrolling speed for the background
 
 // Load scrolling background image
-backgroundImage.src = "./pics/scrollers/planet_terrain.png";
+const backgroundImage = await loadImage("./pics/scrollers/planet_terrain.png");
 
 // Scroll and draw the background
 function updateBackground() {
@@ -99,6 +97,7 @@ function gameLoop() {
 }
 
 gameLoop();
+
 </textarea>
 <script>
 parent.ShowExample();

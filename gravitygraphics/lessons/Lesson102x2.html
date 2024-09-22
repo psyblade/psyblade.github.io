@@ -184,15 +184,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 	starfield.initStars();
 	gameLoop();
@@ -350,22 +350,22 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
-	// Init starfield
 	starfield.initStars();
 	gameLoop();
 }
 
 start();
+
 </textarea>
 <script>
 parent.ShowExample();

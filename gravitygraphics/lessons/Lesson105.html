@@ -30,10 +30,9 @@
 const asteroidImages = [];
 
 // Load asteroid variation bitmaps
-function loadAsteroidImages() {
+async function loadAsteroidImages() {
     for (let i = 1; i <= 6; i++) {
-        const img = new Image();
-        img.src = `./pics/asteroids/asteroid${i}.png`; // Assumes images are named asteroid1.png, asteroid2.png, etc.
+        const img = await loadImage(`./pics/asteroids/asteroid${i}.png`); // Assumes images are named asteroid1.png, asteroid2.png, etc.
         asteroidImages.push(img);
     }
 }
@@ -376,15 +375,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 	// Load the 6 asteroid images
 	loadAsteroidImages();
@@ -398,15 +397,13 @@ start();
 
 </textarea>
 <textarea id="LessonExampleCode">
-
 // Asteroid variation bitmaps
 const asteroidImages = [];
 
 // Load asteroid variation bitmaps
-function loadAsteroidImages() {
+async function loadAsteroidImages() {
     for (let i = 1; i <= 6; i++) {
-        const img = new Image();
-        img.src = `./pics/asteroids/asteroid${i}.png`; // Assumes images are named asteroid1.png, asteroid2.png, etc.
+        const img = await loadImage(`./pics/asteroids/asteroid${i}.png`); // Assumes images are named asteroid1.png, asteroid2.png, etc.
         asteroidImages.push(img);
     }
 }
@@ -749,15 +746,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 	// Load the 6 asteroid images
 	loadAsteroidImages();
@@ -768,7 +765,6 @@ function start() {
 }
 
 start();
-
 </textarea>
 <script>
 parent.ShowExample();

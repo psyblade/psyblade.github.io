@@ -31,7 +31,6 @@ function isColliding(obj1, obj2) {
 </div>
 
 <textarea id="LessonRunCode">
-
 // AABB collision detection
 function isColliding(obj1, obj2) {
     return obj1.x < obj2.x + obj2.width &&
@@ -44,10 +43,9 @@ function isColliding(obj1, obj2) {
 const asteroidImages = [];
 
 // Load asteroid variation bitmaps
-function loadAsteroidImages() {
+async function loadAsteroidImages() {
     for (let i = 1; i <= 6; i++) {
-        const img = new Image();
-        img.src = `./pics/asteroids/asteroid${i}.png`; // Assumes images are named asteroid1.png, asteroid2.png, etc.
+        const img = await loadImage(`./pics/asteroids/asteroid${i}.png`); // Assumes images are named asteroid1.png, asteroid2.png, etc.
         asteroidImages.push(img);
     }
 }
@@ -411,15 +409,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 	// Load the 6 asteroid images
 	loadAsteroidImages();
@@ -433,7 +431,6 @@ start();
 
 </textarea>
 <textarea id="LessonExampleCode">
-
 // AABB collision detection
 function isColliding(obj1, obj2) {
     return obj1.x < obj2.x + obj2.width &&
@@ -446,10 +443,9 @@ function isColliding(obj1, obj2) {
 const asteroidImages = [];
 
 // Load asteroid variation bitmaps
-function loadAsteroidImages() {
+async function loadAsteroidImages() {
     for (let i = 1; i <= 6; i++) {
-        const img = new Image();
-        img.src = `./pics/asteroids/asteroid${i}.png`; // Assumes images are named asteroid1.png, asteroid2.png, etc.
+        const img = await loadImage(`./pics/asteroids/asteroid${i}.png`); // Assumes images are named asteroid1.png, asteroid2.png, etc.
         asteroidImages.push(img);
     }
 }
@@ -795,7 +791,7 @@ function gameLoop() {
         if (isColliding(spaceship, aliens.alienArray[i])) {
             console.log("Collision with alien!"); // You can replace this with game over logic or health reduction
             // Handle collision logic (e.g., end game, reduce health, etc.)
-			text ("Game Over", "red");
+			text ("Game Over", "red", "center", "17");
 			return;
         }
     }
@@ -805,7 +801,7 @@ function gameLoop() {
         if (isColliding(spaceship, asteroids.asteroidArray[i])) {
             console.log("Collision with asteroid!"); // You can replace this with game over logic or health reduction
             // Handle collision logic (e.g., end game, reduce health, etc.)
-			text ("Game Over", "red");
+			text ("Game Over", "red", "center", "17");
 			return;
         }
     }
@@ -813,15 +809,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 	// Load the 6 asteroid images
 	loadAsteroidImages();
@@ -832,6 +828,7 @@ function start() {
 }
 
 start();
+
 </textarea>
 <script>
 parent.ShowExample();

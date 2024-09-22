@@ -15,7 +15,7 @@
 	<p>For images that we want to keep calling and reusing, we don't want to load it from the URL source everytime. We want to get the image from the URL and then load it into memory (or a variable) where we can quickly access it anytime. Loading it from memory (which is on your local machine) is much quicker than loading it from a URL source on the Internet. To load and draw an image into and from memory use this:</p>
 <pre>
 // Load image into memory
-var image_holder = loadImageFromURL(src); 
+var image_holder = await loadImage(src); 
 
 // Draw image from memory
 drawImage(img=image_holder, x=20, y=10, width=20, height=20); // Draw Image
@@ -34,9 +34,9 @@ var image_holder_apple = new Image();
 var image_holder_orange = new Image();
 var image_holder_banana = new Image();
 
-image_holder_apple = loadImageFromURL('./pics/fruits/apple.png', x=20, y=10, width=20, height=20); 
-image_holder_orange = loadImageFromURL('./pics/fruits/orange.png', x=20, y=10, width=20, height=20);
-image_holder_banana = loadImageFromURL('./pics/fruits/banana.png', x=20, y=10, width=20, height=20); 
+image_holder_apple = await loadImage('./pics/fruits/apple.png', x=20, y=10, width=20, height=20); 
+image_holder_orange = await loadImage('./pics/fruits/orange.png', x=20, y=10, width=20, height=20);
+image_holder_banana = await loadImage('./pics/fruits/banana.png', x=20, y=10, width=20, height=20); 
 await delay(1);
 
 // Draw image from memory
@@ -62,9 +62,9 @@ var image_holder_apple = new Image();
 var image_holder_orange = new Image();
 var image_holder_banana = new Image();
 
-image_holder_apple = loadImageFromURL('./pics/fruits/apple.png', x=20, y=10, width=20, height=20); 
-image_holder_orange = loadImageFromURL('./pics/fruits/orange.png', x=20, y=10, width=20, height=20);
-image_holder_banana = loadImageFromURL('./pics/fruits/banana.png', x=20, y=10, width=20, height=20); 
+image_holder_apple = await loadImage('./pics/fruits/apple.png', x=20, y=10, width=20, height=20); 
+image_holder_orange = await loadImage('./pics/fruits/orange.png', x=20, y=10, width=20, height=20);
+image_holder_banana = await loadImage('./pics/fruits/banana.png', x=20, y=10, width=20, height=20); 
 await delay(1);
 
 // Draw image from memory

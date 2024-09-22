@@ -160,6 +160,7 @@ function checkCollision() {
 // Game loop to update positions and redraw the scene
 function gameLoop() {
 	gr(); // Clear screen
+	rect(40, 25, 59, 35, "green"); // Draw patrolling area
 	movePlayer(); // Move the player based on key presses
 	moveEnemy(); // Move the enemy towards the player
 	drawPlayer(); // Draw the player 
@@ -315,6 +316,7 @@ function checkCollision() {
 // Game loop to update positions and redraw the scene
 function gameLoop() {
 	gr(); // Clear screen
+	rect(40, 25, 59, 35, "green"); // Draw patrolling area
 	movePlayer(); // Move the player based on key presses
 	moveEnemy(); // Move the enemy towards the player
 	drawPlayer(); // Draw the player 

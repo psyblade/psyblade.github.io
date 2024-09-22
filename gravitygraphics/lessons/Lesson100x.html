@@ -49,19 +49,11 @@ function onKeyDown(event) {
 	exit_spin = true;
 }
 
-function pushImage(src) {
-    const img_fruit = new Image();
-    img_fruit.src = src;
+async function pushImage(src) {
+    const img_fruit = await loadImage(src);
 
     // Once the image has loaded, push it into the array
-    img_fruit.onload = function() {
-        array_fruits_images.push(img_fruit);
-        console.log('Image loaded and pushed to array:', src);
-    };
-
-    img_fruit.onerror = function() {
-        console.error('Failed to load image:', src);
-    };
+    array_fruits_images.push(img_fruit);
 }
 
 // Load images into the array

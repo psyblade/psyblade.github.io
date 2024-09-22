@@ -25,7 +25,10 @@
 const stars = [];
 const numStars = 50; // Number of stars
 
-const image_planet = new Image();
+// Planet object
+const planet = {
+	image: new Image(),
+}
 
 // Background object
 const background = {
@@ -81,33 +84,10 @@ function updateStars() {
     }
 }
 
-// Load images into holder
-function loadImage(src, image) {
-    image.src = src;
-
-    image.onload = function() {
-        console.log('Image loaded:', src);
-    };
-
-    image.onerror = function() {
-        console.error('Failed to load image:', src);
-    };
-}
-
 // Draw the planet
 function drawPlanet() {
-    drawImage(image_planet, 40, -20, 40, 40);
+    drawImage(planet.image, 40, -20, 40, 40);
 }
-
-// Load spaceship image
-spaceship.image.src = "./pics/spaceships/spaceship.png";
-spaceship.image.onload = () => {
-    spaceship.width = 8;
-    spaceship.height = 5;
-};
-
-// Load scrolling background image
-background.image.src = "./pics/scrollers/planet_terrain.png";
 
 // Handle keyboard input
 window.addEventListener('keydown', (e) => {
@@ -189,8 +169,14 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Initialize and start animation
-loadImage('./pics/planets/Mars.png', image_planet);
+// Load planet image
+planet.image = await loadImage ('./pics/planets/Mars.png');
+
+// Load spaceship image
+spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
+
+// Load scrolling background image
+background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 initStars();
 gameLoop();
@@ -200,7 +186,10 @@ gameLoop();
 const stars = [];
 const numStars = 50; // Number of stars
 
-const image_planet = new Image();
+// Planet object
+const planet = {
+	image: new Image(),
+}
 
 // Background object
 const background = {
@@ -256,33 +245,10 @@ function updateStars() {
     }
 }
 
-// Load images into holder
-function loadImage(src, image) {
-    image.src = src;
-
-    image.onload = function() {
-        console.log('Image loaded:', src);
-    };
-
-    image.onerror = function() {
-        console.error('Failed to load image:', src);
-    };
-}
-
 // Draw the planet
 function drawPlanet() {
-    drawImage(image_planet, 40, -20, 40, 40);
+    drawImage(planet.image, 40, -20, 40, 40);
 }
-
-// Load spaceship image
-spaceship.image.src = "./pics/spaceships/spaceship.png";
-spaceship.image.onload = () => {
-    spaceship.width = 8;
-    spaceship.height = 5;
-};
-
-// Load scrolling background image
-background.image.src = "./pics/scrollers/planet_terrain.png";
 
 // Handle keyboard input
 window.addEventListener('keydown', (e) => {
@@ -364,12 +330,17 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Initialize and start animation
-loadImage('./pics/planets/Mars.png', image_planet);
+// Load planet image
+planet.image = await loadImage ('./pics/planets/Mars.png');
+
+// Load spaceship image
+spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
+
+// Load scrolling background image
+background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 initStars();
 gameLoop();
-
 </textarea>
 <script>
 parent.ShowExample();

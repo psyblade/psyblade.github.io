@@ -39,8 +39,7 @@ for (let i = bullets.bulletsArray.length - 1; i >= 0; i--) {
 
 <textarea id="LessonRunCode">
 // Explosion image
-const imageExplosion = new Image();
-imageExplosion.src = `./pics/explosions/explosion6.png`;
+const imageExplosion = await loadImage(`./pics/explosions/explosion6.png`);
 
 // Draw spaceship explosion
 async function drawSpaceshipExplosion() {
@@ -68,10 +67,9 @@ function isColliding(obj1, obj2) {
 const asteroidImages = [];
 
 // Load asteroid variation bitmaps
-function loadAsteroidImages() {
+async function loadAsteroidImages() {
     for (let i = 1; i <= 6; i++) {
-        const img = new Image();
-        img.src = `./pics/asteroids/asteroid${i}.png`; // Assumes images are named asteroid1.png, asteroid2.png, etc.
+        const img = await loadImage(`./pics/asteroids/asteroid${i}.png`); // Assumes images are named asteroid1.png, asteroid2.png, etc.
         asteroidImages.push(img);
     }
 }
@@ -454,15 +452,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function start() {
+async function start() {
 	// Load scrolling background image
-	background.image.src = "./pics/scrollers/planet_terrain.png";
+	background.image = await loadImage("./pics/scrollers/planet_terrain.png");
 
 	// Load planet image
-	planet.image.src = "./pics/planets/Mars.png";
+	planet.image = await loadImage("./pics/planets/Mars.png");
 
 	// Load spaceship image
-	spaceship.image.src = "./pics/spaceships/spaceship.png";
+	spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 	// Load the 6 asteroid images
 	loadAsteroidImages();

@@ -35,8 +35,6 @@
 const stars = [];
 const numStars = 50; // Number of stars
 
-const image_planet = new Image();
-
 // Spaceship object
 const spaceship = {
     x: 30,
@@ -83,30 +81,13 @@ function updateStars() {
     }
 }
 
-// Load images into holder
-function loadImage(src, image) {
-    image.src = src;
-
-    image.onload = function() {
-        console.log('Image loaded:', src);
-    };
-
-    image.onerror = function() {
-        console.error('Failed to load image:', src);
-    };
-}
-
 // Draw the planet
 function drawPlanet() {
     drawImage(image_planet, 40, -20, 40, 40);
 }
 
 // Load spaceship image
-spaceship.image.src = "./pics/spaceships/spaceship.png";
-spaceship.image.onload = () => {
-    spaceship.width = 50;
-    spaceship.height = 50;
-};
+spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 // Handle keyboard input
 window.addEventListener('keydown', (e) => {
@@ -182,7 +163,7 @@ function gameLoop() {
 }
 
 // Initialize and start animation
-loadImage('./pics/planets/Mars.png', image_planet);
+var image_planet = await loadImage('./pics/planets/Mars.png');
 
 initStars();
 gameLoop();
@@ -258,11 +239,7 @@ function drawPlanet() {
 }
 
 // Load spaceship image
-spaceship.image.src = "./pics/spaceships/spaceship.png";
-spaceship.image.onload = () => {
-    spaceship.width = 50;
-    spaceship.height = 50;
-};
+spaceship.image = await loadImage("./pics/spaceships/spaceship.png");
 
 // Handle keyboard input
 window.addEventListener('keydown', (e) => {
