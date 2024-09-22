@@ -15,7 +15,7 @@
 	<p>Change the randomly plotted color pixels to white</p>
 <pre>
 for (let i=0; i < 100; i++) {
-	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35), random(1,15));
 }
 </pre>
 	<p>The function for detect pixel color is:</p>
@@ -32,7 +32,7 @@ getPixelColor(x, y)
 <textarea id="LessonRunCode">
 gr();
 for (let i=0; i < 100; i++) {
-	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35), random(1,15));
 }
 await input ("Press enter to change:");
 for (let y=0; y < 36; y++) {
@@ -46,7 +46,7 @@ for (let y=0; y < 36; y++) {
 <textarea id="LessonExampleCode">
 gr();
 for (let i=0; i < 100; i++) {
-	plot(random(0,59), random(0,35));
+	plot(random(0,59), random(0,35), random(1,15));
 }
 await input ("Press enter to change:");
 for (let y=0; y < 36; y++) {
