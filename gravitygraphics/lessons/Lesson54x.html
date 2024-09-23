@@ -45,10 +45,10 @@ threeFrames(30, 20, 30, 20);
 gr();
 
 function myFrame (x, y, width, height, color=random(1,15)) {
-	line(x - (width/2), y - (height/2), x + (width/2), y - (height/2), color); 
-	line(x + (width/2), y - (height/2), x + (width/2), y + (height/2), color);
-	line(x + (width/2), y + (height/2), x - (width/2), y + (height/2), color); 
-	line(x - (width/2), y + (height/2), x - (width/2), y - (height/2), color); 
+	twine(x - (width/2), y - (height/2), x + (width/2), y - (height/2), color); 
+	twine(x + (width/2), y - (height/2), x + (width/2), y + (height/2), color);
+	twine(x + (width/2), y + (height/2), x - (width/2), y + (height/2), color); 
+	twine(x - (width/2), y + (height/2), x - (width/2), y - (height/2), color); 
 }
 
 

@@ -45,7 +45,7 @@ async function divideCircle(r) {
         const y = r * Math.sin(theta);
         
         points.push({ x, y });
-		if (i > 5) stroke (centerX + x, centerY + y, centerX + points[i-5].x, centerY + points[i-5].y, "green");
+		if (i > 5) line(centerX + x, centerY + y, centerX + points[i-5].x, centerY + points[i-5].y, "green");
 		await delay(0.01);
     }
     
@@ -78,7 +78,7 @@ async function divideCircle(r) {
         const y = r * Math.sin(theta);
         
         points.push({ x, y });
-		if (i > 5) stroke (centerX + x, centerY + y, centerX + points[i-5].x, centerY + points[i-5].y, "green");
+		if (i > 5) line(centerX + x, centerY + y, centerX + points[i-5].x, centerY + points[i-5].y, "green");
 		await delay(0.01);
     }
     

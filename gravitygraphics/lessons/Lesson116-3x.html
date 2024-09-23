@@ -45,9 +45,9 @@ async function divideCircle(r) {
         
         points.push({ x, y });
 		// Draws the conic shape
-		stroke (10, 10, centerX + points[i].x, centerY + points[i].y, "green");
+		line(10, 10, centerX + points[i].x, centerY + points[i].y, "green");
 		// Draws the circle outline
-		if (i > 0) stroke (centerX + points[i].x, centerY + points[i].y, centerX + points[i-1].x, centerY + points[i-1].y, "green");
+		if (i > 0) line(centerX + points[i].x, centerY + points[i].y, centerX + points[i-1].x, centerY + points[i-1].y, "green");
 		await delay(0.01);
     }
     
@@ -81,9 +81,9 @@ async function divideCircle(r) {
         
         points.push({ x, y });
 		// Draws the conic shape
-		stroke (10, 10, centerX + points[i].x, centerY + points[i].y, "green");
+		line(10, 10, centerX + points[i].x, centerY + points[i].y, "green");
 		// Draws the circle outline
-		if (i > 0) stroke (centerX + points[i].x, centerY + points[i].y, centerX + points[i-1].x, centerY + points[i-1].y, "green");
+		if (i > 0) line(centerX + points[i].x, centerY + points[i].y, centerX + points[i-1].x, centerY + points[i-1].y, "green");
 		await delay(0.01);
     }
     

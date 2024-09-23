@@ -12,9 +12,9 @@
 <body>
 <div id="lesson" class="lesson">
 	<h1>Exercise: Dynamic Variables and While Loop</h1>
-	<p>Let's use while loop to create the pattern show on the screen with diagonal lines using lines() function. The code to draw a line is this:</p>
+	<p>Let's use while loop to create the pattern show on the screen with diagonal lines using twine() function. The code to draw a line is this:</p>
 <pre>
-line(x1=0, y1=0, x2=59, y2=35, color="red");
+twine(x1=0, y1=0, x2=59, y2=35, color="red");
 </pre>
 
 	<h3></h3>
@@ -31,7 +31,7 @@ var j = 0;
 while (i < 60) {
 	i = i + 3;
 	j = 60-i;
-	line(x1=i, y1=0, x2=j, y2=35, color="red");
+	twine(x1=i, y1=0, x2=j, y2=35, color="red");
 	await delay();
 }
 
@@ -43,7 +43,7 @@ var j = 0;
 while (i < 60) {
 	i = i + 3;
 	j = 60-i;
-	line(x1=i, y1=0, x2=j, y2=35, color="red");
+	twine(x1=i, y1=0, x2=j, y2=35, color="red");
 	await delay();
 }
 

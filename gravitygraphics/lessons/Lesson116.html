@@ -53,11 +53,11 @@ function drawDot() {
 	text("r * sin(θ): " + (radius * Math.sin(angle)).toFixed(4), "green", 4, 33, 16);
 
     // Draw the radius (line from center to the dot)
-    stroke(centerX, centerY, x, y, "green");
+    line(centerX, centerY, x, y, "green");
 
     // Draw the right angle (perpendicular lines)
-    stroke(x, centerY, x, y, "blue"); // Vertical line from x to the center
-    stroke(centerX, centerY, x, centerY, "red"); // Horizontal line from centerX to the dot's x position
+    line(x, centerY, x, y, "blue"); // Vertical line from x to the center
+    line(centerX, centerY, x, centerY, "red"); // Horizontal line from centerX to the dot's x position
 
     // Draw the moving dot
     dot(x, y, 3, "yellow");
@@ -93,11 +93,11 @@ function drawDot() {
 	text("r * sin(θ): " + (radius * Math.sin(angle)).toFixed(4), "green", 4, 33, 16);
 
     // Draw the radius (line from center to the dot)
-    stroke(centerX, centerY, x, y, "green");
+    line(centerX, centerY, x, y, "green");
 
     // Draw the right angle (perpendicular lines)
-    stroke(x, centerY, x, y, "blue"); // Vertical line from x to the center
-    stroke(centerX, centerY, x, centerY, "red"); // Horizontal line from centerX to the dot's x position
+    line(x, centerY, x, y, "blue"); // Vertical line from x to the center
+    line(centerX, centerY, x, centerY, "red"); // Horizontal line from centerX to the dot's x position
 
     // Draw the moving dot
     dot(x, y, 3, "yellow");

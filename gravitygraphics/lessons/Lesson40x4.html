@@ -14,7 +14,7 @@
 	<h1>Exercise: Diagonal Pattern with While Loop</h1>
 	<p>Let's generate a diagonal pattern everytime the user press enter.</p>
 <pre>
-line(x1=0, y1=0, x2=59, y2=35, color="red");
+twine(x1=0, y1=0, x2=59, y2=35, color="red");
 </pre>
 	<p>Change the variable step in your code to a number between (1-4) to see what happens.</p>
 <pre>
@@ -35,7 +35,7 @@ var x = 0;
 var y = 0;
 print("Step: " + step);
 while (x < 95) {
-	line(x1=x, y1=0, x2=0, y2=y, color);
+	twine(x1=x, y1=0, x2=0, y2=y, color);
 	await delay();
 	x = x + step;
 	y = y + step;
@@ -49,7 +49,7 @@ var x = 0;
 var y = 0;
 print("Step: " + step);
 while (x < 95) {
-	line(x1=x, y1=0, x2=0, y2=y, color);
+	twine(x1=x, y1=0, x2=0, y2=y, color);
 	await delay();
 	x = x + step;
 	y = y + step;
