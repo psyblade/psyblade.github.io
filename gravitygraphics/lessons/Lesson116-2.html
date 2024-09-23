@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link href="../css/lessons.css" rel="stylesheet">
+<script src="../lib/JQuery/jquery-3.6.0.min.js"></script>
+<script src="../js/lessons.js"></script>
+</head>
+<body>
+<div id="lesson" class="lesson">
+	<h1>Lesson 116-2: Clock Face</h1>
+	<p>To create a clock face we have to divide a circle into 12 equal parts. you need to calculate the angle for each part and then plot points along the circumference. Steps:</p>
+<pre>
+* Full Circle: The full circle is 2πr.
+* Angle between each part: θ = 2 * Math.PI / numParts;
+* Coordinates for each point: 
+  x=r⋅cos⁡(θ)x=r⋅cos(θ)
+  y=r⋅sin⁡(θ)y=r⋅sin(θ)
+</pre>
+	<br><br>
+	<h3></h3>
+	<div id="buttons">
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson116-1');">Lesson 116-1</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson116-3');">Lesson 116-3</button>
+	</div>
+</div>
+
+<textarea id="LessonRunCode">
+gr();
+async function divideCircle(r) {
+    const numParts = 12;
+    const points = [];
+	const centerX = 30;
+	const centerY = 17;
+    
+    // Each angle corresponds to 30 degrees (π/6 radians)
+    const angleStep = 2 * Math.PI / numParts;
+    
+    for (let i = 0; i < numParts; i++) {
+        // Calculate the angle for the current point
+		// (2 * angleStep) is because you want to start from the top.
+		// i * angleStep starts from the right hand side.
+        const theta = i * angleStep - (2 * angleStep); 
+        
+        // Calculate x and y coordinates for the point
+        const x = r * Math.cos(theta);
+        const y = r * Math.sin(theta);
+        
+        points.push({ x, y });
+		text (i + 1, 1, centerX + x, centerY + y);
+		await delay(0.1);
+    }
+    
+    return points;
+}
+
+// Example usage:
+const radius = 15;  // Assume a radius of 100 units
+const circlePoints = divideCircle(radius);
+console.log(circlePoints);
+</textarea>
+<textarea id="LessonExampleCode">
+gr();
+async function divideCircle(r) {
+    const numParts = 12;
+    const points = [];
+	const centerX = 30;
+	const centerY = 17;
+    
+    // Each angle corresponds to 30 degrees (π/6 radians)
+    const angleStep = 2 * Math.PI / numParts;
+    
+    for (let i = 0; i < numParts; i++) {
+        // Calculate the angle for the current point
+		// (2 * angleStep) is because you want to start from the top.
+		// i * angleStep starts from the right hand side.
+        const theta = i * angleStep - (2 * angleStep); 
+        
+        // Calculate x and y coordinates for the point
+        const x = r * Math.cos(theta);
+        const y = r * Math.sin(theta);
+        
+        points.push({ x, y });
+		text (i + 1, 1, centerX + x, centerY + y);
+		await delay(0.1);
+    }
+    
+    return points;
+}
+
+// Example usage:
+const radius = 15;  // Assume a radius of 100 units
+const circlePoints = divideCircle(radius);
+console.log(circlePoints);
+</textarea>
+<script>
+parent.ShowExample();
+parent.LoadYourCode("TextAreaYourCode", "Lesson116-2");
+parent.HideHelper();
+parent.HideHelperButton();
+</script>
+</body>
+</html>
