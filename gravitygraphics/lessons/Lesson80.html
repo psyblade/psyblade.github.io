@@ -11,70 +11,143 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 57: Timers</h1>
+	<h1>Lesson 80: Digger</h1>
 	<p></p>
-<pre>
 
-</pre>
+	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson44x5');">Exercise</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson45x');">Exercise</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson90');">Lesson 90</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson91x');">Exercise</button>
 	</div>
 </div>
 
 <textarea id="LessonRunCode">
-function printDay(day) {
-	var message = "";
+fillScreen("brown");
 
-	// Using a switch-case
-	switch(day) {
-	  case "Monday":
-		message = "it's the start of the week!";
-		break;
-	  case "Friday":
-		message = "the weekend is almost here!";
-		break;
-	  default:
-		message = "it's just another day.";
+const digger = {
+	x: 0,
+	y: 0,
+	color: "yellow",
+	trail: "black",
+	delayTime: 0.01, // in milliseconds
+
+	async moveNorth(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x, this.y - 1, this.color);
+			plot(this.x, this.y, this.trail);
+			this.y -= 1;
+			await delay(this.delayTime);
+		}
+	},
+
+	async moveSouth(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x, this.y + 1, this.color);
+			plot(this.x, this.y, this.trail);
+			this.y += 1;
+			await delay(this.delayTime);
+		}
+	},
+
+	async moveEast(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x + 1, this.y, this.color);
+			plot(this.x, this.y, this.trail);
+			this.x += 1;
+			await delay(this.delayTime);
+		}
+	},
+
+	async moveWest(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x - 1, this.y, this.color);
+			plot(this.x, this.y, this.trail);
+			this.x -= 1;
+			await delay(this.delayTime);
+		}
 	}
-	
-	print ("The day is " + day + ", " + message);
 }
 
-printDay("Monday");
-printDay("Tuesday");
-printDay("Wednesday");
-printDay("Thursday");
-printDay("Friday");
+async function pattern1() {
+	await digger.moveSouth(4);
+	await digger.moveEast(4);
+	await digger.moveNorth(4);
+	await digger.moveEast(4);
+}
+
+async function start() {
+	await pattern1();
+	await pattern1();
+	await pattern1();
+}
+
+start();
 </textarea>
 <textarea id="LessonExampleCode">
-function printDay(day) {
-	var message = "";
+fillScreen("brown");
 
-	// Using a switch-case
-	switch(day) {
-	  case "Monday":
-		message = "it's the start of the week!";
-		break;
-	  case "Friday":
-		message = "the weekend is almost here!";
-		break;
-	  default:
-		message = "it's just another day.";
+const digger = {
+	x: 0,
+	y: 0,
+	color: "yellow",
+	trail: "black",
+	delayTime: 0.01, // in milliseconds
+
+	async moveNorth(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x, this.y - 1, this.color);
+			plot(this.x, this.y, this.trail);
+			this.y -= 1;
+			await delay(this.delayTime);
+		}
+	},
+
+	async moveSouth(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x, this.y + 1, this.color);
+			plot(this.x, this.y, this.trail);
+			this.y += 1;
+			await delay(this.delayTime);
+		}
+	},
+
+	async moveEast(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x + 1, this.y, this.color);
+			plot(this.x, this.y, this.trail);
+			this.x += 1;
+			await delay(this.delayTime);
+		}
+	},
+
+	async moveWest(steps) {
+		for (let i = 0; i < steps; i++) {
+			plot(this.x - 1, this.y, this.color);
+			plot(this.x, this.y, this.trail);
+			this.x -= 1;
+			await delay(this.delayTime);
+		}
 	}
-	
-	print ("The day is " + day + ", " + message);
 }
 
-printDay("Monday");
-printDay("Tuesday");
-printDay("Wednesday");
-printDay("Thursday");
-printDay("Friday");
+async function pattern1() {
+	await digger.moveSouth(4);
+	await digger.moveEast(4);
+	await digger.moveNorth(4);
+	await digger.moveEast(4);
+}
+
+async function start() {
+	await pattern1();
+	await pattern1();
+	await pattern1();
+}
+
+start();
 </textarea>
 <script>
 parent.ShowExample();
-parent.LoadYourCode("TextAreaYourCode", "Lesson45");
+parent.LoadYourCode("TextAreaYourCode", "Lesson80");
 parent.HideHelper();
 parent.HideHelperButton();
 parent.HideSolution();
