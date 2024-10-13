@@ -207,6 +207,18 @@ for (rows=0; rows<7; rows++) {
 	margin++;
 }
 
+
+function home() {
+	printc(margin+", ");
+	for (x=0; x<12-(margin); x++) {
+		digger.move();
+	}
+}
+
+function turnAround() {
+	digger.turnLeft();
+	digger.turnLeft();
+}
 </textarea>
 <script>
 parent.ShowExample();
