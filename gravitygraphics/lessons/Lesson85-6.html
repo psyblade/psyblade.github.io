@@ -180,13 +180,33 @@ function doSomething() {
 doSomething();
 </textarea>
 <textarea id="LessonHiddenSolutionCode">
-while(!condition.facingNorth()) {
-	digger.turnRight();
+var margin=0;
+
+for (rows=0; rows<7; rows++) {
+	for (i=0; i<12-margin; i++) {
+		if (i >= margin) {
+			digger.putCarrot();
+		}
+		digger.move();
+	}
+	// put last carrot before moving up
+	digger.putCarrot();
+	
+	// move up
+	digger.turnLeft();
+	digger.move();
+	digger.turnLeft();
+	
+	// go home
+	if (margin < 6) home();
+	
+	// turn around
+	turnAround();
+	
+	// increase margin
+	margin++;
 }
-digger.move();
-digger.move();
-digger.move();
-digger.takeCarrot();
+
 </textarea>
 <script>
 parent.ShowExample();
