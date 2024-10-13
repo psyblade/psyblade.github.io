@@ -11,10 +11,10 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 81: Multiple Maps</h1>
+	<h1>Lesson 82: Different Size Piles</h1>
 	
 	<img src="../pics/digger/ss1.jpg" style="width:100%">
-	<p>Help Digger Mole get the carrots in both maps.</p>
+	<p>Help Digger Mole pick up the carrots.</p>
 	<pre>
 mole.moveNorth(); mole.moveSouth(); 
 mole.moveEast(); mole.moveWest();
@@ -22,8 +22,8 @@ mole.putCarrot(); mole.takeCarrot();
 condition.carrotPresent();</pre>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson80-4');">Lesson 80-4</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson81-1');">Lesson 81-1</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson81-1');">Lesson 81-1</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson82-1');">Lesson 82-1</button>
 	</div>
 </div>
 
@@ -31,6 +31,7 @@ condition.carrotPresent();</pre>
 gr();
 
 var random_count = random(10,50);
+var random_count2 = random(10,50);
 diggerMap.maps = {
 	"set1": {
 			map: [
@@ -65,7 +66,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+								[0, 0, 0, 0, random_count, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -87,7 +88,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+								[0, 0, 0, 0, random_count, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -118,7 +119,7 @@ diggerMap.maps = {
 							]
 					},
 					{
-					wall_color: 8,
+					wall_color: "brown",
 					start: {x:1, y:3},
 					end: {x:13, y:3},
 					gridsize: 40,
@@ -137,7 +138,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+								[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -148,7 +149,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+								[0, 0, 0, 0, 0, 0, 0, 0, random_count2, 0, 0, random_count2, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -159,7 +160,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+								[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -170,7 +171,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+								[0, 0, 0, 0, 0, 0, 0, 0, random_count2, 0, 0, random_count2, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -199,7 +200,7 @@ diggerMap.maps = {
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 							]
-					}
+					},
 				]
 			},
 };
@@ -240,6 +241,11 @@ for (let i=0; i<number; i++) {
 if (condition.carrotPresent()) {
 	...
 }
+
+// While-Loop Reference
+while (condition.carrotPresent()) {
+	...
+}
 </textarea>
 <textarea id="LessonHiddenSolutionCode">
 start();
@@ -252,7 +258,7 @@ function start() {
 function go() {
 	for (let i=0; i < 12; i++) {
 		mole.moveEast();
-		if (condition.carrotPresent()) {
+		while (condition.carrotPresent()) {
 			mole.takeCarrot();
 		}
 	}

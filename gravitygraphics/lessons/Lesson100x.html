@@ -66,7 +66,7 @@ await delay(1);
 while (true) {
 	gr()
 	text(picked_fruit_name, "beige", "center", 4);
-	random_index = random(0, array_fruits.length);
+	random_index = random(0, array_fruits.length - 1);
 	random_fruit_name = array_fruits[random_index];
 	drawImage(array_fruits_images[random_index], 20, 10, 20, 20);
 	text(random_fruit_name, "beige", "center", "bottom");

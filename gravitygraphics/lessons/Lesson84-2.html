@@ -11,17 +11,25 @@
 </head>
 <body>
 <div id="lesson" class="lesson">
-	<h1>Lesson 80: Digger</h1>
+	<h1>Lesson 84-2: Alternating</h1>
 	
 	<img src="../pics/digger/ss1.jpg" style="width:100%">
-	<p>Help Digger Mole find its digger.</p>
+	<p>Help Digger Mole plant alternating carrots and turnips:</p>
 	<pre>
-mole.moveNorth(); mole.moveSouth(); 
-mole.moveEast(); mole.moveWest();</pre>
+condition.northIsClear(); 
+condition.southIsClear();
+condition.eastIsClear();
+condition.westIsClear(); 
+condition.northIsBlocked();
+condition.southIsBlocked();
+condition.eastIsBlocked();
+condition.westIsBlocked(); 
+</pre>
+	<br><br>
 	<h3></h3>
 	<div id="buttons">
-		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson73');">Lesson 73</button>
-		<button class="buttonNextLesson" onclick="NavigateTo('Lesson80-1');">Lesson 80-1</button>
+		<button class="buttonPreviousLesson" onclick="NavigateTo('Lesson84-1');">Lesson 84-1</button>
+		<button class="buttonNextLesson" onclick="NavigateTo('Lesson84-3');">Lesson 84-3</button>
 	</div>
 </div>
 
@@ -33,18 +41,18 @@ diggerMap.maps = {
 			map: [
 					{
 					wall_color: "brown",
-					start: {x:1, y:1},
-					end: {x:5, y:1},
+					start: {x:1, y:7},
+					end: {x:1, y:1},
 					gridsize: 40,
 					terrain:[
 								[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+								[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 								[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 							],
 					items:	[
@@ -94,23 +102,23 @@ diggerMap.maps = {
 					items_end:	[
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+								[0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0],
+								[0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0],
+								[0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0],
+								[0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0],
+								[0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0],
+								[0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 							],
 					items_count_end:	[
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+								[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+								[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+								[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+								[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+								[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+								[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
 								[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 							]
 					},
@@ -118,9 +126,13 @@ diggerMap.maps = {
 			},
 };
 
-var number_of_maps = 1;
-insertDropdownToParent(number_of_maps, 1); 
+// Load dropdown selected option
+var current_map = window.localStorage[LessonName + "-testMap"];
+if (current_map == null) current_map = 0;
 
+// Call the function with the desired number of options
+var number_of_maps = diggerMap.maps["set1"].map.length;
+insertDropdownToParent(number_of_maps, current_map);  // Example: Creates a dropdown with 5 options (Map 1 to Map 2)
 </textarea>
 <textarea id="LessonRunCode">
 gr();
@@ -132,26 +144,67 @@ showMaps();
 <textarea id="LessonExampleCode">
 mole.speed(100); // 1-100
 
-// Commands Functions
+// Action Functions
 // mole.moveNorth(); 
 // mole.moveSouth(); 
 // mole.moveEast();
 // mole.moveWest();
+// mole.putCarrot();
+// mole.takeCarrot();
+// mole.putTurnip();
+// mole.takeTurnip();
+
+// Conditions
+// condition.carrotPresent(); 
+// condition.turnipPresent(); 
+// condition.northIsClear(); 
+// condition.southIsClear(); 
+// condition.eastIsClear(); 
+// condition.westIsClear(); 
+// condition.northIsBlocked(); 
+// condition.southIsBlocked(); 
+// condition.eastIsBlocked(); 
+// condition.westIsBlocked(); 
 
 // Example
 mole.moveSouth();
+
+// Begin your code with start(); function call
+start();
+
+// Put your starting code in function start();
+function start() {
+	...
+}
+
+// Function reference
+function doSomething() {
+	...
+}
+
+// Function call
+doSomething();
 </textarea>
 <textarea id="LessonHiddenSolutionCode">
-mole.speed(100); // 1-100
-
-mole.moveSouth();
-mole.moveSouth();
-mole.moveEast();
-mole.moveEast();
-mole.moveNorth();
-mole.moveNorth();
-mole.moveEast();
-mole.moveEast();
+for (let j=0; j<6; j++) {
+	for (let i=0; i<13; i++) {
+		if (((j + i) % 2) == 0) {
+			mole.putCarrot();
+		} else {
+			mole.putTurnip();
+		}
+		if ((j % 2) == 0) {
+			if (condition.eastIsClear()) {
+				mole.moveEast();
+			}
+		} else {
+			if (condition.westIsClear()) {
+				mole.moveWest();
+			}		
+		}
+	}
+	mole.moveNorth();
+}
 </textarea>
 <script>
 parent.ShowExample();

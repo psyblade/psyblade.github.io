@@ -16,7 +16,7 @@
 	<p>In this exercise, let's display a random fruit. Use the random() function to pick the index for the array.</p>
 <pre>
 let array_fruits = ["apple", "orange", "banana", "blueberry", "lime"];
-print (array_fruit[random(0,5)]);
+print (array_fruit[random(0,4)]);
 </pre>
 	<h3></h3>
 	<div id="buttons">
@@ -29,7 +29,7 @@ print (array_fruit[random(0,5)]);
 while (true) {
 	gr();
 	let array_fruits = ["apple", "orange", "banana", "blueberry", "lime"];
-	var random_index = random(0,5);
+	var random_index = random(0,4);
 	var random_fruit_name = array_fruits[random_index];
 	drawImageFromURL('./pics/fruits/' + random_fruit_name + '.png', 20, 10, 20, 20);
 	text(random_fruit_name, "beige", "center", 4);
@@ -41,7 +41,7 @@ while (true) {
 while (true) {
 	gr();
 	let array_fruits = ["apple", "orange", "banana", "blueberry", "lime"];
-	var random_index = random(0,5);
+	var random_index = random(0,4);
 	var random_fruit_name = array_fruits[random_index];
 	drawImageFromURL('./pics/fruits/' + random_fruit_name + '.png', 20, 10, 20, 20);
 	text(random_fruit_name, "beige", "center", 4);
