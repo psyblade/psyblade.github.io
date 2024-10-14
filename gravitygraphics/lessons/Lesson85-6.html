@@ -14,14 +14,11 @@
 	<h1>Lesson 85-6: Carrot Hill</h1>
 	
 	<img src="../pics/digger/ss1.jpg" style="width:100%">
-	<p>Help Digger Mole plant the carrots:</p>
+	<p>Help Digger Mole plant the carrots using these functions:</p>
 	<pre>
-digger.move(); digger.turnLeft(); digger.turnRight();
-digger.putCarrot(); digger.takeCarrot();
-condition.carrotPresent(); condition.turnipPresent(); 
-condition.frontIsClear(); condition.frontIsBlocked(); 
-condition.leftIsClear(); condition.leftIsBlocked(); 
-condition.rightIsClear(); condition.rightIsBlocked();
+digger.move(); 
+digger.turnLeft(); digger.turnRight();
+digger.putCarrot();
 </pre>
 	<br><br>
 	<h3></h3>
@@ -143,25 +140,13 @@ print ("Help Digger Mole find its digger.");
 showMaps();
 </textarea>
 <textarea id="LessonExampleCode">
-mole.speed(100); // 1-100
+digger.speed(100); // 1-100
 
 // Action Functions
-// mole.move(); 
-// mole.turnLeft(); 
-// mole.turnRight();
-
-// Conditions
-// condition.carrotPresent(); 
-// condition.turnipPresent(); 
-// condition.frontIsClear(); 
-// condition.frontIsBlocked(); 
-// condition.leftIsClear(); 
-// condition.leftIsBlocked(); 
-// condition.rightIsClear(); 
-// condition.rightIsBlocked();
-
-// Example
-mole.moveSouth();
+// digger.move(); 
+// digger.turnLeft(); 
+// digger.turnRight();
+// digger.putCarrot();
 
 // Begin your code with start(); function call
 start();
@@ -209,7 +194,6 @@ for (rows=0; rows<7; rows++) {
 
 
 function home() {
-	printc(margin+", ");
 	for (x=0; x<12-(margin); x++) {
 		digger.move();
 	}

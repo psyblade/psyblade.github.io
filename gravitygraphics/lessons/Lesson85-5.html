@@ -14,13 +14,16 @@
 	<h1>Lesson 85-5: Directional</h1>
 	
 	<img src="../pics/digger/ss1.jpg" style="width:100%">
-	<p>Help Digger Mole face the correct direction and take the carrot:</p>
+	<p>Help Digger Mole face the correct direction and take the carrot using these functions:</p>
 	<pre>
-mole.move(); mole.turnLeft(); mole.turnRight();
-condition.carrotPresent(); condition.turnipPresent(); 
-condition.frontIsClear(); condition.frontIsBlocked(); 
-condition.leftIsClear(); condition.leftIsBlocked(); 
-condition.rightIsClear(); condition.rightIsBlocked();
+digger.move(); 
+digger.turnLeft();
+digger.turnRight();
+digger.takeCarrot();
+condition.facingNorth();
+condition.facingSouth(); 
+condition.facingEast(); 
+condition.facingWest(); 
 </pre>
 	<br><br>
 	<h3></h3>
@@ -316,19 +319,16 @@ showMaps();
 mole.speed(100); // 1-100
 
 // Action Functions
-// mole.move(); 
-// mole.turnLeft(); 
-// mole.turnRight();
+digger.move(); 
+digger.turnLeft();
+digger.turnRight();
+digger.takeCarrot();
 
 // Conditions
-// condition.carrotPresent(); 
-// condition.turnipPresent(); 
-// condition.frontIsClear(); 
-// condition.frontIsBlocked(); 
-// condition.leftIsClear(); 
-// condition.leftIsBlocked(); 
-// condition.rightIsClear(); 
-// condition.rightIsBlocked();
+condition.facingNorth();
+condition.facingSouth(); 
+condition.facingEast(); 
+condition.facingWest(); 
 
 // Example
 mole.moveSouth();
