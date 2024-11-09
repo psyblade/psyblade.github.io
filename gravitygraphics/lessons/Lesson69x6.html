@@ -199,10 +199,12 @@ requestAnimationFrame(gameLoop);
 let playerX = 2; // Player paddle (left) x position
 let playerY = 18; // Player paddle (left) y position
 let playerHeight = 5;
+let playerScore = 0;
 
 let enemyX = 58; // Enemy paddle (right) x position
 let enemyY = 18; // Enemy paddle (right) y position
 let enemyHeight = 5;
+let enemyScore = 0;
 
 let ballX = 30; // Ball initial x position
 let ballY = 18; // Ball initial y position
@@ -302,6 +304,10 @@ function moveBall() {
 	if (ballX >= enemyX - 1 && ballY >= enemyY && ballY <= enemyY + enemyHeight) {
 		ballSpeedX *= -1; // Reverse direction on x-axis
 	}
+	
+	// Show score
+	if (ballX < 0) enemyScore += 1;
+	if (ballX > 60) playerScore += 1;
 
 	// Ball out of bounds (scoring logic)
 	if (ballX < 0 || ballX > 60) {
@@ -334,6 +340,12 @@ function drawBall() {
 	plot(ballX, ballY, 'white'); // Draw the ball
 }
 
+function drawScore() {
+	rect(29,0, 29,36, "#333");
+	text(playerScore, "green", 15, 3, 30); // Draw player score
+	text(enemyScore, "green", 45, 3, 30); // Draw enemy score
+}
+
 // Game loop to update positions and redraw the scene
 function gameLoop() {
 	gr(); // Clear screen
@@ -342,12 +354,14 @@ function gameLoop() {
 	moveBall(); // Move the ball
 	drawPlayer(); // Draw the player paddle
 	drawEnemy(); // Draw the enemy paddle
+	drawScore(); // Draw score
 	drawBall(); // Draw the ball
 
 	requestAnimationFrame(gameLoop); // Continue the loop
 }
 
 print ("Use W,A,S,D and the Arrow keys to move the paddles.");
+
 
 // Start the animation loop
 requestAnimationFrame(gameLoop);
