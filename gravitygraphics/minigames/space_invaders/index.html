@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">  
+	<title>Arcatron</title>
+	<link href="cdn/GravityStyles.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+</head>
+<body>
+<div id="gravityframe">
+	<div id="gravityscreen"></div>
+</div>
+<script src="cdn/GravityBasic.js"></script>
+<script>
+async function start() {
+	fullscreen();
+// Initial positions and variables
+let playerX = 28; // Player's initial x position (horizontal)
+let playerY = 35; // Player stays at the bottom
+let playerWidth = 5;
+
+let bulletX = null;
+let bulletY = null;
+let bulletSpeed = -1;
+let bulletFired = false;
+
+const enemyRows = 3;
+const enemyCols = 6;
+const enemies = [];
+var enemySpeedX = 0.2;
+const enemySpeedY = 1;
+
+// Enemy creation
+for (let row = 0; row < enemyRows; row++) {
+    enemies[row] = [];
+    for (let col = 0; col < enemyCols; col++) {
+        enemies[row][col] = { x: col * 8 + 10, y: row * 4 + 2, alive: true, direction: 1 };
+    }
+}
+
+// Object to track which keys are pressed
+const keys = {
+    a: false,
+    d: false,
+    Space: false
+};
+
+// Event listeners for key down and key up
+document.addEventListener('keydown', onKeyDown);
+document.addEventListener('keyup', onKeyUp);
+
+function onKeyDown(event) {
+    switch (event.key) {
+        case 'a':
+            keys.a = true;
+            break;
+        case 'd':
+            keys.d = true;
+            break;
+        case ' ':
+            keys.Space = true;
+			event.preventDefault(); // Prevent default action
+            break;
+    }
+}
+
+function onKeyUp(event) {
+    switch (event.key) {
+        case 'a':
+            keys.a = false;
+            break;
+        case 'd':
+            keys.d = false;
+            break;
+        case ' ':
+            keys.Space = false;
+            break;
+    }
+}
+
+// Move the player based on key presses
+function movePlayer() {
+    if (keys.a && playerX > 0) {
+        playerX -= 0.5;
+    }
+    if (keys.d && playerX + playerWidth < 60) {
+        playerX += 0.5;
+    }
+}
+
+// Move the bullet
+function moveBullet() {
+    if (bulletFired) {
+        bulletY += bulletSpeed;
+        if (bulletY < 0) {
+            bulletFired = false; // Reset bullet if it goes off-screen
+        }
+    }
+
+    // Fire a new bullet if space is pressed and no bullet is on screen
+    if (keys.Space && !bulletFired) {
+        bulletX = playerX + playerWidth / 2;
+        bulletY = playerY - 1;
+        bulletFired = true;
+    }
+}
+
+// Move the enemies left and right, without moving down
+function moveEnemies() {
+    // Move all enemies horizontally
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive) {
+                enemy.x += enemySpeedX * enemy.direction;
+
+                // If any enemy hits the left or right boundary, reverse direction
+                if (enemy.x <= 0 || enemy.x >= 58) {
+                    enemy.direction = enemy.direction * -1;
+                }
+            }
+        }
+    }
+}
+
+// Detect collision between bullet and enemies
+function detectCollision() {
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive && bulletFired &&
+                bulletX >= enemy.x && bulletX <= enemy.x + 2 &&
+                bulletY >= enemy.y && bulletY <= enemy.y + 2) {
+                enemy.alive = false; // Kill enemy
+                bulletFired = false; // Reset bullet
+            }
+        }
+    }
+}
+
+// Function to draw the player
+function drawPlayer() {
+    for (let i = 0; i < playerWidth; i++) {
+        plot(playerX + i, playerY, 'blue'); // Draw player as a blue line
+    }
+}
+
+// Function to draw the enemies
+function drawEnemies() {
+    for (let row of enemies) {
+        for (let enemy of row) {
+            if (enemy.alive) {
+                plot(enemy.x, enemy.y, 'red'); // Draw live enemies as red dots
+            }
+        }
+    }
+}
+
+// Function to draw the bullet
+function drawBullet() {
+    if (bulletFired) {
+        plot(bulletX, bulletY, 'white'); // Draw bullet
+    }
+}
+
+// Game loop to update positions and redraw the scene
+function gameLoop() {
+    gr(); // Clear screen
+    movePlayer(); // Move player based on key presses
+    moveBullet(); // Move the bullet
+    moveEnemies(); // Move the enemies
+    detectCollision(); // Check for collisions
+    drawPlayer(); // Draw the player
+    drawBullet(); // Draw the bullet
+    drawEnemies(); // Draw the enemies
+
+    requestAnimationFrame(gameLoop); // Continue the loop
+}
+
+// Start the animation loop
+requestAnimationFrame(gameLoop);
+
+print("Use A,D to move and Space to shoot.");
+
+}
+
+</script>
+</body>
+</html>
